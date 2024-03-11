@@ -1,6 +1,8 @@
-import 'package:classnet/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'firebase/firebase_options.dart';
+import 'res/values/strings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +25,7 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
       ),
       themeMode: ThemeMode.system,
-      title: 'Classnet',
+      title: Strings.appName,
     );
   }
 }
