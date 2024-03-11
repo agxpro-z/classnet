@@ -19,11 +19,11 @@ class _LoginPageState extends State<LoginPage> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.surfaceVariant,
+      backgroundColor: theme.colorScheme.secondaryContainer,
       body: SafeArea(
         child: Center(
           child: Card(
-            color: theme.colorScheme.surface,
+            color: theme.colorScheme.background,
             margin: const EdgeInsets.all(8.0),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                       isDense: true,
                     ),
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 12.0),
 
                   // Password text field
                   TextField(
