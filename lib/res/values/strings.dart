@@ -9,6 +9,15 @@ class Strings {
   static const String createAccount = "Create account";
   static const String login = "Log-in";
 
+  // Create account
+  static const String signUpHeader = "Sign up";
+  static const String confirmPassword = "Confirm Password";
+  static const String name = "Name";
+  static const String branch = "Branch";
+  static const String course = "Course";
+
+
+
   // Sign-out
   static const String signOut = "Log out";
 
