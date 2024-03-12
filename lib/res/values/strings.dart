@@ -21,6 +21,8 @@ class Strings {
 
   // Home
   static const String home = "Home";
+  static const String upcomingAssignments = "Upcoming assignments";
+  static const String notGradedAssignments = "Not graded";
 
   // Tasks
   static const String tasks = "Tasks";
@@ -31,4 +33,7 @@ class Strings {
   // User
   static const invalidUser = "Invalid user";
   static const invalidEmail = "Invalid e-mail";
+
+  // Assignment card
+  static const deadline = "Deadline: ";
 }
