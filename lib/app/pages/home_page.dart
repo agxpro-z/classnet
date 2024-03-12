@@ -1,11 +1,17 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/values/strings.dart';
 import '../auth/auth.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _bottomNavigationIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +66,23 @@ class HomePage extends StatelessWidget {
             )
           ],
         )
+      ),
+      bottomNavigationBar: NavigationBar(
+        backgroundColor: theme.colorScheme.surface,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        height: 64.0,
+        selectedIndex: _bottomNavigationIndex,
+        destinations: const <Widget>[
+          NavigationDestination(icon: Icon(Icons.home_filled), label: Strings.home),
+          NavigationDestination(icon: Icon(Icons.calendar_today), label: Strings.tasks),
+          NavigationDestination(icon: Icon(Icons.my_library_books_outlined), label: Strings.library),
+        ],
+        onDestinationSelected: (selectedIndex) {
+          setState(() {
+            _bottomNavigationIndex = selectedIndex;
+          });
+        },
+        indicatorColor: theme.colorScheme.inversePrimary,
       ),
     );
   }

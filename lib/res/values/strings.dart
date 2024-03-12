@@ -16,13 +16,17 @@ class Strings {
   static const String branch = "Branch";
   static const String course = "Course";
 
-
-
   // Sign-out
   static const String signOut = "Log out";
 
   // Home
   static const String home = "Home";
+
+  // Tasks
+  static const String tasks = "Tasks";
+
+  // Library
+  static const String library = "Library";
 
   // User
   static const invalidUser = "Invalid user";
