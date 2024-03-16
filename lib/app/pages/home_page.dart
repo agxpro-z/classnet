@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../res/values/strings.dart';
 import '../auth/auth.dart';
 import '../components/assignment_card.dart';
+import '../components/subject_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
         backgroundColor: theme.colorScheme.surface,
         title: const Text(Strings.home),
@@ -166,6 +167,65 @@ class _HomePageState extends State<HomePage> {
                       title: "Task 1 Tcases",
                       subject: "Software Testing",
                     ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  Strings.allSubjects,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: theme.textTheme.titleMedium?.fontSize
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8.0),
+              const SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    SubjectCard(
+                      subject: "Mobile Application Development",
+                      upcoming: 1,
+                      total: 4,
+                    ),
+                    SubjectCard(
+                      subject: "Mobile Application Development",
+                      upcoming: 1,
+                      total: 4,
+                    ),
+                    SubjectCard(
+                      subject: "Mobile Application Development",
+                      upcoming: 1,
+                      total: 4,
+                    ),
+                    SubjectCard(
+                      subject: "Mobile Application Development",
+                      upcoming: 1,
+                      total: 4,
+                    ),
+                    SubjectCard(
+                      subject: "Mobile Application Development",
+                      upcoming: 1,
+                      total: 4,
+                    ),
+                    SubjectCard(
+                      subject: "Mobile Application Development",
+                      upcoming: 1,
+                      total: 4,
+                    ),
+                    SubjectCard(
+                      subject: "Mobile Application Development",
+                      upcoming: 1,
+                      total: 4,
+                    ),
+                    SubjectCard(
+                      subject: "Mobile Application Development",
+                      upcoming: 1,
+                      total: 4,
+                    ),
+                    SizedBox(height: 8.0),
                   ],
                 ),
               ),

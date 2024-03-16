@@ -23,6 +23,7 @@ class Strings {
   static const String home = "Home";
   static const String upcomingAssignments = "Upcoming assignments";
   static const String notGradedAssignments = "Not graded";
+  static const String allSubjects = "All subjects";
 
   // Tasks
   static const String tasks = "Tasks";

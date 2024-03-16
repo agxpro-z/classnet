@@ -25,9 +25,10 @@ class AssignmentCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Card(
-              margin: EdgeInsets.all(0.0),
-              child: SizedBox(
+            Card(
+              color: theme.colorScheme.primaryContainer,
+              margin: const EdgeInsets.all(0.0),
+              child: const SizedBox(
                 height: 144,
                 width: 164,
               ),
