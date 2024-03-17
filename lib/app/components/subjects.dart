@@ -21,6 +21,7 @@ class _SubjectsState extends State<Subjects> {
     for (var subject in subjects) {
       if (subject == 'sem4') {
         subjectList = await SubjectsProvider().getSubjectList(subject);
+        subjectList.sort((a, b) => (a['title'] as String).compareTo(b['title'] as String));
       }
     }
   }
