@@ -4,13 +4,11 @@ class SubjectCard extends StatelessWidget {
   const SubjectCard({
     super.key,
     required this.subject,
-    required this.upcoming,
-    required this.total,
+    required this.assignments,
   });
 
   final String subject;
-  final int upcoming;
-  final int total;
+  final int assignments;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +20,8 @@ class SubjectCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Container(
-              height: 64,
-              width: 64,
+              height: 48,
+              width: 48,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 color: theme.colorScheme.primaryContainer,
@@ -43,9 +41,8 @@ class SubjectCard extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 8.0),
                     Text(
-                      "Upcoming: ${upcoming.toString()}  |  Total: ${total.toString()}",
+                      "Assignments: ${assignments.toString()}",
                       style: TextStyle(
                         fontSize: theme.textTheme.bodySmall?.fontSize,
                       ),
