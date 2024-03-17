@@ -25,11 +25,11 @@ class Strings {
   static const String notGradedAssignments = "Not graded";
   static const String allSubjects = "All subjects";
 
-  // Tasks
-  static const String tasks = "Tasks";
+  // Schedule
+  static const String schedule = "Schedule";
 
-  // Library
-  static const String library = "Library";
+  // Assignments
+  static const String assignments = "Assignments";
 
   // User
   static const invalidUser = "Invalid user";
@@ -37,4 +37,7 @@ class Strings {
 
   // Assignment card
   static const deadline = "Deadline: ";
+
+  // More
+  static const more = "More";
 }
