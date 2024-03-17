@@ -70,9 +70,10 @@ class _HomePageState extends State<HomePage> {
         height: 64.0,
         selectedIndex: _bottomNavigationIndex,
         destinations: const <Widget>[
-          NavigationDestination(icon: Icon(Icons.home_filled), label: Strings.home),
-          NavigationDestination(icon: Icon(Icons.calendar_today), label: Strings.tasks),
-          NavigationDestination(icon: Icon(Icons.my_library_books_outlined), label: Strings.library),
+          NavigationDestination(icon: Icon(Icons.home_outlined), label: Strings.home),
+          NavigationDestination(icon: Icon(Icons.my_library_books_outlined), label: Strings.assignments),
+          NavigationDestination(icon: Icon(Icons.schedule_outlined), label: Strings.schedule),
+          NavigationDestination(icon: Icon(Icons.more_horiz_outlined), label: Strings.more),
         ],
         onDestinationSelected: (selectedIndex) {
           setState(() {
