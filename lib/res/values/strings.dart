@@ -40,6 +40,7 @@ class Strings {
   static const String sem7 = "Semester 7";
   static const String sem8 = "Semester 8";
   static const String invalidSemester = "Invalid Semester";
+  static const String subjects = "Subjects";
 
   // User
   static const invalidUser = "Invalid user";

@@ -17,7 +17,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _bottomNavigationIndex = 0;
   final List<Widget> pages = const [HomePage(), SubjectsPage(), SchedulePage(), Preferences()];
-  final List<String> title = const [Strings.home, Strings.assignments, Strings.schedule, Strings.preferences];
+  final List<String> title = const [Strings.home, Strings.subjects, Strings.schedule, Strings.preferences];
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage> {
         selectedIndex: _bottomNavigationIndex,
         destinations: const <Widget>[
           NavigationDestination(icon: Icon(Icons.home_outlined), label: Strings.home),
-          NavigationDestination(icon: Icon(Icons.my_library_books_outlined), label: Strings.assignments),
+          NavigationDestination(icon: Icon(Icons.my_library_books_outlined), label: Strings.subjects),
           NavigationDestination(icon: Icon(Icons.schedule_outlined), label: Strings.schedule),
           NavigationDestination(icon: Icon(Icons.more_horiz_outlined), label: Strings.more),
         ],
