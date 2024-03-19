@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+
+import '../../res/values/strings.dart';
+import '../components/assignment_list_tile.dart';
+import '../providers/assignments.dart';
+
+class AssignmentsPage extends StatefulWidget {
+  const AssignmentsPage({
+    super.key,
+    required this.course,
+    required this.sem,
+    required this.subCollection,
+  });
+
+  final String course;
+  final String sem;
+  final String subCollection;
+
+  @override
+  State<AssignmentsPage> createState() => _AssignmentsPageState();
+}
+
+class _AssignmentsPageState extends State<AssignmentsPage> {
+  List<Map<String, dynamic>> _assignmentsList = [];
+
+  Future<void> updateAssignmentsList() async {
+    _assignmentsList = await AssignmentsProvider().getAssignmentList(widget.course, widget.sem, widget.subCollection);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(Strings.assignments),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: SingleChildScrollView(
+          child: FutureBuilder(
+            future: updateAssignmentsList(),
+            builder: (context, snapshot) {
+              return Column(
+                children: <Widget>[
+                  for (var assignment in _assignmentsList)
+                    AssignmentListTile(assignmentData: assignment)
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}

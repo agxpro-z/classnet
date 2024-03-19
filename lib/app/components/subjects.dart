@@ -1,3 +1,5 @@
+import 'package:classnet/app/pages/assignments_page.dart';
+import 'package:classnet/app/providers/assignments.dart';
 import 'package:flutter/material.dart';
 
 import '../providers/subjects.dart';
@@ -38,7 +40,20 @@ class _SubjectsState extends State<Subjects> {
         return Column(
           children: <Widget>[
             for (var sub in subjectList)
-              SubjectCard(subject: sub['title'], assignments: assignments[sub['title']] ?? 0)
+              GestureDetector(
+                onTap: () {
+                  if (sub['collection'] != null) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AssignmentsPage(
+                        course: widget.course,
+                        sem: widget.sem,
+                        subCollection: sub['collection'],
+                      ),
+                    ));
+                  }
+                },
+                child: SubjectCard(subject: sub['title'], assignments: assignments[sub['title']] ?? 0),
+              )
           ],
         );
       },
