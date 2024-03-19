@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../res/values/strings.dart';
 import '../auth/auth.dart';
-import 'assignment_page.dart';
 import 'home_page.dart';
 import 'preferences.dart';
 import 'schedule_page.dart';
+import 'subjects_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -16,7 +16,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _bottomNavigationIndex = 0;
-  final List<Widget> pages = const [HomePage(), AssignmentPage(), SchedulePage(), Preferences()];
+  final List<Widget> pages = const [HomePage(), SubjectsPage(), SchedulePage(), Preferences()];
   final List<String> title = const [Strings.home, Strings.assignments, Strings.schedule, Strings.preferences];
 
   @override
