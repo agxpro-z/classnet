@@ -72,7 +72,7 @@ class _AssignmentPageState extends State<AssignmentPage> {
         ),
         Expanded(
           child: SingleChildScrollView(
-            child: Subjects(sem: _dropDownValue),
+            child: Subjects(course: 'mca22', sem: _dropDownValue),
           ),
         ),
       ],

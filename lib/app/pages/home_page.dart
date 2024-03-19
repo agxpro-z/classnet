@@ -104,7 +104,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8.0),
-          const Subjects(sem: 'sem4'),
+          const Subjects(course: 'mca22', sem: 'sem4'),
           const SizedBox(height: 8.0),
         ],
       ),
