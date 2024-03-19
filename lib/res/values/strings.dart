@@ -30,6 +30,16 @@ class Strings {
 
   // Assignments
   static const String assignments = "Assignments";
+  static const String semester = "Semester";
+  static const String sem1 = "Semester 1";
+  static const String sem2 = "Semester 2";
+  static const String sem3 = "Semester 3";
+  static const String sem4 = "Semester 4";
+  static const String sem5 = "Semester 5";
+  static const String sem6 = "Semester 6";
+  static const String sem7 = "Semester 7";
+  static const String sem8 = "Semester 8";
+  static const String invalidSemester = "Invalid Semester";
 
   // User
   static const invalidUser = "Invalid user";
