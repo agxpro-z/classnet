@@ -43,21 +43,4 @@ class SubjectsProvider {
     final data =  await getSubjects(collection, sem);
     return data[subId];
   }
-
-  /*
-   * Provide no. of assignments in the given subject.
-   *
-   * @param
-   *    sem - semester
-   *    subCollectionId - subject['collection']
-   */
-  Future<int> getAssignmentCount(String collection, String sem, String subCollectionId) async {
-    final snapshot = await FirebaseFirestore.instance
-        .collection(collection)
-        .doc(sem)
-        .collection(subCollectionId)
-        .get();
-
-    return snapshot.size;
-  }
 }

@@ -1,8 +1,8 @@
-import 'package:classnet/app/pages/assignments_page.dart';
-import 'package:classnet/app/providers/assignments.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/assignments_page.dart';
 import '../providers/subjects.dart';
+import '../providers/assignments.dart';
 import 'subject_card.dart';
 
 class Subjects extends StatefulWidget {
@@ -28,7 +28,7 @@ class _SubjectsState extends State<Subjects> {
         continue;
       }
 
-      assignments[sub['title']] = await SubjectsProvider().getAssignmentCount(widget.course, 'sem4', sub['collection']);
+      assignments[sub['title']] = await AssignmentsProvider().getAssignmentCount(widget.course, 'sem4', sub['collection']);
     }
   }
 
