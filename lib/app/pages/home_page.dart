@@ -1,3 +1,4 @@
+import 'package:classnet/app/components/assignment_list_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/values/strings.dart';
