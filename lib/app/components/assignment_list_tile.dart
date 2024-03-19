@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AssignmentListTile extends StatelessWidget {
   const AssignmentListTile({super.key, required this.assignmentData});
@@ -39,7 +40,7 @@ class AssignmentListTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Time: ",
+                        DateFormat('HH:mm, dd-MMM-yyyy').format(assignmentData['createdOn']?.toDate() ?? DateTime.now()),
                         style: TextStyle(
                           fontSize: theme.textTheme.bodySmall?.fontSize,
                         ),
