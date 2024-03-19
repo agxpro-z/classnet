@@ -41,7 +41,7 @@ class SubjectsProvider {
    */
   Future<Map<String, dynamic>> getSubjectDetail(String subId, String sem) async {
     final data =  await getSubjects(sem);
-    return data['subID'];
+    return data[subId];
   }
 
   /*
