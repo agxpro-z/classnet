@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../providers/course.dart';
 import '../providers/subjects.dart';
 import 'subject_card.dart';
 
 class Subjects extends StatefulWidget {
-  const Subjects({super.key, required this.sem});
+  const Subjects({super.key, required this.course, required this.sem});
 
+  final String course;
   final String sem;
 
   @override
@@ -18,7 +18,7 @@ class _SubjectsState extends State<Subjects> {
   Map<String, int> assignments = {};
 
   Future<void> updateSubjectList() async {
-    subjectList = await SubjectsProvider().getSubjectList(widget.sem);
+    subjectList = await SubjectsProvider().getSubjectList(widget.course, widget.sem);
     subjectList.sort((a, b) => (a['title'] as String).compareTo(b['title'] as String));
 
     for (var sub in subjectList) {
@@ -26,7 +26,7 @@ class _SubjectsState extends State<Subjects> {
         continue;
       }
 
-      assignments[sub['title']] = await SubjectsProvider().getAssignmentCount('sem4', sub['collection']);
+      assignments[sub['title']] = await SubjectsProvider().getAssignmentCount(widget.course, 'sem4', sub['collection']);
     }
   }
 
