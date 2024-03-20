@@ -41,6 +41,8 @@ class Strings {
   static const String sem8 = "Semester 8";
   static const String invalidSemester = "Invalid Semester";
   static const String subjects = "Subjects";
+  static const String due = "Due";
+  static const String points = "Points";
 
   // User
   static const invalidUser = "Invalid user";

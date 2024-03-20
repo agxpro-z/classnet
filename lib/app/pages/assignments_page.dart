@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../res/values/strings.dart';
 import '../components/assignment_list_tile.dart';
 import '../providers/assignments.dart';
+import 'assignment_page.dart';
 
 class AssignmentsPage extends StatefulWidget {
   const AssignmentsPage({
@@ -44,7 +45,12 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
               return Column(
                 children: <Widget>[
                   for (var assignment in _assignmentsList)
-                    AssignmentListTile(assignmentData: assignment.data())
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AssignmentPage(assignmentSnapshot: assignment),
+                      )),
+                      child: AssignmentListTile(assignmentData: assignment.data()),
+                    )
                 ],
               );
             },
