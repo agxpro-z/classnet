@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../res/values/strings.dart';
 import '../pages/assignments_page.dart';
 import '../providers/subjects.dart';
 import '../providers/assignments.dart';
@@ -50,6 +51,13 @@ class _SubjectsState extends State<Subjects> {
                         subCollection: sub['collection'],
                       ),
                     ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text(Strings.noAssignments),
+                        backgroundColor: Colors.yellow[800],
+                      )
+                    );
                   }
                 },
                 child: SubjectCard(subject: sub['title'], assignments: assignments[sub['title']] ?? 0),

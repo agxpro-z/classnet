@@ -43,6 +43,7 @@ class Strings {
   static const String subjects = "Subjects";
   static const String due = "Due";
   static const String points = "Points";
+  static const String noAssignments = "No assignments.";
 
   // User
   static const invalidUser = "Invalid user";
