@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/values/strings.dart';
@@ -21,10 +22,10 @@ class AssignmentsPage extends StatefulWidget {
 }
 
 class _AssignmentsPageState extends State<AssignmentsPage> {
-  List<Map<String, dynamic>> _assignmentsList = [];
+  List<QueryDocumentSnapshot<Map<String, dynamic>>> _assignmentsList = [];
 
   Future<void> updateAssignmentsList() async {
-    _assignmentsList = await AssignmentsProvider().getAssignmentList(widget.course, widget.sem, widget.subCollection);
+    _assignmentsList = await AssignmentsProvider().getRawAssignmentList(widget.course, widget.sem, widget.subCollection);
   }
 
   @override
@@ -43,7 +44,7 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
               return Column(
                 children: <Widget>[
                   for (var assignment in _assignmentsList)
-                    AssignmentListTile(assignmentData: assignment)
+                    AssignmentListTile(assignmentData: assignment.data())
                 ],
               );
             },
