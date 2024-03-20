@@ -37,4 +37,23 @@ class AssignmentsProvider {
       return document.data();
     }).toList();
   }
+
+  /*
+   * Provides list of raw assignments of the given subject.
+   * Raw object can be used to obtain doc reference.
+   *
+   * @param
+   *    course - Course collection
+   *    sem - semester
+   *    subCollectionId - subject['collection']
+   */
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getRawAssignmentList(String course, String sem, String subCollection) async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection(course)
+        .doc(sem)
+        .collection(subCollection)
+        .get();
+
+    return snapshot.docs;
+  }
 }
