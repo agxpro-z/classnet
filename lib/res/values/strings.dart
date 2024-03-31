@@ -44,6 +44,11 @@ class Strings {
   static const String due = "Due";
   static const String points = "Points";
   static const String noAssignments = "No assignments.";
+  static const String editAssignment = "Edit assignment";
+  static const String updateAssignment = "Update assignment";
+  static const String assignmentTitle = "Title";
+  static const String assignmentDescription = "Description";
+  static const String assignmentPoints = "Points";
 
   // User
   static const invalidUser = "Invalid user";
