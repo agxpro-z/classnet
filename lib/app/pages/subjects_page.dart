@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../res/values/strings.dart';
+import '../auth/auth.dart';
 import '../components/subjects.dart';
+import '../components/teacher/subjects.dart';
+import '../providers/ay.dart';
 import '../providers/course.dart';
 
 class SubjectsPage extends StatefulWidget {
@@ -26,16 +29,34 @@ class _SubjectsPageState extends State<SubjectsPage> {
     "sem8": Strings.sem8,
   };
 
+  Widget subjects() {
+    String email = Auth.getUserEmail();
+
+    if (email.contains('student')) {
+      return Subjects(course: 'mca22', sem: _dropDownValue);
+    } else {
+      return TeacherSubjects(email: email, ay: _dropDownValue);
+    }
+  }
+
   Future<void> updateSemList() async {
-    CourseProvider courseProvider = CourseProvider();
     if (_semList.length > 1) {
       return;
     }
 
-    final semList = await courseProvider.getSemList();
+    CourseProvider courseProvider = CourseProvider();
+    AYProvider ayProvider = AYProvider();
+    String email = Auth.getUserEmail();
+    List<String> list;
 
-    if (semList.isNotEmpty) {
-      _semList = semList;
+    if (email.contains('student')) {
+      list = await courseProvider.getSemList();
+    } else {
+      list = await ayProvider.getAYList('faculty', email.split('@')[0]);
+    }
+
+    if (list.isNotEmpty) {
+      _semList = list;
 
       setState(() {
         _dropDownValue = _semList.first;
@@ -59,7 +80,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
               items: _semList.map<DropdownMenuItem<String>>((String item) {
                 return DropdownMenuItem<String>(
                   value: item,
-                  child: Text(_semName[item] ?? Strings.invalidSemester),
+                  child: Text(_semName[item] ?? item.toString()),
                 );
               }).toList(),
               onChanged: (value) {
@@ -72,7 +93,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
         ),
         Expanded(
           child: SingleChildScrollView(
-            child: Subjects(course: 'mca22', sem: _dropDownValue),
+            child: subjects(),
           ),
         ),
       ],
