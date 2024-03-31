@@ -54,13 +54,21 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
             builder: (context, snapshot) {
               return Column(
                 children: <Widget>[
-                  for (var assignment in _assignmentsList)
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => AssignmentPage(assignmentSnapshot: assignment),
-                      )),
-                      child: AssignmentListTile(assignmentData: assignment.data()),
-                    )
+                  if (_assignmentsList.isEmpty)
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height - 100,
+                      child: const Center(
+                        child: Text(Strings.noAssignments),
+                      ),
+                    ),
+                  if (_assignmentsList.isNotEmpty)
+                    for (var assignment in _assignmentsList)
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AssignmentPage(assignmentSnapshot: assignment),
+                        )),
+                        child: AssignmentListTile(assignmentData: assignment.data()),
+                      )
                 ],
               );
             },
