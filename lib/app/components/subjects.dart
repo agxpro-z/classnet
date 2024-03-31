@@ -29,7 +29,9 @@ class _SubjectsState extends State<Subjects> {
         continue;
       }
 
-      assignments[sub['title']] = await AssignmentsProvider().getAssignmentCount(widget.course, 'sem4', sub['collection']);
+      // Reduce assignment count since there will be a details document.
+      int count = await AssignmentsProvider().getAssignmentCount(widget.course, 'sem4', sub['collection']);
+      assignments[sub['title']] = (count == 0) ? count : count - 1;
     }
   }
 
