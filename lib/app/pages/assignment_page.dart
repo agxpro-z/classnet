@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 
 import '../../res/values/strings.dart';
 
@@ -85,8 +86,9 @@ class _AssignmentPageState extends State<AssignmentPage> {
               const Divider(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Text(
-                  widget.assignmentSnapshot.data()['description']
+                child: MarkdownBlock(
+                  data: (widget.assignmentSnapshot.data()['description'] as String).split('\\n').join('\n'),
+                  selectable: true,
                 ),
               ),
             ],
