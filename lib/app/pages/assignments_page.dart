@@ -27,6 +27,7 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
 
   Future<void> updateAssignmentsList() async {
     _assignmentsList = await AssignmentsProvider().getRawAssignmentList(widget.course, widget.sem, widget.subCollection);
+    _assignmentsList = _assignmentsList.where((snapshot) => snapshot.data()['title'] != null).toList();
   }
 
   @override
