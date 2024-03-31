@@ -1,12 +1,23 @@
-import 'package:classnet/app/components/assignment_list_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/values/strings.dart';
+import '../auth/auth.dart';
 import '../components/assignment_card.dart';
 import '../components/subjects.dart';
+import '../components/teacher/subjects.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  Widget subjects() {
+    String email = Auth.getUserEmail();
+
+    if (email.contains('student')) {
+      return const Subjects(course: 'mca22', sem: 'sem4');
+    } else {
+      return TeacherSubjects(email: email, ay: 'AY2324-I');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +116,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8.0),
-          const Subjects(course: 'mca22', sem: 'sem4'),
+          subjects(),
           const SizedBox(height: 8.0),
         ],
       ),
