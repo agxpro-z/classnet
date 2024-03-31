@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../../res/values/strings.dart';
 import '../../pages/assignments_page.dart';
 import '../../providers/subjects.dart';
 import 'subject_card.dart';
@@ -46,23 +45,14 @@ class _TeacherSubjectsState extends State<TeacherSubjects> {
             for (var sub in subjectList)
               GestureDetector(
                 onTap: () {
-                  if (sub['doc'] != null) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AssignmentsPage(
-                        course: "",
-                        sem: "",
-                        subCollection: "",
-                        assignments: sub['doc'] as CollectionReference<Map<String, dynamic>>,
-                      ),
-                    ));
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text(Strings.noAssignments),
-                        backgroundColor: Colors.yellow[800],
-                      )
-                    );
-                  }
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AssignmentsPage(
+                      course: "",
+                      sem: "",
+                      subCollection: "",
+                      assignments: sub['doc'],
+                    ),
+                  ));
                 },
                 child: TeacherSubjectCard(
                   subject: sub['title'],
