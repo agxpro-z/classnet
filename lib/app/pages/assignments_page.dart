@@ -12,11 +12,13 @@ class AssignmentsPage extends StatefulWidget {
     required this.course,
     required this.sem,
     required this.subCollection,
+    this.assignments,
   });
 
   final String course;
   final String sem;
   final String subCollection;
+  final CollectionReference<Map<String, dynamic>>? assignments;
 
   @override
   State<AssignmentsPage> createState() => _AssignmentsPageState();
@@ -26,7 +28,14 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
   List<QueryDocumentSnapshot<Map<String, dynamic>>> _assignmentsList = [];
 
   Future<void> updateAssignmentsList() async {
-    _assignmentsList = await AssignmentsProvider().getRawAssignmentList(widget.course, widget.sem, widget.subCollection);
+    if (widget.assignments != null) {
+      await widget.assignments?.get().then((snapshot) {
+        _assignmentsList = snapshot.docs;
+      });
+    } else {
+      _assignmentsList = await AssignmentsProvider().getRawAssignmentList(widget.course, widget.sem, widget.subCollection);
+    }
+
     _assignmentsList = _assignmentsList.where((snapshot) => snapshot.data()['title'] != null).toList();
   }
 

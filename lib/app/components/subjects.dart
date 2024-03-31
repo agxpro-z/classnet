@@ -51,6 +51,7 @@ class _SubjectsState extends State<Subjects> {
                         course: widget.course,
                         sem: widget.sem,
                         subCollection: sub['collection'],
+                        assignments: null,
                       ),
                     ));
                   } else {
