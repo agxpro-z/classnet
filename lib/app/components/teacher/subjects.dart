@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../res/values/strings.dart';
 import '../../providers/subjects.dart';
-import '../subject_card.dart';
+import 'subject_card.dart';
 
 class TeacherSubjects extends StatefulWidget {
   const TeacherSubjects({super.key, required this.email, required this.ay});
@@ -62,7 +62,12 @@ class _TeacherSubjectsState extends State<TeacherSubjects> {
                     );
                   }
                 },
-                child: SubjectCard(subject: sub['title'], assignments: assignments[sub['title']] ?? 0),
+                child: TeacherSubjectCard(
+                  subject: sub['title'],
+                  assignments: assignments[sub['title']] ?? 0,
+                  department: sub['department'],
+                  course: sub['course'],
+                ),
               )
           ],
         );
