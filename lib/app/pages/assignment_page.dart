@@ -74,6 +74,15 @@ class _AssignmentPageState extends State<AssignmentPage> {
               });
             },
           ),
+          if (!Auth.getUserEmail().contains('student') && editing) IconButton(
+            icon: const Icon(Icons.clear_outlined),
+            tooltip: Strings.cancelUpdateAssignment,
+            onPressed: () {
+              setState(() {
+                editing = !editing;
+              });
+            },
+          ),
         ],
       ),
       body: Padding(
