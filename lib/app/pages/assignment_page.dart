@@ -88,6 +88,13 @@ class _AssignmentPageState extends State<AssignmentPage> {
                 assignment['description'] = assignmentDescController.text;
 
                 updateAssignment();
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: const Text(Strings.assignmentUpdated),
+                      backgroundColor: Colors.yellow[800],
+                    )
+                );
               });
             },
           ),
