@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../res/values/strings.dart';
 import '../components/assignment_list_tile.dart';
 import '../providers/assignments.dart';
+import 'add_assignment_page.dart';
 import 'assignment_page.dart';
 
 class AssignmentsPage extends StatefulWidget {
@@ -45,6 +46,18 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
       appBar: AppBar(
         title: const Text(Strings.assignments),
         centerTitle: true,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          if (widget.assignments == null) {
+            return;
+          }
+
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return AddAssignment(subjectCollection: widget.assignments!);
+          }));
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
