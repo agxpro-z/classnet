@@ -59,6 +59,23 @@ class _AssignmentPageState extends State<AssignmentPage> {
               });
             },
           ),
+          if (!Auth.getUserEmail().contains('student') && !editing) IconButton(
+            icon: const Icon(Icons.delete_outline_outlined),
+            tooltip: Strings.deleteAssignment,
+            onPressed: () async {
+              await widget.assignmentSnapshot.reference.delete();
+
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: const Text(Strings.assignmentDeleted),
+                      backgroundColor: Colors.yellow[800],
+                    )
+                );
+                Navigator.of(context).pop(context);
+              }
+            },
+          ),
           if (!Auth.getUserEmail().contains('student') && editing) IconButton(
             icon: const Icon(Icons.done_outlined),
             tooltip: Strings.updateAssignment,

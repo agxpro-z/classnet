@@ -51,6 +51,8 @@ class Strings {
   static const String assignmentPoints = "Points";
   static const String addAssignment = "Add assignment";
   static const String assignmentPosted = "Assignment posted.";
+  static const String assignmentDeleted = "Assignment deleted.";
+  static const String deleteAssignment = "Delete assignment.";
   static const String cancelUpdateAssignment = "Cancel";
 
   // User
