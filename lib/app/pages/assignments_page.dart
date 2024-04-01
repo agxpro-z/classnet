@@ -61,20 +61,17 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: SingleChildScrollView(
-          child: FutureBuilder(
-            future: updateAssignmentsList(),
-            builder: (context, snapshot) {
-              return Column(
-                children: <Widget>[
-                  if (_assignmentsList.isEmpty)
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height - 100,
-                      child: const Center(
-                        child: Text(Strings.noAssignments),
-                      ),
-                    ),
-                  if (_assignmentsList.isNotEmpty)
+        child: FutureBuilder(
+          future: updateAssignmentsList(),
+          builder: (context, snapshot) {
+            if (_assignmentsList.isEmpty) {
+              return const Center(
+                child: Text(Strings.noAssignments),
+              );
+            } else {
+              return SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
                     for (var assignment in _assignmentsList)
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(MaterialPageRoute(
@@ -82,10 +79,11 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
                         )),
                         child: AssignmentListTile(assignmentData: assignment.data()),
                       )
-                ],
+                  ],
+                ),
               );
-            },
-          ),
+            }
+          },
         ),
       ),
     );
