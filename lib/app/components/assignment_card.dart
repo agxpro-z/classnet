@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../res/values/strings.dart';
+import '../../res/strings.dart';
 
 class AssignmentCard extends StatelessWidget {
   const AssignmentCard({

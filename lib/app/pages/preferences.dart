@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../res/values/strings.dart';
+import '../../res/strings.dart';
 
 class Preferences extends StatefulWidget {
   const Preferences({super.key});

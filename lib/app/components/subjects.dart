@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../res/values/strings.dart';
+import '../../res/strings.dart';
 import '../pages/assignments_page.dart';
 import '../providers/subjects.dart';
 import '../providers/assignments.dart';

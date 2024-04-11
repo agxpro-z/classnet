@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../res/values/strings.dart';
+import '../../res/strings.dart';
 import '../auth/auth.dart';
 
 class RegisterPage extends StatefulWidget {

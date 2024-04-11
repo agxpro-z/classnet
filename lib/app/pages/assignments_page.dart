@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../res/values/strings.dart';
+import '../../res/strings.dart';
 import '../components/assignment_list_tile.dart';
 import '../providers/assignments.dart';
 import 'add_assignment_page.dart';

@@ -4,7 +4,7 @@ import 'package:logging/logging.dart';
 
 import 'app/app.dart';
 import 'firebase_options.dart';
-import 'res/values/strings.dart';
+import 'res/strings.dart';
 
 void main() async {
   Logger.root.level = Level.ALL;

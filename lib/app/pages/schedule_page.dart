@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../res/values/strings.dart';
+import '../../res/strings.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
