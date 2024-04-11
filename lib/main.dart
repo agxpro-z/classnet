@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
 import 'app/app.dart';
-import 'firebase/firebase_options.dart';
+import 'firebase_options.dart';
 import 'res/values/strings.dart';
 
 void main() async {
