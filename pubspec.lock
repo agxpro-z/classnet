@@ -217,13 +217,13 @@ packages:
     source: hosted
     version: "2.0.1"
   leak_tracker_testing:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: leak_tracker_testing
-      sha256: d4c8f568c60af6b6daa74c80fc04411765769882600f6bf9cd4b391c96de42ce
+      sha256: "6ba465d5d76e67ddf503e1161d1f4a6bc42306f9d66ca1e8f079a47290fb06d3"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "3.0.1"
   lints:
     dependency: transitive
     description:
