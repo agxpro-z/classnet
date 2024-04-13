@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../res/strings.dart';
-import '../auth/auth.dart';
+import '../../../../res/strings.dart';
+import '../../../services/auth.dart';
 
 class AddAssignment extends StatefulWidget {
   const AddAssignment({

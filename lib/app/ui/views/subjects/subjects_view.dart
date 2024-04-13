@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../res/strings.dart';
-import '../auth/auth.dart';
-import '../components/subjects.dart';
-import '../components/teacher/subjects.dart';
-import '../providers/ay.dart';
-import '../providers/course.dart';
+import '../../../../res/strings.dart';
+import '../../../services/auth.dart';
+import '../../../providers/ay.dart';
+import '../../../providers/course.dart';
+import '../../widgets/subjects/teacher_subjects.dart';
+import '../../widgets/subjects/subjects.dart';
 
 class SubjectsPage extends StatefulWidget {
   const SubjectsPage({super.key});

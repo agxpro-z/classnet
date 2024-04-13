@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'auth/login_page.dart';
-import 'pages/main_page.dart';
+import 'ui/views/login/login_view.dart';
+import 'ui/views/navigation/navigation_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../res/strings.dart';
-import '../pages/assignments_page.dart';
-import '../providers/subjects.dart';
-import '../providers/assignments.dart';
+import '../../../../../res/strings.dart';
+import '../../../providers/subjects.dart';
+import '../../../providers/assignments.dart';
+import '../../views/assignments/assignments_view.dart';
 import 'subject_card.dart';
 
 class Subjects extends StatefulWidget {

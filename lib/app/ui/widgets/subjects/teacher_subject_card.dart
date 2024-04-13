@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../res/strings.dart';
+import '../../../../res/strings.dart';
 
 class TeacherSubjectCard extends StatelessWidget {
   const TeacherSubjectCard({

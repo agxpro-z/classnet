@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../res/strings.dart';
-import '../components/assignment_list_tile.dart';
-import '../providers/assignments.dart';
-import 'add_assignment_page.dart';
-import 'assignment_page.dart';
+import '../../../../res/strings.dart';
+import '../../widgets/assignments/assignment_list_tile.dart';
+import '../../../providers/assignments.dart';
+import '../add_assignment/add_assignment_view.dart';
+import '../assignment/assignment_view.dart';
 
 class AssignmentsPage extends StatefulWidget {
   const AssignmentsPage({

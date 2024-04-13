@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 
-import '../../res/strings.dart';
-import '../auth/auth.dart';
+import '../../../../res/strings.dart';
+import '../../../services/auth.dart';
 
 class AssignmentPage extends StatefulWidget {
   const AssignmentPage({

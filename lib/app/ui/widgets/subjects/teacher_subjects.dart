@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../pages/assignments_page.dart';
-import '../../providers/subjects.dart';
-import 'subject_card.dart';
+import '../../views/assignments/assignments_view.dart';
+import '../../../providers/subjects.dart';
+import 'teacher_subject_card.dart';
 
 class TeacherSubjects extends StatefulWidget {
   const TeacherSubjects({super.key, required this.email, required this.ay});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../res/strings.dart';
-import '../auth/auth.dart';
-import 'home_page.dart';
-import 'preferences.dart';
-import 'schedule_page.dart';
-import 'subjects_page.dart';
+import '../../../../res/strings.dart';
+import '../../../services/auth.dart';
+import '../home/home_view.dart';
+import '../preferences/preferences_view.dart';
+import '../schedule/schedule_view.dart';
+import '../subjects/subjects_view.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

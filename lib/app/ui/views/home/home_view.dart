@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../res/strings.dart';
-import '../auth/auth.dart';
-import '../components/assignment_card.dart';
-import '../components/subjects.dart';
-import '../components/teacher/subjects.dart';
+import '../../../../res/strings.dart';
+import '../../../services/auth.dart';
+import '../../widgets/assignments/assignment_card.dart';
+import '../../widgets/subjects/subjects.dart';
+import '../../widgets/subjects/teacher_subjects.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
