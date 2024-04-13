@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
 import 'app/app.dart';
+import 'app/app.locator.dart';
 import 'firebase_options.dart';
 import 'res/strings.dart';
 
 void main() async {
+  await setupLocator();
+
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
     // ignore: avoid_print
