@@ -1,3 +1,4 @@
+import 'package:classnet/app/utils/string.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -54,5 +55,29 @@ class Subject {
     }
 
     return list;
+  }
+
+  String abbreviate(String string) {
+    String str = '';
+    for (var item in string.split(' ')) {
+      if (item.isTitleCase()) {
+        str += item[0];
+      }
+    }
+    return str;
+  }
+
+  String courseShort() {
+    if (course == null) {
+      return null.toString();
+    }
+    return abbreviate(course!);
+  }
+
+  String departmentShort() {
+    if (department == null) {
+      return null.toString();
+    }
+    return abbreviate(department!);
   }
 }
