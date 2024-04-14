@@ -79,38 +79,41 @@ class _SubjectsViewState extends State<SubjectsView> {
               ),
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate.fixed(
-                <Widget>[
-                  FutureBuilder(
-                    future: updateSemList(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return const Center(
-                          child: Text('Loading...'),
-                        );
-                      }
-                      return DropdownButton<String>(
-                        isExpanded: true,
-                        dropdownColor: Theme.of(context).colorScheme.surface,
-                        elevation: 4,
-                        value: _dropDownValue,
-                        borderRadius: BorderRadius.circular(8.0),
-                        items: _semList.map<DropdownMenuItem<String>>((String item) {
-                          return DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(_semName[item] ?? item.toString()),
+          SliverFillRemaining(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: FutureBuilder(
+                      future: updateSemList(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return const Center(
+                            child: Text('Loading...'),
                           );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            _dropDownValue = value!;
-                          });
-                        },
-                      );
-                    },
+                        }
+                        return DropdownButton<String>(
+                          isExpanded: true,
+                          dropdownColor: Theme.of(context).colorScheme.surface,
+                          elevation: 4,
+                          value: _dropDownValue,
+                          borderRadius: BorderRadius.circular(8.0),
+                          items: _semList.map<DropdownMenuItem<String>>((String item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(_semName[item] ?? item.toString()),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              _dropDownValue = value!;
+                            });
+                          },
+                        );
+                      },
+                    ),
                   ),
                   SingleChildScrollView(
                     child: subjects(),
