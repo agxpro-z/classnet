@@ -14,6 +14,7 @@ class NavigationView extends StatelessWidget {
     final theme = Theme.of(context);
 
     return ViewModelBuilder<NavigationViewModel>.reactive(
+      disposeViewModel: false,
       viewModelBuilder: () => locator<NavigationViewModel>(),
       builder: (BuildContext context, NavigationViewModel viewModel, Widget? child) => Scaffold(
         backgroundColor: theme.colorScheme.surface,
