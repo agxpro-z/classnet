@@ -80,6 +80,7 @@ class _SubjectsViewState extends State<SubjectsView> {
             ),
           ),
           SliverFillRemaining(
+            hasScrollBody: false,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
