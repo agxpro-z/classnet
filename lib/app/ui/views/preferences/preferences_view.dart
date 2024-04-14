@@ -19,7 +19,7 @@ class _PreferencesViewState extends State<PreferencesView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PreferencesViewModel>.reactive(
       disposeViewModel: false,
-      fireOnViewModelReadyOnce: true,
+      onViewModelReady: (viewModel) => viewModel.initialize(),
       viewModelBuilder: () => locator<PreferencesViewModel>(),
       builder: (BuildContext context, PreferencesViewModel viewModel, Widget? child) => Scaffold(
         body: CustomScrollView(
@@ -78,11 +78,56 @@ class _PreferencesViewState extends State<PreferencesView> {
                 ],
               ),
             ),
-            const SliverFillRemaining(
+            SliverFillRemaining(
               hasScrollBody: true,
-              child: Column(
-                children: <Widget>[],
-              ),
+              child: viewModel.isBusy
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Column(
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(
+                            Strings.course,
+                            style: TextStyle(
+                              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                            ),
+                          ),
+                          leading: const Icon(Icons.school_rounded),
+                          subtitle: Text(viewModel.managerAPI.getCourse().name),
+                        ),
+                        ListTile(
+                          title: Text(
+                            Strings.branch,
+                            style: TextStyle(
+                              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                            ),
+                          ),
+                          leading: const Icon(Icons.vertical_split_rounded),
+                          subtitle: Text(viewModel.managerAPI.getCourse().branch),
+                        ),
+                        ListTile(
+                          title: Text(
+                            Strings.department,
+                            style: TextStyle(
+                              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                            ),
+                          ),
+                          leading: const Icon(Icons.account_balance_rounded),
+                          subtitle: Text(viewModel.managerAPI.getCourse().department),
+                        ),
+                        ListTile(
+                          title: Text(
+                            Strings.semesters,
+                            style: TextStyle(
+                              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                            ),
+                          ),
+                          leading: const Icon(Icons.horizontal_split_rounded),
+                          subtitle: Text(viewModel.managerAPI.getCourse().semList.length.toString()),
+                        ),
+                      ],
+                    ),
             ),
           ],
         ),

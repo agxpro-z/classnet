@@ -15,6 +15,7 @@ class Strings {
   static const String name = "Name";
   static const String branch = "Branch";
   static const String course = "Course";
+  static const String department = "Department";
 
   // Sign-out
   static const String signOut = "Log out";
@@ -33,6 +34,7 @@ class Strings {
   // Assignments
   static const String assignments = "Assignments";
   static const String semester = "Semester";
+  static const String semesters = "Semesters";
   static const String sem1 = "Semester 1";
   static const String sem2 = "Semester 2";
   static const String sem3 = "Semester 3";

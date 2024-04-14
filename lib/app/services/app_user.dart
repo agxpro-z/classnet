@@ -11,8 +11,9 @@ class AppUserService {
   User? getCurrentUser() => FirebaseAuth.instance.currentUser;
   String getEmail() => getCurrentUser()?.email ?? '';
 
-  Future<Map<String, dynamic>> getUserDetails(String email) async {
+  Future<Map<String, dynamic>> getUserDetails() async {
     Map<String, dynamic> data = {};
+    final String email = getEmail();
 
     if (email.contains('student')) {
       await FirebaseFirestore.instance.collection(email.substring(2, 6)).doc('student').get().then((value) {
@@ -31,9 +32,9 @@ class AppUserService {
     return data;
   }
 
-  Future<Map<String, dynamic>> getCourseDetails(String email) async {
+  Future<Map<String, dynamic>> getCourseDetails() async {
     Map<String, dynamic> data = {};
-    await FirebaseFirestore.instance.collection(email.substring(2, 6)).doc('student').get().then((value) {
+    await FirebaseFirestore.instance.collection(getEmail().substring(2, 6)).doc('details').get().then((value) {
       if (value.data() != null) {
         data = value.data()!;
       }
@@ -46,8 +47,8 @@ class AppUserService {
     final String email = getEmail();
     final bool isStudent = email.contains('student');
 
-    Map<String, dynamic> userDetails = await getUserDetails(email);
-    Map<String, dynamic> courseDetails = await getCourseDetails(email);
+    Map<String, dynamic> userDetails = await getUserDetails();
+    Map<String, dynamic> courseDetails = await getCourseDetails();
 
     if (isStudent) {
       return Student(
