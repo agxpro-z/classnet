@@ -5,13 +5,17 @@ import 'package:stacked/stacked_annotations.dart';
 import 'ui/views/login/login_view.dart';
 import 'ui/views/navigation/navigation_view.dart';
 import 'ui/views/navigation/navigation_viewmodel.dart';
+import 'ui/views/preferences/preferences_view.dart';
+import 'ui/views/preferences/preferences_viewmodel.dart';
 
 @StackedApp(
   routes: [
-    MaterialRoute(page: NavigationView)
+    MaterialRoute(page: NavigationView),
+    MaterialRoute(page: PreferencesView),
   ],
   dependencies: [
-    LazySingleton(classType: NavigationViewModel)
+    LazySingleton(classType: NavigationViewModel),
+    LazySingleton(classType: PreferencesViewModel),
   ]
 )
 class AppSetup {}

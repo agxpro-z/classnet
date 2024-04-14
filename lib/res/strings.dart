@@ -18,6 +18,8 @@ class Strings {
 
   // Sign-out
   static const String signOut = "Log out";
+  static const String signOutMsg = "Are you sure you would like to log out?";
+  static const String signOutCancel = "Cancel";
 
   // Home
   static const String home = "Home";

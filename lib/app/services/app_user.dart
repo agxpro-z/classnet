@@ -11,17 +11,17 @@ class AppUserService {
   User? getCurrentUser() => FirebaseAuth.instance.currentUser;
   String getEmail() => getCurrentUser()?.email ?? '';
 
-  Map<String, dynamic> getUserDetails(String email) {
+  Future<Map<String, dynamic>> getUserDetails(String email) async {
     Map<String, dynamic> data = {};
 
     if (email.contains('student')) {
-      FirebaseFirestore.instance.collection(email.substring(2, 6)).doc('student').get().then((value) {
+      await FirebaseFirestore.instance.collection(email.substring(2, 6)).doc('student').get().then((value) {
         if (value.data() != null && value.data()!.containsKey(email)) {
           data = value.data()?[email];
         }
       });
     } else {
-      FirebaseFirestore.instance.collection('faculty').doc(email).get().then((value) {
+      await FirebaseFirestore.instance.collection('faculty').doc('shadow').get().then((value) {
         if (value.data() != null) {
           data = value.data()!;
         }
@@ -31,9 +31,9 @@ class AppUserService {
     return data;
   }
 
-  Map<String, dynamic> getCourseDetails(String email) {
+  Future<Map<String, dynamic>> getCourseDetails(String email) async {
     Map<String, dynamic> data = {};
-    FirebaseFirestore.instance.collection(email.substring(2, 6)).doc('student').get().then((value) {
+    await FirebaseFirestore.instance.collection(email.substring(2, 6)).doc('student').get().then((value) {
       if (value.data() != null) {
         data = value.data()!;
       }
@@ -42,12 +42,12 @@ class AppUserService {
     return data;
   }
 
-  AppUser getUser() {
+  Future<AppUser> getUser() async {
     final String email = getEmail();
     final bool isStudent = email.contains('student');
 
-    Map<String, dynamic> userDetails = getUserDetails(email);
-    Map<String, dynamic> courseDetails = getCourseDetails(email);
+    Map<String, dynamic> userDetails = await getUserDetails(email);
+    Map<String, dynamic> courseDetails = await getCourseDetails(email);
 
     if (isStudent) {
       return Student(
