@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -35,14 +36,29 @@ class NavigationView extends StatelessWidget {
               label: Strings.schedule,
             ),
             NavigationDestination(
-              icon: viewModel.isIndexSelected(3) ? const  Icon(Icons.more_horiz) : const Icon(Icons.more_horiz_outlined),
+              icon: viewModel.isIndexSelected(3) ? const Icon(Icons.more_horiz) : const Icon(Icons.more_horiz_outlined),
               label: Strings.more,
             ),
           ],
           onDestinationSelected: viewModel.setIndex,
           indicatorColor: theme.colorScheme.inversePrimary,
         ),
-        body: viewModel.getViewForIndex(viewModel.currentIndex),
+        body: PageTransitionSwitcher(
+          duration: const Duration(milliseconds: 350),
+          transitionBuilder: (
+            Widget child,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) {
+            return FadeThroughTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              fillColor: theme.colorScheme.surface,
+              child: child,
+            );
+          },
+          child: viewModel.getViewForIndex(viewModel.currentIndex),
+        ),
       ),
     );
   }
