@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../res/strings.dart';
+import '../../../services/auth.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
 
 class PreferencesView extends StatefulWidget {
@@ -25,10 +26,18 @@ class _PreferencesViewState extends State<PreferencesView> {
               ),
             ),
           ),
-          const SliverFillRemaining(
+          SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
-              child: Text(Strings.preferences),
+              child: OutlinedButton(
+                onPressed: () {
+                  Auth.signOut();
+                },
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: Theme.of(context).colorScheme.primary),
+                ),
+                child: const Text(Strings.signOut),
+              ),
             ),
           ),
         ],
