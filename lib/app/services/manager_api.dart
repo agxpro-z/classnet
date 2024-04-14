@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 
 import '../models/course.dart';
+import '../models/semester.dart';
 import 'app_user.dart';
 
 @lazySingleton
 class ManagerAPI {
   late Course _course;
+  late Semester _currentSem;
 
   Future<void> initialize() async {
     final AppUserService appUserService = AppUserService();
@@ -29,4 +31,11 @@ class ManagerAPI {
   }
 
   Course getCourse() => _course;
+
+  Future<void> initializeCurrentSem() async {
+    await initialize();
+    _currentSem = await _course.getSemesterFor('sem4');
+  }
+
+  Semester getCurrentSem() => _currentSem;
 }

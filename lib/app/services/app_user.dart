@@ -10,6 +10,7 @@ import '../models/teacher.dart';
 class AppUserService {
   User? getCurrentUser() => FirebaseAuth.instance.currentUser;
   String getEmail() => getCurrentUser()?.email ?? '';
+  bool isStudent() => getEmail().contains('student');
 
   Future<Map<String, dynamic>> getUserDetails() async {
     Map<String, dynamic> data = {};

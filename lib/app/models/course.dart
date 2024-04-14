@@ -28,12 +28,13 @@ class Course {
     final list = await collectionReference.get();
     for (var snapshot in list.docs) {
       if (sem == snapshot.id) {
-        final String title = "Semester ${sem.substring(sem.length - 2)}";
+        final String title = "Semester ${sem.substring(sem.length - 1)}";
         final subList = await collectionReference.doc(sem).get();
 
         return Semester(
           title: title,
-          subList: subList.data() as Map<String, Map<String, String>>,
+          subList: (subList.data() as Map<String, dynamic>).cast<String, String>(),
+          documentReference: snapshot.reference,
         );
       }
     }

@@ -7,15 +7,18 @@ import 'assignment.dart';
 class Subject {
   const Subject({
     required this.title,
+    required this.subCode,
+    required this.assignmentCount,
     required this.collectionReference,
   });
 
   final String title;
+  final String subCode;
+  final int assignmentCount;
   final CollectionReference collectionReference;
 
-  Future<int> contentCount() async {
+  Future<int> updateAssignmentCount() async {
     final snapshotList = await collectionReference.get();
-
     bool reduceCount = false;
 
     for (var snapshot in snapshotList.docs) {
