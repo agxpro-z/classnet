@@ -66,4 +66,6 @@ class Strings {
   // More
   static const more = "More";
   static const preferences = "Preferences";
+
+  static const guestUser = "Guest user";
 }
