@@ -84,50 +84,65 @@ class _PreferencesViewState extends State<PreferencesView> {
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : Column(
-                      children: <Widget>[
-                        ListTile(
-                          title: Text(
-                            Strings.course,
-                            style: TextStyle(
-                              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                  : (viewModel.isStudent)
+                      ? Column(
+                          children: <Widget>[
+                            ListTile(
+                              title: Text(
+                                Strings.course,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                ),
+                              ),
+                              leading: const Icon(Icons.school_rounded),
+                              subtitle: Text(viewModel.managerAPI.getCourse().name),
                             ),
-                          ),
-                          leading: const Icon(Icons.school_rounded),
-                          subtitle: Text(viewModel.managerAPI.getCourse().name),
-                        ),
-                        ListTile(
-                          title: Text(
-                            Strings.branch,
-                            style: TextStyle(
-                              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                            ListTile(
+                              title: Text(
+                                Strings.branch,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                ),
+                              ),
+                              leading: const Icon(Icons.vertical_split_rounded),
+                              subtitle: Text(viewModel.managerAPI.getCourse().branch),
                             ),
-                          ),
-                          leading: const Icon(Icons.vertical_split_rounded),
-                          subtitle: Text(viewModel.managerAPI.getCourse().branch),
-                        ),
-                        ListTile(
-                          title: Text(
-                            Strings.department,
-                            style: TextStyle(
-                              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                            ListTile(
+                              title: Text(
+                                Strings.department,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                ),
+                              ),
+                              leading: const Icon(Icons.account_balance_rounded),
+                              subtitle: Text(viewModel.managerAPI.getCourse().department),
                             ),
-                          ),
-                          leading: const Icon(Icons.account_balance_rounded),
-                          subtitle: Text(viewModel.managerAPI.getCourse().department),
-                        ),
-                        ListTile(
-                          title: Text(
-                            Strings.semesters,
-                            style: TextStyle(
-                              fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                            ListTile(
+                              title: Text(
+                                Strings.semesters,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                ),
+                              ),
+                              leading: const Icon(Icons.horizontal_split_rounded),
+                              subtitle: Text(viewModel.managerAPI.getCourse().semList.length.toString()),
                             ),
-                          ),
-                          leading: const Icon(Icons.horizontal_split_rounded),
-                          subtitle: Text(viewModel.managerAPI.getCourse().semList.length.toString()),
+                          ],
+                        )
+                      : Column(
+                          children: <Widget>[
+                            ListTile(
+                              title: Text(
+                                Strings.department,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                ),
+                              ),
+                              leading: const Icon(Icons.account_balance_rounded),
+                              subtitle: Text(viewModel.user!.department),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
             ),
           ],
         ),

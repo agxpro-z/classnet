@@ -12,22 +12,25 @@ class ManagerAPI {
 
   Future<void> initialize() async {
     final AppUserService appUserService = AppUserService();
-    final CollectionReference courseReference = FirebaseFirestore.instance
-      .collection(appUserService.getEmail().substring(2, 6));
 
-    Map<String, dynamic> courseDetails = await appUserService.getCourseDetails();
+    if (appUserService.isStudent()) {
+      final CollectionReference courseReference = FirebaseFirestore.instance
+          .collection(appUserService.getEmail().substring(2, 6));
 
-    List<String> semList = [];
-    for (int i = 1; i <= (courseDetails['semesters'] as int); ++i) {
-      semList.add("sem$i");
+      Map<String, dynamic> courseDetails = await appUserService.getCourseDetails();
+
+      List<String> semList = [];
+      for (int i = 1; i <= (courseDetails['semesters'] as int); ++i) {
+        semList.add("sem$i");
+      }
+
+      _course = Course(name: courseDetails['course'] as String,
+        branch: courseDetails['branch'] as String,
+        department: courseDetails['department'] as String,
+        semList: semList,
+        collectionReference: courseReference,
+      );
     }
-
-    _course = Course(name: courseDetails['course'] as String,
-      branch: courseDetails['branch'] as String,
-      department: courseDetails['department'] as String,
-      semList: semList,
-      collectionReference: courseReference,
-    );
   }
 
   Course getCourse() => _course;

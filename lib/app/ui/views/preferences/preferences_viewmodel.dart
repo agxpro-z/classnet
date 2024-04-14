@@ -8,12 +8,14 @@ import '../../../services/manager_api.dart';
 
 @lazySingleton
 class PreferencesViewModel extends FutureViewModel<void> {
-  AppUser? _user;
+  AppUser? user;
+  final bool isStudent = AppUserService().isStudent();
   final ManagerAPI managerAPI = ManagerAPI();
 
   Future<void> initialize() async {
     setBusy(true);
     await managerAPI.initialize();
+    await futureToRun();
     setBusy(false);
   }
 
@@ -22,9 +24,9 @@ class PreferencesViewModel extends FutureViewModel<void> {
 
   @override
   Future<void> futureToRun() async {
-    if (_user != null) {
+    if (user != null) {
       return;
     }
-    _user = await AppUserService().getUser();
+    user = await AppUserService().getUser();
   }
 }

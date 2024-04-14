@@ -17,13 +17,13 @@ class AppUserService {
     final String email = getEmail();
 
     if (email.contains('student')) {
-      await FirebaseFirestore.instance.collection(email.substring(2, 6)).doc('student').get().then((value) {
+      await FirebaseFirestore.instance.collection(email.substring(2, 6)).doc('students').get().then((value) {
         if (value.data() != null && value.data()!.containsKey(email)) {
           data = value.data()?[email];
         }
       });
     } else {
-      await FirebaseFirestore.instance.collection('faculty').doc('shadow').get().then((value) {
+      await FirebaseFirestore.instance.collection('faculty').doc(email).get().then((value) {
         if (value.data() != null) {
           data = value.data()!;
         }
