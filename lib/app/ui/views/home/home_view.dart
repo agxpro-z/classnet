@@ -132,11 +132,20 @@ class HomeView extends StatelessWidget {
                       Column(
                         children: <Widget>[
                           for (var sub in viewModel.subjectList)
-                            SubjectListTile(
-                              title: sub.title,
-                              assignments: sub.assignmentCount,
-                              forStudent: viewModel.isStudent,
-                            )
+                            if (viewModel.isStudent)
+                              SubjectListTile(
+                                title: sub.title,
+                                assignments: sub.assignmentCount,
+                                forStudent: viewModel.isStudent,
+                              )
+                            else
+                              SubjectListTile(
+                                title: sub.title,
+                                assignments: sub.assignmentCount,
+                                forStudent: viewModel.isStudent,
+                                course: sub.course,
+                                department: sub.department,
+                              ),
                         ],
                       ),
                     const SizedBox(height: 8.0),

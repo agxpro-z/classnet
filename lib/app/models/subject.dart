@@ -1,21 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import 'assignment.dart';
 
 @lazySingleton
 class Subject {
-  const Subject({
+  Subject({
     required this.title,
     required this.subCode,
     required this.assignmentCount,
     required this.collectionReference,
+    this.department,
+    this.course,
   });
 
   final String title;
   final String subCode;
-  final int assignmentCount;
+  int assignmentCount;
   final CollectionReference collectionReference;
+  String? department;
+  String? course;
 
   Future<int> updateAssignmentCount() async {
     final snapshotList = await collectionReference.get();
@@ -28,7 +33,7 @@ class Subject {
       }
     }
 
-    return reduceCount ? snapshotList.docs.length - 1 : snapshotList.docs.length;
+    return assignmentCount = reduceCount ? snapshotList.docs.length - 1 : snapshotList.docs.length;
   }
 
   Future<List<Assignment>> getAssignments() async {

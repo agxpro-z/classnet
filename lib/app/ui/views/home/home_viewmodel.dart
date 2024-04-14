@@ -14,13 +14,21 @@ class HomeViewModel extends BaseViewModel {
   Future<void> initialize() async {
     setBusy(true);
 
-    await managerAPI.initializeCurrentSem();
-
-    await managerAPI.getCurrentSem().getAllSubjects().then((subList) {
-      for (var sub in subList) {
-        subjectList.add(sub);
-      }
-    });
+    if (isStudent) {
+      await managerAPI.initializeCurrentSem();
+      await managerAPI.getCurrentSem().getAllSubjects().then((subList) {
+        for (var sub in subList) {
+          subjectList.add(sub);
+        }
+      });
+    } else {
+      await managerAPI.initializeCurrentTSem();
+      await managerAPI.getTSemester().getSubjects().then((subList) {
+        for (var sub in subList) {
+          subjectList.add(sub);
+        }
+      });
+    }
 
     setBusy(false);
   }

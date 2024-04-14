@@ -3,12 +3,14 @@ import 'package:injectable/injectable.dart';
 
 import '../models/course.dart';
 import '../models/semester.dart';
+import '../models/tsemester.dart';
 import 'app_user.dart';
 
 @lazySingleton
 class ManagerAPI {
   late Course _course;
   late Semester _currentSem;
+  late TSemester _currentTSemester;
 
   Future<void> initialize() async {
     final AppUserService appUserService = AppUserService();
@@ -39,6 +41,16 @@ class ManagerAPI {
     await initialize();
     _currentSem = await _course.getSemesterFor('sem4');
   }
-
   Semester getCurrentSem() => _currentSem;
+
+  Future<void> initializeCurrentTSem() async {
+    final tData = await FirebaseFirestore.instance
+        .collection('faculty')
+        .doc(AppUserService().getEmail())
+        .get();
+
+    final List<String> ayList = tData.data()?['academicYear'].cast<String>();
+    _currentTSemester = TSemester(title: ayList.last, collectionReference: tData.reference.collection(ayList.first));
+  }
+  TSemester getTSemester() => _currentTSemester;
 }
