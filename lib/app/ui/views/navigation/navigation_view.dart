@@ -28,11 +28,23 @@ class NavigationView extends StatelessWidget {
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
           height: 64.0,
           selectedIndex: viewModel.currentIndex,
-          destinations: const <Widget>[
-            NavigationDestination(icon: Icon(Icons.home_outlined), label: Strings.home),
-            NavigationDestination(icon: Icon(Icons.my_library_books_outlined), label: Strings.subjects),
-            NavigationDestination(icon: Icon(Icons.schedule_outlined), label: Strings.schedule),
-            NavigationDestination(icon: Icon(Icons.more_horiz_outlined), label: Strings.more),
+          destinations: <Widget>[
+            NavigationDestination(
+              icon: viewModel.isIndexSelected(0) ? const Icon(Icons.home) : const Icon(Icons.home_outlined),
+              label: Strings.home,
+            ),
+            NavigationDestination(
+              icon: viewModel.isIndexSelected(1) ? const Icon(Icons.my_library_books) : const Icon(Icons.my_library_books_outlined),
+              label: Strings.subjects,
+            ),
+            NavigationDestination(
+              icon: viewModel.isIndexSelected(2) ? const Icon(Icons.schedule) : const Icon(Icons.schedule_outlined),
+              label: Strings.schedule,
+            ),
+            NavigationDestination(
+              icon: viewModel.isIndexSelected(3) ? const  Icon(Icons.more_horiz) : const Icon(Icons.more_horiz_outlined),
+              label: Strings.more,
+            ),
           ],
           onDestinationSelected: viewModel.setIndex,
           indicatorColor: theme.colorScheme.inversePrimary,
