@@ -6,8 +6,8 @@ import '../../widgets/assignments/assignment_card.dart';
 import '../../widgets/subjects/subjects.dart';
 import '../../widgets/subjects/teacher_subjects.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   Widget subjects() {
     String email = Auth.getUserEmail();

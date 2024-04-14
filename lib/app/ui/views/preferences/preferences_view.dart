@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../res/strings.dart';
 
-class Preferences extends StatefulWidget {
-  const Preferences({super.key});
+class PreferencesView extends StatefulWidget {
+  const PreferencesView({super.key});
 
   @override
-  State<Preferences> createState() => _PreferencesState();
+  State<PreferencesView> createState() => _PreferencesViewState();
 }
 
-class _PreferencesState extends State<Preferences> {
+class _PreferencesViewState extends State<PreferencesView> {
   @override
   Widget build(BuildContext context) {
     return const Padding(

@@ -3,14 +3,14 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../res/strings.dart';
 
-class SchedulePage extends StatefulWidget {
-  const SchedulePage({super.key});
+class ScheduleView extends StatefulWidget {
+  const ScheduleView({super.key});
 
   @override
-  State<SchedulePage> createState() => _SchedulePageState();
+  State<ScheduleView> createState() => _ScheduleViewState();
 }
 
-class _SchedulePageState extends State<SchedulePage> {
+class _ScheduleViewState extends State<ScheduleView> {
   CalendarFormat _calendarFormat = CalendarFormat.week;
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();

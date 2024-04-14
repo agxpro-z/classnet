@@ -7,14 +7,14 @@ import '../../../providers/course.dart';
 import '../../widgets/subjects/teacher_subjects.dart';
 import '../../widgets/subjects/subjects.dart';
 
-class SubjectsPage extends StatefulWidget {
-  const SubjectsPage({super.key});
+class SubjectsView extends StatefulWidget {
+  const SubjectsView({super.key});
 
   @override
-  State<SubjectsPage> createState() => _SubjectsPageState();
+  State<SubjectsView> createState() => _SubjectsViewState();
 }
 
-class _SubjectsPageState extends State<SubjectsPage> {
+class _SubjectsViewState extends State<SubjectsView> {
   List<String> _semList = <String>[Strings.semester];
   late String _dropDownValue = _semList.first;
 
