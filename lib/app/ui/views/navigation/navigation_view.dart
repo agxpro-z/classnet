@@ -3,7 +3,6 @@ import 'package:stacked/stacked.dart';
 
 import '../../../../res/strings.dart';
 import '../../../app.locator.dart';
-import '../../widgets/navigationView/drawer.dart';
 import 'navigation_viewmodel.dart';
 
 class NavigationView extends StatelessWidget {
@@ -17,12 +16,6 @@ class NavigationView extends StatelessWidget {
       viewModelBuilder: () => locator<NavigationViewModel>(),
       builder: (BuildContext context, NavigationViewModel viewModel, Widget? child) => Scaffold(
         backgroundColor: theme.colorScheme.surface,
-        appBar: AppBar(
-          backgroundColor: theme.colorScheme.surface,
-          title: Text(viewModel.getViewName()),
-          centerTitle: true,
-        ),
-        drawer: const NavigationViewDrawer(),
         bottomNavigationBar: NavigationBar(
           backgroundColor: theme.colorScheme.surface,
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
@@ -49,10 +42,7 @@ class NavigationView extends StatelessWidget {
           onDestinationSelected: viewModel.setIndex,
           indicatorColor: theme.colorScheme.inversePrimary,
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: viewModel.getViewForIndex(viewModel.currentIndex),
-        ),
+        body: viewModel.getViewForIndex(viewModel.currentIndex),
       ),
     );
   }

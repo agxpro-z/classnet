@@ -4,6 +4,7 @@ import '../../../../res/strings.dart';
 import '../../../services/auth.dart';
 import '../../../providers/ay.dart';
 import '../../../providers/course.dart';
+import '../../widgets/shared/custom_sliver_app_bar.dart';
 import '../../widgets/subjects/teacher_subjects.dart';
 import '../../widgets/subjects/subjects.dart';
 
@@ -66,37 +67,60 @@ class _SubjectsViewState extends State<SubjectsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        FutureBuilder(
-          future: updateSemList(),
-          builder: (context, snapshot) {
-            return DropdownButton<String>(
-              isExpanded: true,
-              dropdownColor: Theme.of(context).colorScheme.surface,
-              elevation: 4,
-              value: _dropDownValue,
-              borderRadius: BorderRadius.circular(8.0),
-              items: _semList.map<DropdownMenuItem<String>>((String item) {
-                return DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(_semName[item] ?? item.toString()),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  _dropDownValue = value!;
-                });
-              },
-            );
-          },
-        ),
-        Expanded(
-          child: SingleChildScrollView(
-            child: subjects(),
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          CustomSliverAppBar(
+            isMainView: true,
+            title: Text(
+              Strings.subjects,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
           ),
-        ),
-      ],
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate.fixed(
+                <Widget>[
+                  FutureBuilder(
+                    future: updateSemList(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return const Center(
+                          child: Text('Loading...'),
+                        );
+                      }
+                      return DropdownButton<String>(
+                        isExpanded: true,
+                        dropdownColor: Theme.of(context).colorScheme.surface,
+                        elevation: 4,
+                        value: _dropDownValue,
+                        borderRadius: BorderRadius.circular(8.0),
+                        items: _semList.map<DropdownMenuItem<String>>((String item) {
+                          return DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(_semName[item] ?? item.toString()),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _dropDownValue = value!;
+                          });
+                        },
+                      );
+                    },
+                  ),
+                  SingleChildScrollView(
+                    child: subjects(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

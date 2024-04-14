@@ -24,19 +24,4 @@ class NavigationViewModel extends IndexTrackingViewModel {
         return const HomeView();
     }
   }
-
-  String getViewName() {
-    switch (currentIndex) {
-      case 0:
-        return Strings.home;
-      case 1:
-        return Strings.subjects;
-      case 2:
-        return Strings.schedule;
-      case 3:
-        return Strings.preferences;
-      default:
-        return Strings.home;
-    }
-  }
 }
