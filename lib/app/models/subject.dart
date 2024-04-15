@@ -55,6 +55,7 @@ class Subject {
         creator: snapshotData['creator'] as String,
         points: snapshotData['points'] as int,
         createdOn: snapshotData['createdOn']?.toDate(),
+        documentReference: snapshot.reference,
       ));
     }
     return list;

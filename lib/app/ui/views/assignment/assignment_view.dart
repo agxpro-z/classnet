@@ -1,125 +1,96 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:markdown_widget/markdown_widget.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../../../res/strings.dart';
-import '../../../services/auth.dart';
+import '../../../app.locator.dart';
+import '../../../models/assignment.dart';
+import 'assignment_viewmodel.dart';
 
-class AssignmentPage extends StatefulWidget {
-  const AssignmentPage({
+class AssignmentView extends StatefulWidget {
+  const AssignmentView({
     super.key,
-    required this.assignmentSnapshot
+    required this.assignment,
   });
 
-  final QueryDocumentSnapshot<Map<String, dynamic>> assignmentSnapshot;
+  final Assignment assignment;
 
   @override
-  State<AssignmentPage> createState() => _AssignmentPageState();
+  State<AssignmentView> createState() => _AssignmentViewState();
 }
 
-class _AssignmentPageState extends State<AssignmentPage> {
-  bool editing = false;
-  late Map<String, dynamic> assignment;
-
-  final TextEditingController assignmentTitleController = TextEditingController();
-  final TextEditingController assignmentDescController = TextEditingController();
-  final TextEditingController assignmentPointController = TextEditingController();
-
-  @override
-  void initState() {
-    assignment = widget.assignmentSnapshot.data();
-    super.initState();
-  }
-
-  Future<void> updateAssignment() async {
-    await widget.assignmentSnapshot.reference.update(assignment);
-    await widget.assignmentSnapshot.reference.get().then((value) {
-      if (value.data() != null) {
-        assignment = value.data()!;
-      }
-    });
-  }
-
+class _AssignmentViewState extends State<AssignmentView> {
   @override
   Widget build(BuildContext context) {
-    // x();
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          if (!Auth.getUserEmail().contains('student') && !editing) IconButton(
-            icon: const Icon(Icons.edit),
-            tooltip: Strings.editAssignment,
-            onPressed: () {
-              setState(() {
-                editing = !editing;
-                assignmentTitleController.text = assignment['title']!;
-                assignmentDescController.text = (assignment['description'] as String).split('\\n').join('\n');
-                assignmentPointController.text = assignment['points'].toString();
-              });
-            },
-          ),
-          if (!Auth.getUserEmail().contains('student') && !editing) IconButton(
-            icon: const Icon(Icons.delete_outline_outlined),
-            tooltip: Strings.deleteAssignment,
-            onPressed: () async {
-              await widget.assignmentSnapshot.reference.delete();
+    return ViewModelBuilder<AssignmentViewModel>.reactive(
+      onViewModelReady: (viewModel) => viewModel.initialize(widget.assignment),
+      viewModelBuilder: () => locator<AssignmentViewModel>(),
+      builder: (BuildContext context, AssignmentViewModel viewModel, Widget? child) => Scaffold(
+        appBar: AppBar(
+          actions: [
+            if (!viewModel.isStudent && !viewModel.editing)
+              IconButton(
+                icon: const Icon(Icons.edit),
+                tooltip: Strings.editAssignment,
+                onPressed: () {
+                  setState(() {
+                    viewModel.editing = !viewModel.editing;
+                  });
+                },
+              ),
+            if (!viewModel.isStudent && !viewModel.editing)
+              IconButton(
+                icon: const Icon(Icons.delete_outline_outlined),
+                tooltip: Strings.deleteAssignment,
+                onPressed: () {
+                  viewModel.deleteAssignment();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text(Strings.assignmentDeleted),
+                    backgroundColor: Colors.yellow[800],
+                  ));
+                  Navigator.of(context).pop(context);
+                },
+              ),
+            if (!viewModel.isStudent && viewModel.editing)
+              IconButton(
+                icon: const Icon(Icons.done_outlined),
+                tooltip: Strings.updateAssignment,
+                onPressed: () {
+                  setState(() {
+                    viewModel.editing = !viewModel.editing;
+                    viewModel.updateAssignment();
 
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: const Text(Strings.assignmentDeleted),
-                      backgroundColor: Colors.yellow[800],
-                    )
-                );
-                Navigator.of(context).pop(context);
-              }
-            },
-          ),
-          if (!Auth.getUserEmail().contains('student') && editing) IconButton(
-            icon: const Icon(Icons.done_outlined),
-            tooltip: Strings.updateAssignment,
-            onPressed: () {
-              setState(() {
-                editing = !editing;
-
-                assignment['title'] = assignmentTitleController.text;
-                assignment['points'] = int.parse(assignmentPointController.text);
-                assignment['description'] = assignmentDescController.text;
-
-                updateAssignment();
-
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text(Strings.assignmentUpdated),
                       backgroundColor: Colors.yellow[800],
-                    )
-                );
-              });
-            },
-          ),
-          if (!Auth.getUserEmail().contains('student') && editing) IconButton(
-            icon: const Icon(Icons.clear_outlined),
-            tooltip: Strings.cancelUpdateAssignment,
-            onPressed: () {
-              setState(() {
-                editing = !editing;
-              });
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: SingleChildScrollView(
-          child: editing ? assignmentEditView(context) : assignmentView()
+                    ));
+                  });
+                },
+              ),
+            if (!viewModel.isStudent && viewModel.editing)
+              IconButton(
+                icon: const Icon(Icons.clear_outlined),
+                tooltip: Strings.cancelUpdateAssignment,
+                onPressed: () {
+                  setState(() {
+                    viewModel.editing = !viewModel.editing;
+                  });
+                },
+              ),
+          ],
         ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: SingleChildScrollView(
+              child: viewModel.editing ? assignmentEditView(context, viewModel) : assignmentView(viewModel)),
+        ),
+        resizeToAvoidBottomInset: true,
       ),
-      resizeToAvoidBottomInset: true,
     );
   }
 
-  Widget assignmentEditView(BuildContext context) {
+  Widget assignmentEditView(BuildContext context, AssignmentViewModel viewModel) {
     return SizedBox(
       height: MediaQuery.of(context).size.height - 92,
       child: Column(
@@ -129,13 +100,10 @@ class _AssignmentPageState extends State<AssignmentPage> {
             children: <Widget>[
               Expanded(
                 child: TextField(
-                  controller: assignmentPointController,
+                  controller: viewModel.assignmentPointController,
                   decoration: InputDecoration(
                     labelText: Strings.points,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        gapPadding: 8.0
-                    ),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                     isDense: true,
                   ),
                 ),
@@ -146,10 +114,7 @@ class _AssignmentPageState extends State<AssignmentPage> {
                   controller: null,
                   decoration: InputDecoration(
                     labelText: 'Due date',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        gapPadding: 8.0
-                    ),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                     isDense: true,
                   ),
                 ),
@@ -158,13 +123,10 @@ class _AssignmentPageState extends State<AssignmentPage> {
           ),
           const SizedBox(height: 16.0),
           TextField(
-            controller: assignmentTitleController,
+            controller: viewModel.assignmentTitleController,
             decoration: InputDecoration(
               labelText: Strings.assignmentTitle,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  gapPadding: 8.0
-              ),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
               isDense: true,
             ),
           ),
@@ -173,14 +135,11 @@ class _AssignmentPageState extends State<AssignmentPage> {
             child: TextField(
               minLines: 16,
               maxLines: null,
-              controller: assignmentDescController,
+              controller: viewModel.assignmentDescController,
               keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
                 labelText: Strings.assignmentDescription,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    gapPadding: 8.0
-                ),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                 isDense: true,
               ),
             ),
@@ -190,17 +149,15 @@ class _AssignmentPageState extends State<AssignmentPage> {
     );
   }
 
-  Widget assignmentView() {
+  Widget assignmentView(AssignmentViewModel viewModel) {
     final theme = Theme.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          assignment['title'],
-          style: TextStyle(
-              fontSize: theme.textTheme.titleLarge?.fontSize
-          ),
+          viewModel.assignment.title,
+          style: TextStyle(fontSize: theme.textTheme.titleLarge?.fontSize),
         ),
         const SizedBox(height: 8.0),
         Row(
@@ -212,7 +169,7 @@ class _AssignmentPageState extends State<AssignmentPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  DateFormat('HH:mm, dd-MMM-yyyy').format(assignment['createdOn']?.toDate() ?? DateTime.now()),
+                  DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn),
                 ),
                 const SizedBox(height: 4.0),
                 Row(
@@ -224,8 +181,7 @@ class _AssignmentPageState extends State<AssignmentPage> {
                       ),
                     ),
                     Text(
-                      DateFormat('HH:mm, dd-MMM-yyyy').format(assignment['createdOn']
-                          ?.toDate() ?? DateTime.now()),
+                      DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn),
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
                       ),
@@ -238,11 +194,11 @@ class _AssignmentPageState extends State<AssignmentPage> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  widget.assignmentSnapshot.data()['creator'],
+                  viewModel.assignment.creator,
                 ),
                 const SizedBox(height: 4.0),
                 Text(
-                  "${Strings.points}: ${assignment['points'].toString()}",
+                  "${Strings.points}: ${viewModel.assignment.points.toString()}",
                 ),
               ],
             ),
@@ -253,7 +209,7 @@ class _AssignmentPageState extends State<AssignmentPage> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: MarkdownBlock(
-            data: (assignment['description'] as String).split('\\n').join('\n'),
+            data: viewModel.assignment.description.split('\\n').join('\n'),
             selectable: true,
           ),
         ),

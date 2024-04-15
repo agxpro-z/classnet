@@ -6,6 +6,7 @@ import '../../../app.locator.dart';
 import '../../../models/subject.dart';
 import '../../widgets/assignments/assignment_list_tile.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
+import '../assignment/assignment_view.dart';
 import 'assignments_viewmodel.dart';
 
 class AssignmentsView extends StatefulWidget {
@@ -69,9 +70,9 @@ class _AssignmentsViewState extends State<AssignmentsView> {
                           children: <Widget>[
                             for (var assignment in viewModel.assignmentList)
                               GestureDetector(
-                                // onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                //   builder: (context) => AssignmentPage(assignmentSnapshot: assignment),
-                                // )),
+                                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => AssignmentView(assignment: assignment),
+                                )),
                                 child: AssignmentListTile(assignment: assignment),
                               )
                           ],
