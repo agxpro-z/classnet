@@ -24,6 +24,7 @@ class _AssignmentViewState extends State<AssignmentView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AssignmentViewModel>.reactive(
+      disposeViewModel: false,
       onViewModelReady: (viewModel) => viewModel.initialize(widget.assignment),
       viewModelBuilder: () => locator<AssignmentViewModel>(),
       builder: (BuildContext context, AssignmentViewModel viewModel, Widget? child) => Scaffold(
@@ -169,7 +170,7 @@ class _AssignmentViewState extends State<AssignmentView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn),
+                  DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn ?? DateTime.now()),
                 ),
                 const SizedBox(height: 4.0),
                 Row(
@@ -181,7 +182,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                       ),
                     ),
                     Text(
-                      DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn),
+                      DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn ?? DateTime.now()),
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
                       ),

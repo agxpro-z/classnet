@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import 'ui/views/login/login_view.dart';
+import 'ui/views/add_assignment/add_assignment_view.dart';
+import 'ui/views/add_assignment/add_assignment_viewmodel.dart';
 import 'ui/views/assignment/assignment_view.dart';
 import 'ui/views/assignment/assignment_viewmodel.dart';
 import 'ui/views/assignments/assignments_view.dart';
@@ -18,6 +20,7 @@ import 'ui/views/subjects/subjects_viewmodel.dart';
 
 @StackedApp(
   routes: [
+    MaterialRoute(page: AddAssignmentView),
     MaterialRoute(page: AssignmentView),
     MaterialRoute(page: AssignmentsView),
     MaterialRoute(page: HomeView),
@@ -26,6 +29,7 @@ import 'ui/views/subjects/subjects_viewmodel.dart';
     MaterialRoute(page: SubjectsView),
   ],
   dependencies: [
+    LazySingleton(classType: AddAssignmentViewModel),
     LazySingleton(classType: AssignmentViewModel),
     LazySingleton(classType: AssignmentsViewModel),
     LazySingleton(classType: HomeViewModel),

@@ -1,3 +1,4 @@
+import 'package:classnet/app/ui/views/add_assignment/add_assignment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -34,9 +35,9 @@ class _AssignmentsViewState extends State<AssignmentsView> {
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
-            // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            //   return AddAssignment(subjectCollection: widget.assignments!);
-            // }));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return AddAssignmentView(subject: widget.subject);
+            }));
           },
         ),
         body: CustomScrollView(

@@ -61,6 +61,16 @@ class Subject {
     return list;
   }
 
+  Future<void> addAssignment(Assignment assignment) async {
+    await collectionReference.add({
+      'title': assignment.title,
+      'description': assignment.description,
+      'points': assignment.points,
+      'creator': assignment.creator,
+      'createdOn': DateTime.now(),
+    });
+  }
+
   String abbreviate(String string) {
     String str = '';
     for (var item in string.split(' ')) {

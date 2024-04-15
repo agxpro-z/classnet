@@ -1,61 +1,59 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../../../res/strings.dart';
-import '../../../services/auth.dart';
+import '../../../app.locator.dart';
+import '../../../models/subject.dart';
+import 'add_assignment_viewmodel.dart';
 
-class AddAssignment extends StatefulWidget {
-  const AddAssignment({
+class AddAssignmentView extends StatefulWidget {
+  const AddAssignmentView({
     super.key,
-    required this.subjectCollection,
+    required this.subject,
   });
 
-  final CollectionReference<Map<String, dynamic>> subjectCollection;
+  final Subject subject;
 
   @override
-  State<AddAssignment> createState() => _AddAssignmentState();
+  State<AddAssignmentView> createState() => _AddAssignmentViewState();
 }
 
-class _AddAssignmentState extends State<AddAssignment> {
-  final TextEditingController _assignmentTitleController = TextEditingController();
-  final TextEditingController _assignmentDescController = TextEditingController();
-  final TextEditingController _assignmentPointController = TextEditingController();
-
+class _AddAssignmentViewState extends State<AddAssignmentView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(Strings.addAssignment),
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.done_outlined),
-            tooltip: Strings.updateAssignment,
-            onPressed: () async {
-              await widget.subjectCollection.add({
-                'points': int.parse(_assignmentPointController.text),
-                'title': _assignmentTitleController.text,
-                'description': _assignmentDescController.text,
-                'creator': Auth.getUserName(),
-              });
+    return ViewModelBuilder<AddAssignmentViewModel>.reactive(
+      disposeViewModel: false,
+      onViewModelReady: (viewModel) => viewModel.initialize(widget.subject),
+      viewModelBuilder: () => locator<AddAssignmentViewModel>(),
+      builder: (BuildContext context, AddAssignmentViewModel viewModel, Widget? child) => Scaffold(
+        appBar: AppBar(
+          title: const Text(Strings.addAssignment),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            final bool posted = await viewModel.addAssignment();
 
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: const Text(Strings.assignmentPosted),
-                      backgroundColor: Colors.yellow[800],
-                    )
-                );
+            if (context.mounted) {
+              if (posted) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: const Text(Strings.assignmentPosted),
+                  backgroundColor: Colors.yellow[800],
+                ));
                 Navigator.of(context).pop(context);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: const Text('Invalid field data.'),
+                  backgroundColor: Colors.red[800],
+                ));
               }
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: SingleChildScrollView(
-          child: SizedBox(
+            }
+          },
+          child: const Icon(Icons.done_rounded),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: SingleChildScrollView(
+              child: SizedBox(
             height: MediaQuery.of(context).size.height - 92,
             child: Column(
               children: <Widget>[
@@ -65,13 +63,10 @@ class _AddAssignmentState extends State<AddAssignment> {
                     Expanded(
                       flex: 2,
                       child: TextField(
-                        controller: _assignmentPointController,
+                        controller: viewModel.assignmentPointController,
                         decoration: InputDecoration(
                           labelText: Strings.points,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              gapPadding: 8.0
-                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                           isDense: true,
                         ),
                       ),
@@ -95,7 +90,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                 ),
                 const SizedBox(height: 16.0),
                 TextField(
-                  controller: _assignmentTitleController,
+                  controller: viewModel.assignmentTitleController,
                   decoration: InputDecoration(
                     labelText: Strings.assignmentTitle,
                     border: OutlineInputBorder(
@@ -111,7 +106,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                     minLines: 16,
                     maxLines: null,
                     keyboardType: TextInputType.multiline,
-                    controller: _assignmentDescController,
+                    controller: viewModel.assignmentDescController,
                     decoration: InputDecoration(
                       alignLabelWithHint: true,
                       labelText: Strings.assignmentDescription,
@@ -125,7 +120,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                 ),
               ],
             ),
-          )
+          )),
         ),
       ),
     );

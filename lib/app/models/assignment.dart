@@ -16,11 +16,11 @@ class Assignment {
   String description;
   String creator;
   int points;
-  DateTime createdOn;
-  DocumentReference documentReference;
+  DateTime? createdOn;
+  DocumentReference? documentReference;
 
   Future<void> update() async {
-    await documentReference.update({
+    await documentReference?.update({
       'title': title,
       'description': description,
       'points': points,
@@ -29,6 +29,6 @@ class Assignment {
   }
 
   Future<void> delete() async {
-    await documentReference.delete();
+    await documentReference?.delete();
   }
 }
