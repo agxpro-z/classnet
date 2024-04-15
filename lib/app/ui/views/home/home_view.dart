@@ -6,6 +6,7 @@ import '../../../app.locator.dart';
 import '../../widgets/assignments/assignment_card.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
 import '../../widgets/subjects/subject_list_tile.dart';
+import '../assignments/assignments_view.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StatelessWidget {
@@ -133,18 +134,39 @@ class HomeView extends StatelessWidget {
                         children: <Widget>[
                           for (var sub in viewModel.subjectList)
                             if (viewModel.isStudent)
-                              SubjectListTile(
-                                title: sub.title,
-                                assignments: sub.assignmentCount,
-                                forStudent: viewModel.isStudent,
+                              GestureDetector(
+                                onTap: () => sub.assignmentCount == 0
+                                    ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        content: const Text(Strings.noAssignments),
+                                        backgroundColor: Colors.yellow[800],
+                                      ))
+                                    : Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => AssignmentsView(
+                                          title: sub.title,
+                                          subject: sub,
+                                        ),
+                                      )),
+                                child: SubjectListTile(
+                                  title: sub.title,
+                                  assignments: sub.assignmentCount,
+                                  forStudent: viewModel.isStudent,
+                                ),
                               )
                             else
-                              SubjectListTile(
-                                title: sub.title,
-                                assignments: sub.assignmentCount,
-                                forStudent: viewModel.isStudent,
-                                course: sub.courseShort(),
-                                department: sub.departmentShort(),
+                              GestureDetector(
+                                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => AssignmentsView(
+                                    title: sub.title,
+                                    subject: sub,
+                                  ),
+                                )),
+                                child: SubjectListTile(
+                                  title: sub.title,
+                                  assignments: sub.assignmentCount,
+                                  forStudent: viewModel.isStudent,
+                                  course: sub.courseShort(),
+                                  department: sub.departmentShort(),
+                                ),
                               ),
                         ],
                       ),
