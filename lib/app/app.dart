@@ -3,19 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import 'ui/views/login/login_view.dart';
+import 'ui/views/home/home_view.dart';
+import 'ui/views/home/home_viewmodel.dart';
 import 'ui/views/navigation/navigation_view.dart';
 import 'ui/views/navigation/navigation_viewmodel.dart';
 import 'ui/views/preferences/preferences_view.dart';
 import 'ui/views/preferences/preferences_viewmodel.dart';
+import 'ui/views/subjects/subjects_view.dart';
+import 'ui/views/subjects/subjects_viewmodel.dart';
 
 @StackedApp(
   routes: [
+    MaterialRoute(page: HomeView),
     MaterialRoute(page: NavigationView),
     MaterialRoute(page: PreferencesView),
+    MaterialRoute(page: SubjectsView),
   ],
   dependencies: [
+    LazySingleton(classType: HomeViewModel),
     LazySingleton(classType: NavigationViewModel),
     LazySingleton(classType: PreferencesViewModel),
+    LazySingleton(classType: SubjectsViewModel),
   ]
 )
 class AppSetup {}

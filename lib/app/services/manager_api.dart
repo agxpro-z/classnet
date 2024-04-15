@@ -1,3 +1,4 @@
+import 'package:classnet/app/models/subject.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,6 +14,10 @@ class ManagerAPI {
   late TSemester _currentTSemester;
 
   Future<void> initialize() async {
+    await initializeCourse();
+  }
+
+  Future<void> initializeCourse() async {
     final AppUserService appUserService = AppUserService();
 
     if (appUserService.isStudent()) {
@@ -34,7 +39,6 @@ class ManagerAPI {
       );
     }
   }
-
   Course getCourse() => _course;
 
   Future<void> initializeCurrentSem() async {
@@ -53,4 +57,29 @@ class ManagerAPI {
     _currentTSemester = TSemester(title: ayList.last, collectionReference: tData.reference.collection(ayList.first));
   }
   TSemester getTSemester() => _currentTSemester;
+
+  List<String> getSemList() => _course.semList;
+
+  Future<List<String>> getAYList() async {
+    final tData = await FirebaseFirestore.instance
+        .collection('faculty')
+        .doc(AppUserService().getEmail())
+        .get();
+
+    return tData.data()?['academicYear'].cast<String>();
+  }
+
+  Future<List<Subject>> getSubjectList(String id) async {
+    if (AppUserService().isStudent()) {
+      final tmpSem = await _course.getSemesterFor(id);
+      return await tmpSem.getAllSubjects();
+    } else {
+      final tData = await FirebaseFirestore.instance
+          .collection('faculty')
+          .doc(AppUserService().getEmail())
+          .get();
+
+      return await TSemester(title: id, collectionReference: tData.reference.collection(id)).getSubjects();
+    }
+  }
 }
