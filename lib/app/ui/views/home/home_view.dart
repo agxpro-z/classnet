@@ -34,12 +34,12 @@ class HomeView extends StatelessWidget {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.only(top: 24.0),
               sliver: SliverList(
                 delegate: SliverChildListDelegate.fixed(
                   <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         Strings.upcomingAssignments,
                         style: TextStyle(
@@ -51,34 +51,37 @@ class HomeView extends StatelessWidget {
                     const SizedBox(height: 8.0),
                     const SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: <Widget>[
-                          AssignmentCard(
-                            deadline: "Today, 11:59",
-                            title: "Assignment 2 & 3",
-                            subject: "KE Lab",
-                          ),
-                          AssignmentCard(
-                            deadline: "Tomorrow, 11:59",
-                            title: "Task 1 Tcases",
-                            subject: "Software Testing",
-                          ),
-                          AssignmentCard(
-                            deadline: "Tomorrow, 11:59",
-                            title: "Task 1 Tcases",
-                            subject: "Software Testing",
-                          ),
-                          AssignmentCard(
-                            deadline: "Tomorrow, 11:59",
-                            title: "Task 1 Tcases",
-                            subject: "Software Testing",
-                          ),
-                        ],
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 4.0),
+                        child: Row(
+                          children: <Widget>[
+                            AssignmentCard(
+                              deadline: "Today, 11:59",
+                              title: "Assignment 2 & 3",
+                              subject: "KE Lab",
+                            ),
+                            AssignmentCard(
+                              deadline: "Tomorrow, 11:59",
+                              title: "Task 1 Tcases",
+                              subject: "Software Testing",
+                            ),
+                            AssignmentCard(
+                              deadline: "Tomorrow, 11:59",
+                              title: "Task 1 Tcases",
+                              subject: "Software Testing",
+                            ),
+                            AssignmentCard(
+                              deadline: "Tomorrow, 11:59",
+                              title: "Task 1 Tcases",
+                              subject: "Software Testing",
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16.0),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         Strings.notGradedAssignments,
                         style: TextStyle(
@@ -90,34 +93,37 @@ class HomeView extends StatelessWidget {
                     const SizedBox(height: 8.0),
                     const SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: <Widget>[
-                          AssignmentCard(
-                            deadline: "Today, 11:59",
-                            title: "Assignment 2 & 3",
-                            subject: "KE Lab",
-                          ),
-                          AssignmentCard(
-                            deadline: "Tomorrow, 11:59",
-                            title: "Task 1 Tcases",
-                            subject: "Software Testing",
-                          ),
-                          AssignmentCard(
-                            deadline: "Tomorrow, 11:59",
-                            title: "Task 1 Tcases",
-                            subject: "Software Testing",
-                          ),
-                          AssignmentCard(
-                            deadline: "Tomorrow, 11:59",
-                            title: "Task 1 Tcases",
-                            subject: "Software Testing",
-                          ),
-                        ],
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 4.0),
+                        child: Row(
+                          children: <Widget>[
+                            AssignmentCard(
+                              deadline: "Today, 11:59",
+                              title: "Assignment 2 & 3",
+                              subject: "KE Lab",
+                            ),
+                            AssignmentCard(
+                              deadline: "Tomorrow, 11:59",
+                              title: "Task 1 Tcases",
+                              subject: "Software Testing",
+                            ),
+                            AssignmentCard(
+                              deadline: "Tomorrow, 11:59",
+                              title: "Task 1 Tcases",
+                              subject: "Software Testing",
+                            ),
+                            AssignmentCard(
+                              deadline: "Tomorrow, 11:59",
+                              title: "Task 1 Tcases",
+                              subject: "Software Testing",
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16.0),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         Strings.subjects,
                         style: TextStyle(
@@ -130,45 +136,48 @@ class HomeView extends StatelessWidget {
                     if (viewModel.isBusy)
                       const Center(child: CircularProgressIndicator())
                     else
-                      Column(
-                        children: <Widget>[
-                          for (var sub in viewModel.subjectList)
-                            if (viewModel.isStudent)
-                              GestureDetector(
-                                onTap: () => sub.assignmentCount == 0
-                                    ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: const Text(Strings.noAssignments),
-                                        backgroundColor: Colors.yellow[800],
-                                      ))
-                                    : Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => AssignmentsView(
-                                          title: sub.title,
-                                          subject: sub,
-                                        ),
-                                      )),
-                                child: SubjectListTile(
-                                  title: sub.title,
-                                  assignments: sub.assignmentCount,
-                                  forStudent: viewModel.isStudent,
-                                ),
-                              )
-                            else
-                              GestureDetector(
-                                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => AssignmentsView(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: Column(
+                          children: <Widget>[
+                            for (var sub in viewModel.subjectList)
+                              if (viewModel.isStudent)
+                                GestureDetector(
+                                  onTap: () => sub.assignmentCount == 0
+                                      ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                          content: const Text(Strings.noAssignments),
+                                          backgroundColor: Colors.yellow[800],
+                                        ))
+                                      : Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => AssignmentsView(
+                                            title: sub.title,
+                                            subject: sub,
+                                          ),
+                                        )),
+                                  child: SubjectListTile(
                                     title: sub.title,
-                                    subject: sub,
+                                    assignments: sub.assignmentCount,
+                                    forStudent: viewModel.isStudent,
                                   ),
-                                )),
-                                child: SubjectListTile(
-                                  title: sub.title,
-                                  assignments: sub.assignmentCount,
-                                  forStudent: viewModel.isStudent,
-                                  course: sub.courseShort(),
-                                  department: sub.departmentShort(),
+                                )
+                              else
+                                GestureDetector(
+                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => AssignmentsView(
+                                      title: sub.title,
+                                      subject: sub,
+                                    ),
+                                  )),
+                                  child: SubjectListTile(
+                                    title: sub.title,
+                                    assignments: sub.assignmentCount,
+                                    forStudent: viewModel.isStudent,
+                                    course: sub.courseShort(),
+                                    department: sub.departmentShort(),
+                                  ),
                                 ),
-                              ),
-                        ],
+                          ],
+                        ),
                       ),
                     const SizedBox(height: 8.0),
                   ],
