@@ -82,7 +82,7 @@ class _AssignmentViewState extends State<AssignmentView> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: SingleChildScrollView(
               child: viewModel.editing ? assignmentEditView(context, viewModel) : assignmentView(viewModel)),
         ),
