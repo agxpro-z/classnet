@@ -19,7 +19,7 @@ class AssignmentCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Card(
-      color: theme.colorScheme.background,
+      elevation: 0.0,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -40,7 +40,7 @@ class AssignmentCard extends StatelessWidget {
                 fontSize: theme.textTheme.labelSmall?.fontSize
               ),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: 6.0),
             SizedBox(
               width: 164,
               child: Text(
@@ -49,13 +49,18 @@ class AssignmentCard extends StatelessWidget {
                   fontSize: theme.textTheme.titleSmall?.fontSize,
                   fontWeight: FontWeight.w500,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             const SizedBox(height: 4.0),
-            Text(
-              subject,
-              style: TextStyle(
-                  fontSize: theme.textTheme.bodySmall?.fontSize
+            SizedBox(
+              width: 164,
+              child: Text(
+                subject,
+                style: TextStyle(
+                    fontSize: theme.textTheme.bodySmall?.fontSize
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
