@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class AssignmentListTile extends StatelessWidget {
-  const AssignmentListTile({super.key, required this.assignmentData});
+import '../../../models/assignment.dart';
 
-  final Map<String, dynamic> assignmentData;
+class AssignmentListTile extends StatelessWidget {
+  const AssignmentListTile({super.key, required this.assignment});
+
+  final Assignment assignment;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Card(
+      elevation: 0.0,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -18,10 +21,7 @@ class AssignmentListTile extends StatelessWidget {
             Container(
               height: 48.0,
               width: 48.0,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.inversePrimary,
-                shape: BoxShape.circle
-              ),
+              decoration: BoxDecoration(color: theme.colorScheme.secondaryContainer, shape: BoxShape.circle),
               child: const Icon(Icons.assignment_outlined),
             ),
             const SizedBox(width: 8.0),
@@ -29,24 +29,35 @@ class AssignmentListTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(assignmentData['title'],
-                    style: TextStyle(
-                      fontSize: theme.textTheme.titleSmall?.fontSize,
-                      fontWeight: FontWeight.w500,
-                      overflow: TextOverflow.ellipsis
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        assignment.title.toString(),
+                        style: TextStyle(
+                            fontSize: theme.textTheme.titleSmall?.fontSize,
+                            fontWeight: FontWeight.w500,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                      Text(
+                        assignment.points.toString(),
+                        style: TextStyle(
+                          fontSize: theme.textTheme.bodySmall?.fontSize,
+                        ),
+                      ),
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: <Widget>[
                       Text(
-                        DateFormat('HH:mm, dd-MMM-yyyy').format(assignmentData['createdOn']?.toDate() ?? DateTime.now()),
+                        DateFormat('HH:mm, dd-MMM-yyyy').format(assignment.createdOn ?? DateTime.now()),
                         style: TextStyle(
                           fontSize: theme.textTheme.bodySmall?.fontSize,
                         ),
                       ),
                       Text(
-                        assignmentData['creator'],
+                        assignment.creator.toString(),
                         style: TextStyle(
                           fontSize: theme.textTheme.bodySmall?.fontSize,
                         ),

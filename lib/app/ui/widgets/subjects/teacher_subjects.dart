@@ -46,7 +46,7 @@ class _TeacherSubjectsState extends State<TeacherSubjects> {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => AssignmentsPage(
+                    builder: (context) => AssignmentsView(
                       course: "",
                       sem: "",
                       subCollection: "",

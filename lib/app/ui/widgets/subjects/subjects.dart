@@ -47,7 +47,7 @@ class _SubjectsState extends State<Subjects> {
                 onTap: () {
                   if (sub['collection'] != null) {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AssignmentsPage(
+                      builder: (context) => AssignmentsView(
                         course: widget.course,
                         sem: widget.sem,
                         subCollection: sub['collection'],

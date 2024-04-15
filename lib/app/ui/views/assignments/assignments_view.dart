@@ -1,89 +1,88 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../../../res/strings.dart';
+import '../../../app.locator.dart';
+import '../../../models/subject.dart';
 import '../../widgets/assignments/assignment_list_tile.dart';
-import '../../../providers/assignments.dart';
-import '../add_assignment/add_assignment_view.dart';
-import '../assignment/assignment_view.dart';
+import '../../widgets/shared/custom_sliver_app_bar.dart';
+import 'assignments_viewmodel.dart';
 
-class AssignmentsPage extends StatefulWidget {
-  const AssignmentsPage({
+class AssignmentsView extends StatefulWidget {
+  const AssignmentsView({
     super.key,
-    required this.course,
-    required this.sem,
-    required this.subCollection,
-    this.assignments,
+    required this.title,
+    required this.subject,
   });
 
-  final String course;
-  final String sem;
-  final String subCollection;
-  final CollectionReference<Map<String, dynamic>>? assignments;
+  final String title;
+  final Subject subject;
 
   @override
-  State<AssignmentsPage> createState() => _AssignmentsPageState();
+  State<AssignmentsView> createState() => _AssignmentsViewState();
 }
 
-class _AssignmentsPageState extends State<AssignmentsPage> {
-  List<QueryDocumentSnapshot<Map<String, dynamic>>> _assignmentsList = [];
-
-  Future<void> updateAssignmentsList() async {
-    if (widget.assignments != null) {
-      await widget.assignments?.get().then((snapshot) {
-        _assignmentsList = snapshot.docs;
-      });
-    } else {
-      _assignmentsList = await AssignmentsProvider().getRawAssignmentList(widget.course, widget.sem, widget.subCollection);
-    }
-
-    _assignmentsList = _assignmentsList.where((snapshot) => snapshot.data()['title'] != null).toList();
-  }
-
+class _AssignmentsViewState extends State<AssignmentsView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(Strings.assignments),
-        centerTitle: true,
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          if (widget.assignments == null) {
-            return;
-          }
-
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return AddAssignment(subjectCollection: widget.assignments!);
-          }));
-        },
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: FutureBuilder(
-          future: updateAssignmentsList(),
-          builder: (context, snapshot) {
-            if (_assignmentsList.isEmpty) {
-              return const Center(
-                child: Text(Strings.noAssignments),
-              );
-            } else {
-              return SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    for (var assignment in _assignmentsList)
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AssignmentPage(assignmentSnapshot: assignment),
-                        )),
-                        child: AssignmentListTile(assignmentData: assignment.data()),
-                      )
-                  ],
-                ),
-              );
-            }
+    return ViewModelBuilder<AssignmentsViewModel>.reactive(
+      disposeViewModel: false,
+      onViewModelReady: (viewMode) => viewMode.initialize(widget.subject),
+      viewModelBuilder: () => locator<AssignmentsViewModel>(),
+      builder: (BuildContext context, AssignmentsViewModel viewModel, Widget? child) => Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            //   return AddAssignment(subjectCollection: widget.assignments!);
+            // }));
           },
+        ),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            CustomSliverAppBar(
+              isMainView: false,
+              title: Text(
+                Strings.assignments,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: true,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: FutureBuilder(
+                  future: viewModel.updateAssignmentList(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (viewModel.assignmentList.isEmpty) {
+                      return const Center(
+                        child: Text(Strings.noAssignments),
+                      );
+                    } else {
+                      return SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            for (var assignment in viewModel.assignmentList)
+                              GestureDetector(
+                                // onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                //   builder: (context) => AssignmentPage(assignmentSnapshot: assignment),
+                                // )),
+                                child: AssignmentListTile(assignment: assignment),
+                              )
+                          ],
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

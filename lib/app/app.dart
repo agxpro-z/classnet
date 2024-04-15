@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import 'ui/views/login/login_view.dart';
+import 'ui/views/assignments/assignments_view.dart';
+import 'ui/views/assignments/assignments_viewmodel.dart';
 import 'ui/views/home/home_view.dart';
 import 'ui/views/home/home_viewmodel.dart';
 import 'ui/views/navigation/navigation_view.dart';
@@ -14,12 +16,14 @@ import 'ui/views/subjects/subjects_viewmodel.dart';
 
 @StackedApp(
   routes: [
+    MaterialRoute(page: AssignmentsView),
     MaterialRoute(page: HomeView),
     MaterialRoute(page: NavigationView),
     MaterialRoute(page: PreferencesView),
     MaterialRoute(page: SubjectsView),
   ],
   dependencies: [
+    LazySingleton(classType: AssignmentsViewModel),
     LazySingleton(classType: HomeViewModel),
     LazySingleton(classType: NavigationViewModel),
     LazySingleton(classType: PreferencesViewModel),

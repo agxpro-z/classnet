@@ -39,21 +39,24 @@ class Subject {
 
   Future<List<Assignment>> getAssignments() async {
     final snapshotList = await collectionReference.get();
-    List<Assignment> list = [];
+    List<Assignment> list = <Assignment>[];
 
     for (var snapshot in snapshotList.docs) {
       final data = await snapshot.reference.get();
       final snapshotData = data.data() as Map<String, dynamic>;
+
+      if (snapshotData['title'] == null) {
+        continue;
+      }
 
       list.add(Assignment(
         title: snapshotData['title'] as String,
         description: snapshotData['description'] as String,
         creator: snapshotData['creator'] as String,
         points: snapshotData['points'] as int,
-        createdOn: snapshotData['createdOn'] as DateTime,
+        createdOn: snapshotData['createdOn']?.toDate(),
       ));
     }
-
     return list;
   }
 
