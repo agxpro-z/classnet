@@ -59,6 +59,9 @@ class Strings {
   static const String assignmentUpdated = "Assignment updated.";
   static const String deleteAssignment = "Delete assignment.";
   static const String cancelUpdateAssignment = "Cancel";
+  static const String deleteAssignmentMsg = "Are you sure you want to delete?";
+  static const String delete = "Delete";
+  static const String cancel = "Cancel";
 
   // User
   static const invalidUser = "Invalid user";

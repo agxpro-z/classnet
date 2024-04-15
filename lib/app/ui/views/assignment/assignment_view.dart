@@ -44,14 +44,30 @@ class _AssignmentViewState extends State<AssignmentView> {
               IconButton(
                 icon: const Icon(Icons.delete_outline_outlined),
                 tooltip: Strings.deleteAssignment,
-                onPressed: () {
-                  viewModel.deleteAssignment();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text(Strings.assignmentDeleted),
-                    backgroundColor: Colors.yellow[800],
-                  ));
-                  Navigator.of(context).pop(context);
-                },
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text(Strings.deleteAssignment),
+                    content: const Text(Strings.deleteAssignmentMsg),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text(Strings.cancel),
+                      ),
+                      FilledButton(
+                        onPressed: () {
+                          viewModel.deleteAssignment();
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: const Text(Strings.assignmentDeleted),
+                            backgroundColor: Colors.yellow[800],
+                          ));
+                          Navigator.of(context).pop(context);
+                        },
+                        child: const Text(Strings.delete),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             if (!viewModel.isStudent && viewModel.editing)
               IconButton(
