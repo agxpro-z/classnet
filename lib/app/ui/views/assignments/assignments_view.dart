@@ -38,7 +38,7 @@ class _AssignmentsViewState extends State<AssignmentsView> {
                 child: const Icon(Icons.add),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                    return AddAssignmentView(subject: widget.subject);
+                    return AddAssignmentView(subject: widget.subject, parentViewModel: viewModel);
                   }));
                 },
               ),

@@ -4,15 +4,18 @@ import 'package:stacked/stacked.dart';
 import '../../../../res/strings.dart';
 import '../../../app.locator.dart';
 import '../../../models/subject.dart';
+import '../assignments/assignments_viewmodel.dart';
 import 'add_assignment_viewmodel.dart';
 
 class AddAssignmentView extends StatefulWidget {
   const AddAssignmentView({
     super.key,
     required this.subject,
+    required this.parentViewModel,
   });
 
   final Subject subject;
+  final AssignmentsViewModel parentViewModel;
 
   @override
   State<AddAssignmentView> createState() => _AddAssignmentViewState();
@@ -40,6 +43,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                   backgroundColor: Colors.yellow[800],
                 ));
                 Navigator.of(context).pop(context);
+                widget.parentViewModel.rebuildUi();
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: const Text('Invalid field data.'),
