@@ -62,7 +62,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                           ));
                           Navigator.of(context).pop(context);
                           Navigator.of(context).pop(context);
-                          widget.parentViewMode.rebuildUi();
+                          widget.parentViewMode.forceUpdateAssignmentList();
                         },
                         child: const Text(Strings.delete),
                       ),

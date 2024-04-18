@@ -23,9 +23,10 @@ class AssignmentsViewModel extends BaseViewModel {
     setBusy(false);
   }
 
-  @override
-  void rebuildUi() {
-    updateAssignmentList();
-    super.rebuildUi();
+  Future<void> forceUpdateAssignmentList() async {
+    setBusy(true);
+    assignmentList = await subject.getAssignments();
+    rebuildUi();
+    setBusy(false);
   }
 }

@@ -43,7 +43,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                   backgroundColor: Colors.yellow[800],
                 ));
                 Navigator.of(context).pop(context);
-                widget.parentViewModel.rebuildUi();
+                widget.parentViewModel.forceUpdateAssignmentList();
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: const Text('Invalid field data.'),

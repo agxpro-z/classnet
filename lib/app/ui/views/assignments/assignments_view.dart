@@ -42,45 +42,48 @@ class _AssignmentsViewState extends State<AssignmentsView> {
                   }));
                 },
               ),
-        body: CustomScrollView(
-          slivers: <Widget>[
-            CustomSliverAppBar(
-              isMainView: false,
-              title: Text(
-                Strings.assignments,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
+        body: RefreshIndicator(
+          onRefresh: () => viewModel.forceUpdateAssignmentList(),
+          child: CustomScrollView(
+            slivers: <Widget>[
+              CustomSliverAppBar(
+                isMainView: false,
+                title: Text(
+                  Strings.assignments,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ),
               ),
-            ),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: viewModel.isBusy
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : viewModel.assignmentList.isEmpty
-                        ? const Center(
-                            child: Text(Strings.noAssignments),
-                          )
-                        : SingleChildScrollView(
-                            child: Column(
-                              children: <Widget>[
-                                for (var assignment in viewModel.assignmentList)
-                                  GestureDetector(
-                                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => AssignmentView(assignment: assignment, parentViewMode: viewModel),
-                                    )),
-                                    child: AssignmentListTile(assignment: assignment),
-                                  )
-                              ],
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: viewModel.isBusy
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : viewModel.assignmentList.isEmpty
+                          ? const Center(
+                              child: Text(Strings.noAssignments),
+                            )
+                          : SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  for (var assignment in viewModel.assignmentList)
+                                    GestureDetector(
+                                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => AssignmentView(assignment: assignment, parentViewMode: viewModel),
+                                      )),
+                                      child: AssignmentListTile(assignment: assignment),
+                                    )
+                                ],
+                              ),
                             ),
-                          ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
