@@ -67,6 +67,8 @@ class _SubjectsViewState extends State<SubjectsView> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
                             return const Center(child: CircularProgressIndicator());
+                          } else if (viewModel.subjectList.isEmpty) {
+                            return const Center(child: Text(Strings.noSubjects));
                           }
                           return Column(
                             children: <Widget>[

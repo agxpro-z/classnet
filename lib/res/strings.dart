@@ -27,6 +27,7 @@ class Strings {
   static const String upcomingAssignments = "Upcoming assignments";
   static const String notGradedAssignments = "Not graded";
   static const String allSubjects = "All subjects";
+  static const String noSubjects = "No subjects.";
 
   // Schedule
   static const String schedule = "Schedule";
