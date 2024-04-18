@@ -32,7 +32,7 @@ class AssignmentViewModel extends BaseViewModel {
     assignment.update();
   }
 
-  void deleteAssignment() => assignment.delete();
+  void deleteAssignment() async => await assignment.delete();
 
   void invertEditing() {
     editing = !editing;

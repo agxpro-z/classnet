@@ -6,15 +6,18 @@ import 'package:stacked/stacked.dart';
 import '../../../../res/strings.dart';
 import '../../../app.locator.dart';
 import '../../../models/assignment.dart';
+import '../assignments/assignments_viewmodel.dart';
 import 'assignment_viewmodel.dart';
 
 class AssignmentView extends StatefulWidget {
   const AssignmentView({
     super.key,
     required this.assignment,
+    required this.parentViewMode,
   });
 
   final Assignment assignment;
+  final AssignmentsViewModel parentViewMode;
 
   @override
   State<AssignmentView> createState() => _AssignmentViewState();
@@ -55,9 +58,11 @@ class _AssignmentViewState extends State<AssignmentView> {
                           viewModel.deleteAssignment();
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: const Text(Strings.assignmentDeleted),
-                            backgroundColor: Colors.yellow[800],
+                            backgroundColor: Colors.red[800],
                           ));
                           Navigator.of(context).pop(context);
+                          Navigator.of(context).pop(context);
+                          widget.parentViewMode.rebuildUi();
                         },
                         child: const Text(Strings.delete),
                       ),
@@ -70,13 +75,13 @@ class _AssignmentViewState extends State<AssignmentView> {
                 icon: const Icon(Icons.done_outlined),
                 tooltip: Strings.updateAssignment,
                 onPressed: () {
-                    viewModel.invertEditing();
-                    viewModel.updateAssignment();
+                  viewModel.invertEditing();
+                  viewModel.updateAssignment();
 
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: const Text(Strings.assignmentUpdated),
-                      backgroundColor: Colors.yellow[800],
-                    ));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text(Strings.assignmentUpdated),
+                    backgroundColor: Colors.yellow[800],
+                  ));
                 },
               ),
             if (!viewModel.isStudent && viewModel.editing)
