@@ -59,4 +59,9 @@ class SubjectsViewModel extends BaseViewModel {
     prevDropDownValue = dropDownValue;
     subjectList = await managerAPI.getSubjectList(dropDownValue);
   }
+
+  Future<void> forceUpdateSubjects() async {
+    subjectList = await managerAPI.getSubjectList(dropDownValue);
+    rebuildUi();
+  }
 }
