@@ -13,9 +13,13 @@ class AssignmentsViewModel extends BaseViewModel {
 
   Future<void> initialize(Subject sub) async {
     subject = sub;
+
+    await updateAssignmentList();
   }
 
   Future<void> updateAssignmentList() async {
+    setBusy(true);
     assignmentList = await subject.getAssignments();
+    setBusy(false);
   }
 }

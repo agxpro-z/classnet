@@ -57,33 +57,27 @@ class _AssignmentsViewState extends State<AssignmentsView> {
               hasScrollBody: true,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: FutureBuilder(
-                  future: viewModel.updateAssignmentList(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    if (viewModel.assignmentList.isEmpty) {
-                      return const Center(
-                        child: Text(Strings.noAssignments),
-                      );
-                    } else {
-                      return SingleChildScrollView(
-                        child: Column(
-                          children: <Widget>[
-                            for (var assignment in viewModel.assignmentList)
-                              GestureDetector(
-                                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => AssignmentView(assignment: assignment),
-                                )),
-                                child: AssignmentListTile(assignment: assignment),
-                              )
-                          ],
-                        ),
-                      );
-                    }
-                  },
-                ),
+                child: viewModel.isBusy
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : viewModel.assignmentList.isEmpty
+                        ? const Center(
+                            child: Text(Strings.noAssignments),
+                          )
+                        : SingleChildScrollView(
+                            child: Column(
+                              children: <Widget>[
+                                for (var assignment in viewModel.assignmentList)
+                                  GestureDetector(
+                                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => AssignmentView(assignment: assignment),
+                                    )),
+                                    child: AssignmentListTile(assignment: assignment),
+                                  )
+                              ],
+                            ),
+                          ),
               ),
             ),
           ],
