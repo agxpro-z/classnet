@@ -58,10 +58,12 @@ class SubjectsViewModel extends BaseViewModel {
     }
     prevDropDownValue = dropDownValue;
     subjectList = await managerAPI.getSubjectList(dropDownValue);
+    subjectList.sort((a, b) => a.title.compareTo(b.title));
   }
 
   Future<void> forceUpdateSubjects() async {
     subjectList = await managerAPI.getSubjectList(dropDownValue);
+    subjectList.sort((a, b) => a.title.compareTo(b.title));
     rebuildUi();
   }
 }
