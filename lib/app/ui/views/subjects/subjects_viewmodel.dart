@@ -13,6 +13,7 @@ class SubjectsViewModel extends BaseViewModel {
 
   List<String> list = <String>['Fetching...'];
   late String dropDownValue = list.first;
+  late String prevDropDownValue = dropDownValue;
   List<Subject> subjectList = <Subject>[];
 
   final Map<String, String> semName = {
@@ -52,6 +53,10 @@ class SubjectsViewModel extends BaseViewModel {
   }
 
   Future<void> updateSubjects() async {
+    if (prevDropDownValue == dropDownValue) {
+      return;
+    }
+    prevDropDownValue = dropDownValue;
     subjectList = await managerAPI.getSubjectList(dropDownValue);
   }
 }
