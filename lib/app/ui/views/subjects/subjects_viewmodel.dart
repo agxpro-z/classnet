@@ -11,10 +11,9 @@ class SubjectsViewModel extends BaseViewModel {
   final ManagerAPI managerAPI = ManagerAPI();
   final isStudent = AppUserService().isStudent();
 
-  List<String> list = <String>[Strings.semester];
+  List<String> list = <String>['Fetching...'];
   late String dropDownValue = list.first;
   List<Subject> subjectList = <Subject>[];
-  bool primaryRefresh = false;
 
   final Map<String, String> semName = {
     "sem1": Strings.sem1,
@@ -28,6 +27,8 @@ class SubjectsViewModel extends BaseViewModel {
   };
 
   Future<void> initialize() async {
+    setBusy(true);
+
     if (list.length > 1) {
       return;
     }
@@ -46,13 +47,11 @@ class SubjectsViewModel extends BaseViewModel {
         dropDownValue = list.first;
       }
     }
+
+    setBusy(false);
   }
 
-  Future<void> updateSubjects(void Function(void Function()) refresh) async {
+  Future<void> updateSubjects() async {
     subjectList = await managerAPI.getSubjectList(dropDownValue);
-    if (!primaryRefresh) {
-      refresh(() {});
-      primaryRefresh = !primaryRefresh;
-    }
   }
 }

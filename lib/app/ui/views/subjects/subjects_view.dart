@@ -21,6 +21,7 @@ class _SubjectsViewState extends State<SubjectsView> {
     return ViewModelBuilder<SubjectsViewModel>.reactive(
       disposeViewModel: false,
       viewModelBuilder: () => locator<SubjectsViewModel>(),
+      onViewModelReady: (viewModel) => viewModel.initialize(),
       builder: (BuildContext context, SubjectsViewModel viewModel, Widget? child) => Scaffold(
         body: CustomScrollView(
           slivers: <Widget>[
@@ -41,82 +42,74 @@ class _SubjectsViewState extends State<SubjectsView> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: FutureBuilder(
-                        future: viewModel.initialize(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return const Center(
-                              child: Text('Loading...'),
-                            );
-                          }
-                          return DropdownButton<String>(
-                            isExpanded: true,
-                            dropdownColor: Theme.of(context).colorScheme.surface,
-                            elevation: 4,
-                            value: viewModel.dropDownValue,
-                            borderRadius: BorderRadius.circular(8.0),
-                            items: viewModel.list.map<DropdownMenuItem<String>>((String item) {
-                              return DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(viewModel.semName[item] ?? item.toString()),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                viewModel.dropDownValue = value!;
-                              });
-                            },
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        dropdownColor: Theme.of(context).colorScheme.surface,
+                        elevation: 4,
+                        value: viewModel.dropDownValue,
+                        borderRadius: BorderRadius.circular(8.0),
+                        items: viewModel.list.map<DropdownMenuItem<String>>((String item) {
+                          return DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(viewModel.semName[item] ?? item.toString()),
                           );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            viewModel.dropDownValue = value!;
+                          });
                         },
                       ),
                     ),
-                    FutureBuilder(
-                      future: viewModel.updateSubjects(setState),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return const Center(child: CircularProgressIndicator());
-                        }
-                        return Column(
-                          children: <Widget>[
-                            for (var sub in viewModel.subjectList)
-                              if (viewModel.isStudent)
-                                GestureDetector(
-                                  onTap: () => sub.assignmentCount == 0
-                                      ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                          content: const Text(Strings.noAssignments),
-                                          backgroundColor: Colors.yellow[800],
-                                        ))
-                                      : Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => AssignmentsView(
-                                            title: sub.title,
-                                            subject: sub,
-                                          ),
-                                        )),
-                                  child: SubjectListTile(
-                                    title: sub.title,
-                                    assignments: sub.assignmentCount,
-                                    forStudent: viewModel.isStudent,
-                                  ),
-                                )
-                              else
-                                GestureDetector(
-                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AssignmentsView(
+                    Expanded(
+                      child: FutureBuilder(
+                        future: viewModel.updateSubjects(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return const Center(child: CircularProgressIndicator());
+                          }
+                          return Column(
+                            children: <Widget>[
+                              for (var sub in viewModel.subjectList)
+                                if (viewModel.isStudent)
+                                  GestureDetector(
+                                    onTap: () => sub.assignmentCount == 0
+                                        ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                            content: const Text(Strings.noAssignments),
+                                            backgroundColor: Colors.yellow[800],
+                                          ))
+                                        : Navigator.of(context).push(MaterialPageRoute(
+                                            builder: (context) => AssignmentsView(
+                                              title: sub.title,
+                                              subject: sub,
+                                            ),
+                                          )),
+                                    child: SubjectListTile(
                                       title: sub.title,
-                                      subject: sub,
+                                      assignments: sub.assignmentCount,
+                                      forStudent: viewModel.isStudent,
                                     ),
-                                  )),
-                                  child: SubjectListTile(
-                                    title: sub.title,
-                                    assignments: sub.assignmentCount,
-                                    forStudent: viewModel.isStudent,
-                                    course: sub.courseShort(),
-                                    department: sub.departmentShort(),
+                                  )
+                                else
+                                  GestureDetector(
+                                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => AssignmentsView(
+                                        title: sub.title,
+                                        subject: sub,
+                                      ),
+                                    )),
+                                    child: SubjectListTile(
+                                      title: sub.title,
+                                      assignments: sub.assignmentCount,
+                                      forStudent: viewModel.isStudent,
+                                      course: sub.courseShort(),
+                                      department: sub.departmentShort(),
+                                    ),
                                   ),
-                                ),
-                          ],
-                        );
-                      },
+                            ],
+                          );
+                        },
+                      ),
                     )
                   ],
                 ),
