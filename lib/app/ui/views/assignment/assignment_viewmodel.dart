@@ -17,6 +17,7 @@ class AssignmentViewModel extends BaseViewModel {
 
   Future<void> initialize(Assignment assignment) async {
     this.assignment = assignment;
+    editing = false;
 
     assignmentTitleController.text = assignment.title;
     assignmentDescController.text = assignment.description.split('\\n').join('\n');
@@ -32,4 +33,9 @@ class AssignmentViewModel extends BaseViewModel {
   }
 
   void deleteAssignment() => assignment.delete();
+
+  void invertEditing() {
+    editing = !editing;
+    rebuildUi();
+  }
 }

@@ -34,11 +34,7 @@ class _AssignmentViewState extends State<AssignmentView> {
               IconButton(
                 icon: const Icon(Icons.edit),
                 tooltip: Strings.editAssignment,
-                onPressed: () {
-                  setState(() {
-                    viewModel.editing = !viewModel.editing;
-                  });
-                },
+                onPressed: () => viewModel.invertEditing(),
               ),
             if (!viewModel.isStudent && !viewModel.editing)
               IconButton(
@@ -74,26 +70,20 @@ class _AssignmentViewState extends State<AssignmentView> {
                 icon: const Icon(Icons.done_outlined),
                 tooltip: Strings.updateAssignment,
                 onPressed: () {
-                  setState(() {
-                    viewModel.editing = !viewModel.editing;
+                    viewModel.invertEditing();
                     viewModel.updateAssignment();
 
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: const Text(Strings.assignmentUpdated),
                       backgroundColor: Colors.yellow[800],
                     ));
-                  });
                 },
               ),
             if (!viewModel.isStudent && viewModel.editing)
               IconButton(
                 icon: const Icon(Icons.clear_outlined),
                 tooltip: Strings.cancelUpdateAssignment,
-                onPressed: () {
-                  setState(() {
-                    viewModel.editing = !viewModel.editing;
-                  });
-                },
+                onPressed: () => viewModel.invertEditing(),
               ),
           ],
         ),
