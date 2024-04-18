@@ -22,4 +22,10 @@ class AssignmentsViewModel extends BaseViewModel {
     assignmentList = await subject.getAssignments();
     setBusy(false);
   }
+
+  @override
+  void rebuildUi() {
+    updateAssignmentList();
+    super.rebuildUi();
+  }
 }
