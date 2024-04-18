@@ -54,7 +54,7 @@ class _AssignmentsViewState extends State<AssignmentsView> {
               ),
             ),
             SliverFillRemaining(
-              hasScrollBody: true,
+              hasScrollBody: false,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: viewModel.isBusy
