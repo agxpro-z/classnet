@@ -32,14 +32,16 @@ class _AssignmentsViewState extends State<AssignmentsView> {
       onViewModelReady: (viewMode) => viewMode.initialize(widget.subject),
       viewModelBuilder: () => locator<AssignmentsViewModel>(),
       builder: (BuildContext context, AssignmentsViewModel viewModel, Widget? child) => Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-              return AddAssignmentView(subject: widget.subject);
-            }));
-          },
-        ),
+        floatingActionButton: viewModel.isStudent
+            ? null
+            : FloatingActionButton(
+                child: const Icon(Icons.add),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    return AddAssignmentView(subject: widget.subject);
+                  }));
+                },
+              ),
         body: CustomScrollView(
           slivers: <Widget>[
             CustomSliverAppBar(
