@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../models/assignment.dart';
@@ -14,6 +15,8 @@ class AddAssignmentViewModel extends BaseViewModel {
   final TextEditingController assignmentTitleController = TextEditingController();
   final TextEditingController assignmentDescController = TextEditingController();
   final TextEditingController assignmentPointController = TextEditingController();
+  final TextEditingController dueController = TextEditingController();
+  DateTime due = DateTime.now().add(const Duration(days: 7));
 
   Future<void> initialize(Subject subject) async {
     this.subject = subject;
@@ -21,6 +24,12 @@ class AddAssignmentViewModel extends BaseViewModel {
     assignmentTitleController.clear();
     assignmentDescController.clear();
     assignmentPointController.clear();
+    due = DateTime.now().add(const Duration(days: 7));
+    updateDue();
+  }
+
+  void updateDue() {
+    dueController.text = DateFormat('HH:mm, dd-MMM-yyyy').format(due);
   }
 
   Future<bool> addAssignment() async {
@@ -32,6 +41,7 @@ class AddAssignmentViewModel extends BaseViewModel {
           creator: AppUserService().getCurrentUser()!.displayName!,
           points: int.parse(assignmentPointController.text),
           createdOn: DateTime.now(),
+          due: due,
           documentReference: null,
         ),
       );

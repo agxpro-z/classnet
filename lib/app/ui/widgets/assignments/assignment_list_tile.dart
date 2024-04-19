@@ -51,7 +51,7 @@ class AssignmentListTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        DateFormat('HH:mm, dd-MMM-yyyy').format(assignment.createdOn ?? DateTime.now()),
+                        "Due: ${DateFormat('HH:mm, dd-MMM-yyyy').format(assignment.due ?? DateTime.now())}",
                         style: TextStyle(
                           fontSize: theme.textTheme.bodySmall?.fontSize,
                         ),

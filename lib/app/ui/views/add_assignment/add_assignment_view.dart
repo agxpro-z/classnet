@@ -79,8 +79,32 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                     Expanded(
                       flex: 3,
                       child: TextField(
-                        controller: null,
+                        onTap: () async {
+                          viewModel.due = await showDatePicker(
+                                context: context,
+                                firstDate: DateTime.now(),
+                                initialDate: viewModel.due,
+                                lastDate: DateTime.utc(2099),
+                              ) ??
+                              viewModel.due;
+
+                          if (context.mounted) {
+                            final time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+
+                            viewModel.due = DateTime(
+                              viewModel.due.year,
+                              viewModel.due.month,
+                              viewModel.due.day,
+                              time?.hour ?? 23,
+                              time?.minute ?? 59,
+                            );
+                          }
+
+                          viewModel.updateDue();
+                        },
+                        controller: viewModel.dueController,
                         decoration: InputDecoration(
+                          suffixIcon: const Icon(Icons.calendar_month_rounded),
                           labelText: 'Due date',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),

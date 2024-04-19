@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:injectable/injectable.dart';
 
-@lazySingleton
 class Assignment {
   Assignment({
     required this.title,
@@ -9,6 +7,7 @@ class Assignment {
     required this.creator,
     required this.points,
     required this.createdOn,
+    required this.due,
     required this.documentReference,
   });
 
@@ -17,6 +16,7 @@ class Assignment {
   String creator;
   int points;
   DateTime? createdOn;
+  DateTime? due;
   DocumentReference? documentReference;
 
   Future<void> update() async {

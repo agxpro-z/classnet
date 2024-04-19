@@ -55,6 +55,7 @@ class Subject {
         creator: snapshotData['creator'] as String,
         points: snapshotData['points'] as int,
         createdOn: snapshotData['createdOn']?.toDate(),
+        due: snapshotData['due']?.toDate(),
         documentReference: snapshot.reference,
       ));
     }
@@ -67,7 +68,8 @@ class Subject {
       'description': assignment.description,
       'points': assignment.points,
       'creator': assignment.creator,
-      'createdOn': DateTime.now(),
+      'createdOn': assignment.createdOn,
+      'due': assignment.due,
     });
   }
 
