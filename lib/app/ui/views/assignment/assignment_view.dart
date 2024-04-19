@@ -223,6 +223,7 @@ class _AssignmentViewState extends State<AssignmentView> {
           child: MarkdownBlock(
             data: viewModel.assignment.description.split('\\n').join('\n'),
             selectable: true,
+            config: Theme.of(context).brightness == Brightness.dark ? MarkdownConfig.darkConfig : MarkdownConfig.defaultConfig,
           ),
         ),
       ],
