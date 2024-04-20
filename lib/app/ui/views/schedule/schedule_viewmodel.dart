@@ -9,9 +9,11 @@ import '../../../services/manager_api.dart';
 @lazySingleton
 class ScheduleViewModel extends BaseViewModel {
   final ManagerAPI managerAPI = ManagerAPI();
-  List<Task> taskList = <Task>[];
   final bool isStudent = AppUserService().isStudent();
+  List<Task> taskList = <Task>[];
   String taskDay = DateFormat('EEE').format(DateTime.now());
+  DateTime selectedDay = DateTime.now();
+  DateTime focusedDay = DateTime.now();
 
   Future<void> initialize() async {
     setBusy(true);

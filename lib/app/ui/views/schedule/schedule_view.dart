@@ -19,8 +19,6 @@ class ScheduleView extends StatefulWidget {
 
 class _ScheduleViewState extends State<ScheduleView> {
   CalendarFormat _calendarFormat = CalendarFormat.week;
-  DateTime _selectedDay = DateTime.now();
-  DateTime _focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +47,9 @@ class _ScheduleViewState extends State<ScheduleView> {
                 delegate: SliverChildListDelegate.fixed(
                   <Widget>[
                     TableCalendar(
-                      focusedDay: _focusedDay,
+                      focusedDay: viewModel.focusedDay,
                       firstDay: DateTime.utc(1970),
-                      lastDay: DateTime.utc(2030),
+                      lastDay: DateTime.utc(2099),
                       rowHeight: 40.0,
                       calendarFormat: _calendarFormat,
                       onFormatChanged: (format) => setState(() {
@@ -84,13 +82,12 @@ class _ScheduleViewState extends State<ScheduleView> {
                         ),
                       ),
                       selectedDayPredicate: (day) {
-                        return isSameDay(_selectedDay, day);
+                        return isSameDay(viewModel.selectedDay, day);
                       },
                       onDaySelected: (selectedDay, focusedDay) {
                         setState(() async {
-                          _selectedDay = selectedDay;
-                          _focusedDay = focusedDay; // update `_focusedDay` here as well
-
+                          viewModel.selectedDay = selectedDay;
+                          viewModel.focusedDay = focusedDay; // update `_focusedDay` here as well
                           await viewModel.fetchScheduleForDay(DateFormat('EEE').format(focusedDay));
                         });
                       },
