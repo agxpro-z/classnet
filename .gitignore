@@ -52,5 +52,6 @@ app.*.map.json
 /macos/firebase_app_id_file.json
 
 # Generated Builder files
+**/*.g.dart
 **/*.locator.dart
 **/*.router.dart
