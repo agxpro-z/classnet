@@ -169,7 +169,10 @@ class _AssignmentViewState extends State<AssignmentView> {
       children: <Widget>[
         Text(
           viewModel.assignment.title,
-          style: TextStyle(fontSize: theme.textTheme.titleLarge?.fontSize),
+          style: TextStyle(
+            fontSize: theme.textTheme.titleLarge?.fontSize,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         const SizedBox(height: 8.0),
         Row(
@@ -182,19 +185,23 @@ class _AssignmentViewState extends State<AssignmentView> {
               children: <Widget>[
                 Text(
                   DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn ?? DateTime.now()),
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+                  ),
                 ),
-                const SizedBox(height: 4.0),
                 Row(
                   children: <Widget>[
-                    const Text(
+                    Text(
                       "${Strings.due}: ",
                       style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
                       DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn ?? DateTime.now()),
-                      style: const TextStyle(
+                      style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -206,11 +213,17 @@ class _AssignmentViewState extends State<AssignmentView> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  viewModel.assignment.creator,
-                ),
-                const SizedBox(height: 4.0),
-                Text(
                   "${Strings.points}: ${viewModel.assignment.points.toString()}",
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  viewModel.assignment.creator,
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+                  ),
                 ),
               ],
             ),

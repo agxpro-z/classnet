@@ -32,17 +32,21 @@ class AssignmentListTile extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        assignment.title.toString(),
-                        style: TextStyle(
-                            fontSize: theme.textTheme.titleSmall?.fontSize,
+                      Expanded(
+                        child: Text(
+                          assignment.title.toString(),
+                          style: TextStyle(
+                            fontSize: theme.textTheme.titleMedium?.fontSize,
                             fontWeight: FontWeight.w500,
-                            overflow: TextOverflow.ellipsis),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ),
+                      const SizedBox(width: 8.0),
                       Text(
                         assignment.points.toString(),
                         style: TextStyle(
-                          fontSize: theme.textTheme.bodySmall?.fontSize,
+                          fontSize: theme.textTheme.bodyMedium?.fontSize,
                         ),
                       ),
                     ],
@@ -53,13 +57,13 @@ class AssignmentListTile extends StatelessWidget {
                       Text(
                         "Due: ${DateFormat('HH:mm, dd-MMM-yyyy').format(assignment.due ?? DateTime.now())}",
                         style: TextStyle(
-                          fontSize: theme.textTheme.bodySmall?.fontSize,
+                          fontSize: theme.textTheme.bodyMedium?.fontSize,
                         ),
                       ),
                       Text(
                         assignment.creator.toString(),
                         style: TextStyle(
-                          fontSize: theme.textTheme.bodySmall?.fontSize,
+                          fontSize: theme.textTheme.bodyMedium?.fontSize,
                         ),
                       ),
                     ],

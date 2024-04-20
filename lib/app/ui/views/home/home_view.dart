@@ -34,21 +34,21 @@ class HomeView extends StatelessWidget {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.only(top: 24.0),
+              padding: const EdgeInsets.only(top: 16.0),
               sliver: SliverList(
                 delegate: SliverChildListDelegate.fixed(
                   <Widget>[
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        Strings.upcomingAssignments,
+                        'Upcoming',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: theme.textTheme.titleMedium?.fontSize,
+                          fontSize: theme.textTheme.titleLarge?.fontSize,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 4.0),
                     const SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Padding(
@@ -79,18 +79,18 @@ class HomeView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16.0),
+                    const SizedBox(height: 8.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         Strings.notGradedAssignments,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: theme.textTheme.titleMedium?.fontSize,
+                          fontSize: theme.textTheme.titleLarge?.fontSize,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 4.0),
                     const SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Padding(
@@ -121,18 +121,18 @@ class HomeView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16.0),
+                    const SizedBox(height: 8.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         Strings.subjects,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: theme.textTheme.titleMedium?.fontSize,
+                          fontSize: theme.textTheme.titleLarge?.fontSize,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 4.0),
                     if (viewModel.isBusy)
                       const Center(child: CircularProgressIndicator())
                     else

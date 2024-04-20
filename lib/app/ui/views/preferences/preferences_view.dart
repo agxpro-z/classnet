@@ -92,40 +92,64 @@ class _PreferencesViewState extends State<PreferencesView> {
                                 Strings.course,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               leading: const Icon(Icons.school_rounded),
-                              subtitle: Text(viewModel.managerAPI.getCourse().name),
+                              subtitle: Text(
+                                viewModel.managerAPI.getCourse().name,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                ),
+                              ),
                             ),
                             ListTile(
                               title: Text(
                                 Strings.branch,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               leading: const Icon(Icons.vertical_split_rounded),
-                              subtitle: Text(viewModel.managerAPI.getCourse().branch),
+                              subtitle: Text(
+                                viewModel.managerAPI.getCourse().branch,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                ),
+                              ),
                             ),
                             ListTile(
                               title: Text(
                                 Strings.department,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               leading: const Icon(Icons.account_balance_rounded),
-                              subtitle: Text(viewModel.managerAPI.getCourse().department),
+                              subtitle: Text(
+                                viewModel.managerAPI.getCourse().department,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                ),
+                              ),
                             ),
                             ListTile(
                               title: Text(
                                 Strings.semesters,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               leading: const Icon(Icons.horizontal_split_rounded),
-                              subtitle: Text(viewModel.managerAPI.getCourse().semList.length.toString()),
+                              subtitle: Text(
+                                viewModel.managerAPI.getCourse().semList.length.toString(),
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                ),
+                              ),
                             ),
                           ],
                         )
@@ -136,10 +160,16 @@ class _PreferencesViewState extends State<PreferencesView> {
                                 Strings.department,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               leading: const Icon(Icons.account_balance_rounded),
-                              subtitle: Text(viewModel.user!.department),
+                              subtitle: Text(
+                                viewModel.user!.department,
+                                style: TextStyle(
+                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                ),
+                              ),
                             ),
                           ],
                         ),

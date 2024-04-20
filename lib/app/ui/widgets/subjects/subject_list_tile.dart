@@ -36,38 +36,36 @@ class SubjectListTile extends StatelessWidget {
                 color: theme.colorScheme.primaryContainer,
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 104,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: theme.textTheme.titleSmall?.fontSize,
-                        fontWeight: FontWeight.w500,
-                      ),
+            const SizedBox(width: 8.0),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: theme.textTheme.titleMedium?.fontSize,
+                      fontWeight: FontWeight.w500,
+                      overflow: TextOverflow.ellipsis
                     ),
-                    if (!forStudent)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Text(
-                          "$course ($department)",
-                          style: TextStyle(
-                            fontSize: theme.textTheme.bodySmall?.fontSize,
-                          ),
+                  ),
+                  if (!forStudent)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 0.0),
+                      child: Text(
+                        "$course ($department)",
+                        style: TextStyle(
+                          fontSize: theme.textTheme.bodyMedium?.fontSize,
                         ),
                       ),
-                    Text(
-                      "${Strings.assignments}: ${assignments.toString()}",
-                      style: TextStyle(
-                        fontSize: theme.textTheme.bodySmall?.fontSize,
-                      ),
                     ),
-                  ],
-                ),
+                  Text(
+                    "${Strings.assignments}: ${assignments.toString()}",
+                    style: TextStyle(
+                      fontSize: theme.textTheme.bodySmall?.fontSize,
+                    ),
+                  ),
+                ],
               ),
             )
           ],
