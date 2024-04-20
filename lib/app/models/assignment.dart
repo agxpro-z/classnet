@@ -16,8 +16,8 @@ class Assignment {
   String description;
   String creator;
   int points;
-  DateTime? createdOn;
-  DateTime? due;
+  DateTime createdOn;
+  DateTime due;
   DocumentReference? documentReference;
   String subject;
 

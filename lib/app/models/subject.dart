@@ -54,8 +54,8 @@ class Subject {
         description: snapshotData['description'] as String,
         creator: snapshotData['creator'] as String,
         points: snapshotData['points'] as int,
-        createdOn: snapshotData['createdOn']?.toDate(),
-        due: snapshotData['due']?.toDate(),
+        createdOn: snapshotData['createdOn']?.toDate() ?? DateTime.now().subtract(const Duration(days: 7)),
+        due: snapshotData['due']?.toDate() ?? DateTime.now().add(const Duration(days: 7)),
         documentReference: snapshot.reference,
         subject: title,
       ));
