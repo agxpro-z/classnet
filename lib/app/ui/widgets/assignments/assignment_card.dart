@@ -5,14 +5,14 @@ import '../../../../i18n/strings.g.dart';
 class AssignmentCard extends StatelessWidget {
   const AssignmentCard({
     super.key,
-    required this.deadline,
     required this.title,
     required this.subject,
+    required this.due,
   });
 
-  final String deadline;
   final String title;
   final String subject;
+  final String due;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class AssignmentCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Card(
               color: theme.colorScheme.primaryContainer,
               margin: const EdgeInsets.all(0.0),
@@ -54,9 +54,15 @@ class AssignmentCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 4.0),
-            Text(
-              t.widgets.assignments.deadline + deadline,
-              style: TextStyle(fontSize: theme.textTheme.labelMedium?.fontSize),
+            SizedBox(
+              width: 164,
+              child: Text(
+                "${t.widgets.assignments.due}: $due",
+                style: TextStyle(
+                  fontSize: theme.textTheme.labelMedium?.fontSize,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ),
           ],
         ),

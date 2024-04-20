@@ -91,7 +91,7 @@
   },
   "widgets": {
     "assignments": {
-      "deadline": "Deadline: "
+      "due": "Due"
     },
     "subjects": {
       "assignments": "Assignments"

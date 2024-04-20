@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../../i18n/strings.g.dart';
@@ -49,36 +50,26 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4.0),
-                    const SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Row(
-                          children: <Widget>[
-                            AssignmentCard(
-                              deadline: "Today, 11:59",
-                              title: "Assignment 2 & 3",
-                              subject: "KE Lab",
-                            ),
-                            AssignmentCard(
-                              deadline: "Tomorrow, 11:59",
-                              title: "Task 1 Tcases",
-                              subject: "Software Testing",
-                            ),
-                            AssignmentCard(
-                              deadline: "Tomorrow, 11:59",
-                              title: "Task 1 Tcases",
-                              subject: "Software Testing",
-                            ),
-                            AssignmentCard(
-                              deadline: "Tomorrow, 11:59",
-                              title: "Task 1 Tcases",
-                              subject: "Software Testing",
-                            ),
-                          ],
+                    if (viewModel.isBusy)
+                      const Center(child: CircularProgressIndicator())
+                    else
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Row(
+                            children: <Widget>[
+                              for (var assignment in viewModel.assignmentList)
+                                AssignmentCard(
+                                  due:
+                                      "${DateFormat('dd MMM').format(assignment.due)}, ${TimeOfDay.fromDateTime(assignment.due).format(context)}",
+                                  title: assignment.title,
+                                  subject: assignment.subject,
+                                ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
                     const SizedBox(height: 8.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -98,22 +89,22 @@ class HomeView extends StatelessWidget {
                         child: Row(
                           children: <Widget>[
                             AssignmentCard(
-                              deadline: "Today, 11:59",
+                              due: "Today, 11:59",
                               title: "Assignment 2 & 3",
                               subject: "KE Lab",
                             ),
                             AssignmentCard(
-                              deadline: "Tomorrow, 11:59",
+                              due: "Tomorrow, 11:59",
                               title: "Task 1 Tcases",
                               subject: "Software Testing",
                             ),
                             AssignmentCard(
-                              deadline: "Tomorrow, 11:59",
+                              due: "Tomorrow, 11:59",
                               title: "Task 1 Tcases",
                               subject: "Software Testing",
                             ),
                             AssignmentCard(
-                              deadline: "Tomorrow, 11:59",
+                              due: "Tomorrow, 11:59",
                               title: "Task 1 Tcases",
                               subject: "Software Testing",
                             ),
