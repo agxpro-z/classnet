@@ -15,6 +15,8 @@ import 'ui/views/navigation/navigation_view.dart';
 import 'ui/views/navigation/navigation_viewmodel.dart';
 import 'ui/views/preferences/preferences_view.dart';
 import 'ui/views/preferences/preferences_viewmodel.dart';
+import 'ui/views/schedule/schedule_view.dart';
+import 'ui/views/schedule/schedule_viewmodel.dart';
 import 'ui/views/subjects/subjects_view.dart';
 import 'ui/views/subjects/subjects_viewmodel.dart';
 
@@ -26,6 +28,7 @@ import 'ui/views/subjects/subjects_viewmodel.dart';
     MaterialRoute(page: HomeView),
     MaterialRoute(page: NavigationView),
     MaterialRoute(page: PreferencesView),
+    MaterialRoute(page: ScheduleView),
     MaterialRoute(page: SubjectsView),
   ],
   dependencies: [
@@ -35,6 +38,7 @@ import 'ui/views/subjects/subjects_viewmodel.dart';
     LazySingleton(classType: HomeViewModel),
     LazySingleton(classType: NavigationViewModel),
     LazySingleton(classType: PreferencesViewModel),
+    LazySingleton(classType: ScheduleViewModel),
     LazySingleton(classType: SubjectsViewModel),
   ]
 )
