@@ -43,6 +43,7 @@ class AddAssignmentViewModel extends BaseViewModel {
           createdOn: DateTime.now(),
           due: due,
           documentReference: null,
+          subject: subject.title,
         ),
       );
     } on Exception {

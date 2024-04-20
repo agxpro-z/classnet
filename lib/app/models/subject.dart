@@ -57,6 +57,7 @@ class Subject {
         createdOn: snapshotData['createdOn']?.toDate(),
         due: snapshotData['due']?.toDate(),
         documentReference: snapshot.reference,
+        subject: title,
       ));
     }
     return list;
@@ -70,6 +71,7 @@ class Subject {
       'creator': assignment.creator,
       'createdOn': assignment.createdOn,
       'due': assignment.due,
+      'subject': title,
     });
   }
 

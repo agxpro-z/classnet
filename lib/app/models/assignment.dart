@@ -9,6 +9,7 @@ class Assignment {
     required this.createdOn,
     required this.due,
     required this.documentReference,
+    required this.subject,
   });
 
   String title;
@@ -18,6 +19,7 @@ class Assignment {
   DateTime? createdOn;
   DateTime? due;
   DocumentReference? documentReference;
+  String subject;
 
   Future<void> update() async {
     await documentReference?.update({
