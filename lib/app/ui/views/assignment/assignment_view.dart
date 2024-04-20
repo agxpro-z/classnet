@@ -32,6 +32,7 @@ class _AssignmentViewState extends State<AssignmentView> {
       viewModelBuilder: () => locator<AssignmentViewModel>(),
       builder: (BuildContext context, AssignmentViewModel viewModel, Widget? child) => Scaffold(
         appBar: AppBar(
+          title: Text(viewModel.assignment.subject),
           actions: [
             if (!viewModel.isStudent && !viewModel.editing)
               IconButton(
