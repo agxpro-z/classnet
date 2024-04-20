@@ -5,6 +5,7 @@ import 'package:stacked/stacked.dart';
 import '../../../models/task.dart';
 import '../../../services/app_user.dart';
 import '../../../services/manager_api.dart';
+import '../../../utils/time_of_day.dart';
 
 @lazySingleton
 class ScheduleViewModel extends BaseViewModel {
@@ -33,7 +34,7 @@ class ScheduleViewModel extends BaseViewModel {
     } else {
       taskList = await managerAPI.getFacultyClassTimeTable(day);
     }
-    taskList.sort((a, b) => a.time.toString().compareTo(b.time.toString()));
+    taskList.sort((a, b) => a.time.compareTo(b.time));
 
     setBusy(false);
   }
