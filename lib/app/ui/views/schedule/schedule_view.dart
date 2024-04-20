@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
 
 class ScheduleView extends StatefulWidget {
@@ -26,7 +26,7 @@ class _ScheduleViewState extends State<ScheduleView> {
           CustomSliverAppBar(
             isMainView: true,
             title: Text(
-              Strings.schedule,
+              t.scheduleView.schedule,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
               ),

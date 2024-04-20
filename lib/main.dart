@@ -1,4 +1,3 @@
-import 'package:classnet/i18n/strings.g.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
@@ -7,7 +6,7 @@ import 'app/app.dart';
 import 'app/app.locator.dart';
 import 'app/utils/locale.dart';
 import 'firebase_options.dart';
-import 'res/strings.dart';
+import 'i18n/strings.g.dart';
 
 void main() async {
   await setupLocator();
@@ -46,7 +45,7 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
       ),
       themeMode: ThemeMode.system,
-      title: Strings.appName,
+      title: t.appName,
     );
   }
 }

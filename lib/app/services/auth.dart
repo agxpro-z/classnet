@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../res/strings.dart';
+import '../../i18n/strings.g.dart';
 
 class Auth {
   static String getUserEmail() {
-    return FirebaseAuth.instance.currentUser?.email ?? Strings.invalidEmail;
+    return FirebaseAuth.instance.currentUser?.email ?? t.auth.invalidEmail;
   }
 
   static String getUserName() {
-    return FirebaseAuth.instance.currentUser?.displayName ?? Strings.invalidUser;
+    return FirebaseAuth.instance.currentUser?.displayName ?? t.auth.invalidUser;
   }
 
   static Future<void> signIn(String email, String password) async {
@@ -21,13 +21,13 @@ class Auth {
   }
 
   static Future<void> signUp(
-      BuildContext context,
-      String name,
-      String branch,
-      String course,
-      String email,
-      String password,
-      String confirmPassword
+    BuildContext context,
+    String name,
+    String branch,
+    String course,
+    String email,
+    String password,
+    String confirmPassword,
   ) async {
     if (password != confirmPassword) {
       return;

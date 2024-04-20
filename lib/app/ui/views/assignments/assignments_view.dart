@@ -1,12 +1,12 @@
-import 'package:classnet/app/ui/views/add_assignment/add_assignment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../app.locator.dart';
 import '../../../models/subject.dart';
 import '../../widgets/assignments/assignment_list_tile.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
+import '../add_assignment/add_assignment_view.dart';
 import '../assignment/assignment_view.dart';
 import 'assignments_viewmodel.dart';
 
@@ -49,7 +49,7 @@ class _AssignmentsViewState extends State<AssignmentsView> {
               CustomSliverAppBar(
                 isMainView: false,
                 title: Text(
-                  Strings.assignments,
+                  t.assignmentsView.assignments,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
@@ -60,13 +60,9 @@ class _AssignmentsViewState extends State<AssignmentsView> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: viewModel.isBusy
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
+                      ? const Center(child: CircularProgressIndicator())
                       : viewModel.assignmentList.isEmpty
-                          ? const Center(
-                              child: Text(Strings.noAssignments),
-                            )
+                          ? Center(child: Text(t.assignmentsView.noAssignments))
                           : SingleChildScrollView(
                               child: Column(
                                 children: <Widget>[

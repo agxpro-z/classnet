@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../app.locator.dart';
 import '../../widgets/assignments/assignment_card.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
             CustomSliverAppBar(
               isMainView: true,
               title: Text(
-                Strings.home,
+                t.homeView.home,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
@@ -41,7 +41,7 @@ class HomeView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        'Upcoming',
+                        t.homeView.upcoming,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: theme.textTheme.titleLarge?.fontSize,
@@ -83,7 +83,7 @@ class HomeView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        Strings.notGradedAssignments,
+                        t.homeView.notGraded,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: theme.textTheme.titleLarge?.fontSize,
@@ -125,7 +125,7 @@ class HomeView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        Strings.subjects,
+                        t.homeView.subjects,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: theme.textTheme.titleLarge?.fontSize,
@@ -145,7 +145,7 @@ class HomeView extends StatelessWidget {
                                 GestureDetector(
                                   onTap: () => sub.assignmentCount == 0
                                       ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                          content: const Text(Strings.noAssignments),
+                                          content: Text(t.homeView.noAssignments),
                                           backgroundColor: Colors.yellow[800],
                                         ))
                                       : Navigator.of(context).push(MaterialPageRoute(

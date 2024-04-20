@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../services/auth.dart';
 import '../register/register_view.dart';
 
@@ -36,11 +36,11 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 4.0),
                     child: Text(
-                      Strings.signInHeader,
+                      t.loginView.signIn,
                       style: TextStyle(
                         color: theme.colorScheme.onSurface,
                         fontSize: theme.textTheme.headlineMedium?.fontSize,
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -50,10 +50,10 @@ class _LoginPageState extends State<LoginPage> {
                   TextField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      labelText: Strings.email,
+                      labelText: t.loginView.email,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
-                        gapPadding: 8.0
+                        gapPadding: 8.0,
                       ),
                       isDense: true,
                     ),
@@ -64,10 +64,10 @@ class _LoginPageState extends State<LoginPage> {
                   TextField(
                     controller: _passwordController,
                     decoration: InputDecoration(
-                      labelText: Strings.password,
+                      labelText: t.loginView.password,
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          gapPadding: 8.0
+                        borderRadius: BorderRadius.circular(8.0),
+                        gapPadding: 8.0,
                       ),
                       isDense: true,
                     ),
@@ -78,14 +78,12 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 32.0,
                     child: TextButton(
-                      onPressed: () { },
+                      onPressed: () {},
                       child: Text(
-                        Strings.forgotPassword,
-                        style: TextStyle(
-                          fontSize: theme.textTheme.labelMedium?.fontSize
-                        ),
+                        t.loginView.forgotPassword,
+                        style: TextStyle(fontSize: theme.textTheme.labelMedium?.fontSize),
                       ),
-                     ),
+                    ),
                   ),
                   // const SizedBox(height: 8.0),
 
@@ -100,24 +98,18 @@ class _LoginPageState extends State<LoginPage> {
                           }));
                         },
                         child: Text(
-                          Strings.createAccount,
-                          style: TextStyle(
-                            color: theme.colorScheme.primary
-                          ),
+                          t.loginView.createAccount,
+                          style: TextStyle(color: theme.colorScheme.primary),
                         ),
                       ),
                       const SizedBox(width: 12.0),
 
                       // Login button
                       FilledButton(
-                        onPressed: () {
-                          Auth.signIn(_emailController.text.trim(), _passwordController.text);
-                        },
+                        onPressed: () => Auth.signIn(_emailController.text.trim(), _passwordController.text),
                         child: Text(
-                          Strings.login,
-                          style: TextStyle(
-                            color: theme.colorScheme.onPrimary
-                          ),
+                          t.loginView.logIn,
+                          style: TextStyle(color: theme.colorScheme.onPrimary),
                         ),
                       ),
                       const SizedBox(width: 2.0)

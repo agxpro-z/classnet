@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../app.locator.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
 import '../../widgets/subjects/subject_list_tile.dart';
@@ -30,7 +30,7 @@ class _SubjectsViewState extends State<SubjectsView> {
               CustomSliverAppBar(
                 isMainView: true,
                 title: Text(
-                  Strings.subjects,
+                  t.subjectsView.subjects,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
@@ -70,7 +70,7 @@ class _SubjectsViewState extends State<SubjectsView> {
                             if (snapshot.connectionState == ConnectionState.waiting) {
                               return const Center(child: CircularProgressIndicator());
                             } else if (viewModel.subjectList.isEmpty) {
-                              return const Center(child: Text(Strings.noSubjects));
+                              return Center(child: Text(t.subjectsView.noSubjects));
                             }
                             return Column(
                               children: <Widget>[
@@ -79,7 +79,7 @@ class _SubjectsViewState extends State<SubjectsView> {
                                     GestureDetector(
                                       onTap: () => sub.assignmentCount == 0
                                           ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                              content: const Text(Strings.noAssignments),
+                                              content: Text(t.subjectsView.noAssignments),
                                               backgroundColor: Colors.yellow[800],
                                             ))
                                           : Navigator.of(context).push(MaterialPageRoute(

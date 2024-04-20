@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../res/strings.dart';
+import '../../i18n/strings.g.dart';
 
 class AppUser {
   AppUser({
@@ -18,7 +18,7 @@ class AppUser {
   final String department;
 
   String get name => "$firstname $lastname";
-  String get displayName => user.displayName ?? Strings.guestUser;
+  String get displayName => user.displayName ?? t.models.guestUser;
   String get email => user.email ?? '';
 
   void reload() async => user.reload();

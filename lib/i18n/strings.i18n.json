@@ -1,3 +1,100 @@
 {
-  "appName": "Classnet"
+  "appName": "Classnet",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "auth": {
+    "invalidEmail": "Invalid email",
+    "invalidUser": "Invalid user"
+  },
+  "addAssignmentView": {
+    "addAssignment": "Add assignment",
+    "assignmentPosted": "Assignment posted.",
+    "description": "Description",
+    "points": "Points",
+    "title": "Title"
+  },
+  "assignmentView": {
+    "assignmentDeleted": "Assignment deleted.",
+    "assignmentUpdated": "Assignment updated.",
+    "deleteAssignment": "Delete assignment",
+    "deleteAssignmentMsg": "Are you sure you want to delete?",
+    "description": "Description",
+    "due": "Due",
+    "editAssignment": "Edit assignment",
+    "points": "Points",
+    "title": "Title",
+    "updateAssignment": "Update assignment"
+  },
+  "assignmentsView": {
+    "assignments": "Assignments",
+    "noAssignments": "No assignments."
+  },
+  "homeView": {
+    "home": "Home",
+    "noAssignments": "No assignments.",
+    "notGraded": "Not Graded",
+    "subjects": "Subjects",
+    "upcoming": "Upcoming"
+  },
+  "loginView": {
+    "createAccount": "Create account",
+    "email": "E-mail",
+    "forgotPassword": "Forgot password",
+    "logIn": "Log in",
+    "password": "Password",
+    "signIn": "Sign in"
+  },
+  "models": {
+    "guestUser": "Guest user"
+  },
+  "navigationView": {
+    "home": "Home",
+    "more": "More",
+    "schedule": "Schedule",
+    "subjects": "Subjects"
+  },
+  "preferencesView": {
+    "branch": "Branch",
+    "course": "Course",
+    "department": "Department",
+    "logOut": "Log out",
+    "logOutMsg": "Are you sure you would like to log out?",
+    "preferences": "Preferences",
+    "semesters": "Semesters"
+  },
+  "registerView": {
+    "branch": "Branch",
+    "confirmPassword": "Confirm password",
+    "course": "Course",
+    "department": "Department",
+    "email": "E-mail",
+    "name": "Name",
+    "signUp": "Sign up",
+    "password": "Password"
+  },
+  "scheduleView": {
+    "schedule": "Schedule"
+  },
+  "subjectsView": {
+    "fetching": "Fetching...",
+    "noAssignments": "No assignments.",
+    "noSubjects": "No subjects.",
+    "sem1": "Semester 1",
+    "sem2": "Semester 2",
+    "sem3": "Semester 3",
+    "sem4": "Semester 4",
+    "sem5": "Semester 5",
+    "sem6": "Semester 6",
+    "sem7": "Semester 7",
+    "sem8": "Semester 8",
+    "subjects": "Subjects"
+  },
+  "widgets": {
+    "assignments": {
+      "deadline": "Deadline: "
+    },
+    "subjects": {
+      "assignments": "Assignments"
+    }
+  }
 }

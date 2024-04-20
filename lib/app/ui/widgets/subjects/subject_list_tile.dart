@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 
 class SubjectListTile extends StatelessWidget {
   SubjectListTile({
@@ -46,7 +46,7 @@ class SubjectListTile extends StatelessWidget {
                     style: TextStyle(
                       fontSize: theme.textTheme.titleMedium?.fontSize,
                       fontWeight: FontWeight.w500,
-                      overflow: TextOverflow.ellipsis
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   if (!forStudent)
@@ -60,7 +60,7 @@ class SubjectListTile extends StatelessWidget {
                       ),
                     ),
                   Text(
-                    "${Strings.assignments}: ${assignments.toString()}",
+                    "${t.widgets.subjects.assignments}: ${assignments.toString()}",
                     style: TextStyle(
                       fontSize: theme.textTheme.bodySmall?.fontSize,
                     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 
 class AssignmentCard extends StatelessWidget {
   const AssignmentCard({
@@ -49,18 +49,14 @@ class AssignmentCard extends StatelessWidget {
               width: 164,
               child: Text(
                 subject,
-                style: TextStyle(
-                    fontSize: theme.textTheme.bodyMedium?.fontSize
-                ),
+                style: TextStyle(fontSize: theme.textTheme.bodyMedium?.fontSize),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             const SizedBox(height: 4.0),
             Text(
-              Strings.deadline + deadline,
-              style: TextStyle(
-                  fontSize: theme.textTheme.labelMedium?.fontSize
-              ),
+              t.widgets.assignments.deadline + deadline,
+              style: TextStyle(fontSize: theme.textTheme.labelMedium?.fontSize),
             ),
           ],
         ),

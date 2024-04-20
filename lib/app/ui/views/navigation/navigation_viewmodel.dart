@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../res/strings.dart';
 import '../home/home_view.dart';
 import '../preferences/preferences_view.dart';
 import '../schedule/schedule_view.dart';

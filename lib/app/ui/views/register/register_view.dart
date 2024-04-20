@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../services/auth.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -43,11 +43,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: Text(
-                        Strings.signUpHeader,
+                        t.registerView.signUp,
                         style: TextStyle(
-                            color: theme.colorScheme.onSurface,
-                            fontSize: theme.textTheme.headlineMedium?.fontSize,
-                            fontWeight: FontWeight.w500
+                          color: theme.colorScheme.onSurface,
+                          fontSize: theme.textTheme.headlineMedium?.fontSize,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -57,11 +57,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       controller: _nameController,
                       decoration: InputDecoration(
-                        labelText: Strings.name,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            gapPadding: 8.0
-                        ),
+                        labelText: t.registerView.name,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                         isDense: true,
                       ),
                     ),
@@ -71,11 +68,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       controller: _branchController,
                       decoration: InputDecoration(
-                        labelText: Strings.branch,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            gapPadding: 8.0
-                        ),
+                        labelText: t.registerView.branch,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                         isDense: true,
                       ),
                     ),
@@ -85,11 +79,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       controller: _courseController,
                       decoration: InputDecoration(
-                        labelText: Strings.course,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            gapPadding: 8.0
-                        ),
+                        labelText: t.registerView.course,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                         isDense: true,
                       ),
                     ),
@@ -99,11 +90,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       controller: _emailController,
                       decoration: InputDecoration(
-                        labelText: Strings.email,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            gapPadding: 8.0
-                        ),
+                        labelText: t.registerView.email,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                         isDense: true,
                       ),
                     ),
@@ -113,11 +101,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       controller: _passwordController,
                       decoration: InputDecoration(
-                        labelText: Strings.password,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            gapPadding: 8.0
-                        ),
+                        labelText: t.registerView.password,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                         isDense: true,
                       ),
                       obscureText: true,
@@ -128,11 +113,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       controller: _confirmPasswordController,
                       decoration: InputDecoration(
-                        labelText: Strings.confirmPassword,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            gapPadding: 8.0
-                        ),
+                        labelText: t.registerView.confirmPassword,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                         isDense: true,
                       ),
                       obscureText: true,
@@ -152,14 +134,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               _courseController.text.trim(),
                               _emailController.text.trim(),
                               _passwordController.text,
-                              _confirmPasswordController.text
+                              _confirmPasswordController.text,
                             );
                           },
                           child: Text(
-                            Strings.signUpHeader,
-                            style: TextStyle(
-                                color: theme.colorScheme.onPrimary
-                            ),
+                            t.registerView.signUp,
+                            style: TextStyle(color: theme.colorScheme.onPrimary),
                           ),
                         ),
                         const SizedBox(width: 2.0)

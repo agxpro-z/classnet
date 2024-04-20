@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 
 class SubjectCard extends StatelessWidget {
   const SubjectCard({
@@ -44,7 +44,7 @@ class SubjectCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${Strings.assignments}: ${assignments.toString()}",
+                      "${t.widgets.subjects.assignments}: ${assignments.toString()}",
                       style: TextStyle(
                         fontSize: theme.textTheme.bodySmall?.fontSize,
                       ),

@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../app.locator.dart';
 import '../../../models/assignment.dart';
 import '../assignments/assignments_viewmodel.dart';
@@ -36,35 +36,35 @@ class _AssignmentViewState extends State<AssignmentView> {
             if (!viewModel.isStudent && !viewModel.editing)
               IconButton(
                 icon: const Icon(Icons.edit),
-                tooltip: Strings.editAssignment,
+                tooltip: t.assignmentView.editAssignment,
                 onPressed: () => viewModel.invertEditing(),
               ),
             if (!viewModel.isStudent && !viewModel.editing)
               IconButton(
                 icon: const Icon(Icons.delete_outline_outlined),
-                tooltip: Strings.deleteAssignment,
+                tooltip: t.assignmentView.deleteAssignment,
                 onPressed: () => showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    title: const Text(Strings.deleteAssignment),
-                    content: const Text(Strings.deleteAssignmentMsg),
+                    title: Text(t.assignmentView.deleteAssignment),
+                    content: Text(t.assignmentView.deleteAssignmentMsg),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: const Text(Strings.cancel),
+                        child: Text(t.cancel),
                       ),
                       FilledButton(
                         onPressed: () {
                           viewModel.deleteAssignment();
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: const Text(Strings.assignmentDeleted),
+                            content: Text(t.assignmentView.assignmentUpdated),
                             backgroundColor: Colors.red[800],
                           ));
                           Navigator.of(context).pop(context);
                           Navigator.of(context).pop(context);
                           widget.parentViewMode.forceUpdateAssignmentList();
                         },
-                        child: const Text(Strings.delete),
+                        child: Text(t.delete),
                       ),
                     ],
                   ),
@@ -73,13 +73,13 @@ class _AssignmentViewState extends State<AssignmentView> {
             if (!viewModel.isStudent && viewModel.editing)
               IconButton(
                 icon: const Icon(Icons.done_outlined),
-                tooltip: Strings.updateAssignment,
+                tooltip: t.assignmentView.updateAssignment,
                 onPressed: () {
                   viewModel.invertEditing();
                   viewModel.updateAssignment();
 
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text(Strings.assignmentUpdated),
+                    content: Text(t.assignmentView.assignmentUpdated),
                     backgroundColor: Colors.yellow[800],
                   ));
                 },
@@ -87,7 +87,7 @@ class _AssignmentViewState extends State<AssignmentView> {
             if (!viewModel.isStudent && viewModel.editing)
               IconButton(
                 icon: const Icon(Icons.clear_outlined),
-                tooltip: Strings.cancelUpdateAssignment,
+                tooltip: t.cancel,
                 onPressed: () => viewModel.invertEditing(),
               ),
           ],
@@ -114,7 +114,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                 child: TextField(
                   controller: viewModel.assignmentPointController,
                   decoration: InputDecoration(
-                    labelText: Strings.points,
+                    labelText: t.assignmentView.points,
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                     isDense: true,
                   ),
@@ -137,7 +137,7 @@ class _AssignmentViewState extends State<AssignmentView> {
           TextField(
             controller: viewModel.assignmentTitleController,
             decoration: InputDecoration(
-              labelText: Strings.assignmentTitle,
+              labelText: t.assignmentView.title,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
               isDense: true,
             ),
@@ -150,7 +150,7 @@ class _AssignmentViewState extends State<AssignmentView> {
               controller: viewModel.assignmentDescController,
               keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
-                labelText: Strings.assignmentDescription,
+                labelText: t.assignmentView.description,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                 isDense: true,
               ),
@@ -192,7 +192,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                 Row(
                   children: <Widget>[
                     Text(
-                      "${Strings.due}: ",
+                      "${t.assignmentView.due}: ",
                       style: TextStyle(
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                         fontWeight: FontWeight.w500,
@@ -213,7 +213,7 @@ class _AssignmentViewState extends State<AssignmentView> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  "${Strings.points}: ${viewModel.assignment.points.toString()}",
+                  "${t.assignmentView.points}: ${viewModel.assignment.points.toString()}",
                   style: TextStyle(
                     fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                     fontWeight: FontWeight.w500,

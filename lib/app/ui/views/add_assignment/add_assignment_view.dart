@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../app.locator.dart';
 import '../../../models/subject.dart';
 import '../assignments/assignments_viewmodel.dart';
@@ -30,7 +30,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
       viewModelBuilder: () => locator<AddAssignmentViewModel>(),
       builder: (BuildContext context, AddAssignmentViewModel viewModel, Widget? child) => Scaffold(
         appBar: AppBar(
-          title: const Text(Strings.addAssignment),
+          title: Text(t.addAssignmentView.addAssignment),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
@@ -39,7 +39,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
             if (context.mounted) {
               if (posted) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: const Text(Strings.assignmentPosted),
+                  content: Text(t.addAssignmentView.assignmentPosted),
                   backgroundColor: Colors.yellow[800],
                 ));
                 Navigator.of(context).pop(context);
@@ -69,7 +69,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                       child: TextField(
                         controller: viewModel.assignmentPointController,
                         decoration: InputDecoration(
-                          labelText: Strings.points,
+                          labelText: t.addAssignmentView.points,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
                           isDense: true,
                         ),
@@ -120,7 +120,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                 TextField(
                   controller: viewModel.assignmentTitleController,
                   decoration: InputDecoration(
-                    labelText: Strings.assignmentTitle,
+                    labelText: t.addAssignmentView.title,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       gapPadding: 8.0,
@@ -137,7 +137,7 @@ class _AddAssignmentViewState extends State<AddAssignmentView> {
                     controller: viewModel.assignmentDescController,
                     decoration: InputDecoration(
                       alignLabelWithHint: true,
-                      labelText: Strings.assignmentDescription,
+                      labelText: t.addAssignmentView.description,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         gapPadding: 8.0,

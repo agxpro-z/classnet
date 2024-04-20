@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../services/app_user.dart';
 import '../../../services/manager_api.dart';
 import '../../../models/subject.dart';
@@ -11,20 +11,20 @@ class SubjectsViewModel extends BaseViewModel {
   final ManagerAPI managerAPI = ManagerAPI();
   final isStudent = AppUserService().isStudent();
 
-  List<String> list = <String>['Fetching...'];
+  List<String> list = <String>[t.subjectsView.fetching];
   late String dropDownValue = list.first;
   late String prevDropDownValue = dropDownValue;
   List<Subject> subjectList = <Subject>[];
 
   final Map<String, String> semName = {
-    "sem1": Strings.sem1,
-    "sem2": Strings.sem2,
-    "sem3": Strings.sem3,
-    "sem4": Strings.sem4,
-    "sem5": Strings.sem5,
-    "sem6": Strings.sem6,
-    "sem7": Strings.sem7,
-    "sem8": Strings.sem8,
+    "sem1": t.subjectsView.sem1,
+    "sem2": t.subjectsView.sem2,
+    "sem3": t.subjectsView.sem3,
+    "sem4": t.subjectsView.sem4,
+    "sem5": t.subjectsView.sem5,
+    "sem6": t.subjectsView.sem6,
+    "sem7": t.subjectsView.sem7,
+    "sem8": t.subjectsView.sem8,
   };
 
   Future<void> initialize() async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../res/strings.dart';
+import '../../../../i18n/strings.g.dart';
 import '../../../app.locator.dart';
 import '../../../services/auth.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
@@ -31,19 +31,19 @@ class _PreferencesViewState extends State<PreferencesView> {
                   onPressed: () => showDialog(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                      title: const Text(Strings.signOut),
-                      content: const Text(Strings.signOutMsg),
+                      title: Text(t.preferencesView.logOut),
+                      content: Text(t.preferencesView.logOutMsg),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
-                          child: const Text(Strings.signOutCancel),
+                          child: Text(t.cancel),
                         ),
                         FilledButton(
                           onPressed: () {
                             Auth.signOut();
                             Navigator.of(context).pop();
                           },
-                          child: const Text(Strings.signOut),
+                          child: Text(t.preferencesView.logOut),
                         ),
                       ],
                     ),
@@ -81,15 +81,13 @@ class _PreferencesViewState extends State<PreferencesView> {
             SliverFillRemaining(
               hasScrollBody: true,
               child: viewModel.isBusy
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
+                  ? const Center(child: CircularProgressIndicator())
                   : (viewModel.isStudent)
                       ? Column(
                           children: <Widget>[
                             ListTile(
                               title: Text(
-                                Strings.course,
+                                t.preferencesView.course,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
                                   fontWeight: FontWeight.w500,
@@ -105,7 +103,7 @@ class _PreferencesViewState extends State<PreferencesView> {
                             ),
                             ListTile(
                               title: Text(
-                                Strings.branch,
+                                t.preferencesView.branch,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
                                   fontWeight: FontWeight.w500,
@@ -121,7 +119,7 @@ class _PreferencesViewState extends State<PreferencesView> {
                             ),
                             ListTile(
                               title: Text(
-                                Strings.department,
+                                t.preferencesView.department,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
                                   fontWeight: FontWeight.w500,
@@ -137,7 +135,7 @@ class _PreferencesViewState extends State<PreferencesView> {
                             ),
                             ListTile(
                               title: Text(
-                                Strings.semesters,
+                                t.preferencesView.semesters,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
                                   fontWeight: FontWeight.w500,
@@ -157,7 +155,7 @@ class _PreferencesViewState extends State<PreferencesView> {
                           children: <Widget>[
                             ListTile(
                               title: Text(
-                                Strings.department,
+                                t.preferencesView.department,
                                 style: TextStyle(
                                   fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
                                   fontWeight: FontWeight.w500,
