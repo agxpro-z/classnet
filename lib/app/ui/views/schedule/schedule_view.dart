@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:timelines/timelines.dart';
@@ -84,9 +85,11 @@ class _ScheduleViewState extends State<ScheduleView> {
                       return isSameDay(_selectedDay, day);
                     },
                     onDaySelected: (selectedDay, focusedDay) {
-                      setState(() {
+                      setState(() async {
                         _selectedDay = selectedDay;
                         _focusedDay = focusedDay; // update `_focusedDay` here as well
+
+                        await viewModel.fetchScheduleForDay(DateFormat('EEE').format(focusedDay));
                       });
                     },
                   ),
@@ -112,18 +115,26 @@ class _ScheduleViewState extends State<ScheduleView> {
                               task: viewModel.taskList[index],
                             ),
                           ),
-                          connectorStyleBuilder: (context, index) =>
-                              viewModel.taskList[index].time.toString().compareTo(TimeOfDay.now().toString()) < 0 &&
-                                      viewModel.taskList[index].time.toString().compareTo(
-                                              (TimeOfDay(hour: TimeOfDay.now().hour - 1, minute: TimeOfDay.now().minute))
-                                                  .toString()) >
-                                          0
-                                  ? ConnectorStyle.dashedLine
-                                  : ConnectorStyle.solidLine,
-                          indicatorStyleBuilder: (context, index) =>
-                              viewModel.taskList[index].time.toString().compareTo(TimeOfDay.now().toString()) < 0
-                                  ? IndicatorStyle.dot
-                                  : IndicatorStyle.outlined,
+                          connectorStyleBuilder: (context, index) {
+                            if (DateFormat('EEE').format(DateTime.now()) != viewModel.taskDay) {
+                              return ConnectorStyle.solidLine;
+                            }
+                            return viewModel.taskList[index].time.toString().compareTo(TimeOfDay.now().toString()) < 0 &&
+                                    viewModel.taskList[index].time.toString().compareTo(
+                                            (TimeOfDay(hour: TimeOfDay.now().hour - 1, minute: TimeOfDay.now().minute))
+                                                .toString()) >
+                                        0
+                                ? ConnectorStyle.dashedLine
+                                : ConnectorStyle.solidLine;
+                          },
+                          indicatorStyleBuilder: (context, index) {
+                            if (DateFormat('EEE').format(DateTime.now()) != viewModel.taskDay) {
+                              return IndicatorStyle.outlined;
+                            }
+                            return viewModel.taskList[index].time.toString().compareTo(TimeOfDay.now().toString()) < 0
+                                ? IndicatorStyle.dot
+                                : IndicatorStyle.outlined;
+                          },
                           itemCount: viewModel.taskList.length,
                         ),
                       ),
