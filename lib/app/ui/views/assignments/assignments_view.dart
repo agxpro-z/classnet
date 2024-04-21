@@ -69,7 +69,7 @@ class _AssignmentsViewState extends State<AssignmentsView> {
                                   for (var assignment in viewModel.assignmentList)
                                     GestureDetector(
                                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => AssignmentView(assignment: assignment, parentViewMode: viewModel),
+                                        builder: (context) => AssignmentView(assignment: assignment, parentForceUpdate: viewModel.forceUpdateAssignmentList),
                                       )),
                                       child: AssignmentListTile(assignment: assignment),
                                     )

@@ -7,6 +7,7 @@ import '../../../app.locator.dart';
 import '../../widgets/assignments/assignment_card.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
 import '../../widgets/subjects/subject_list_tile.dart';
+import '../assignment/assignment_view.dart';
 import '../assignments/assignments_view.dart';
 import 'home_viewmodel.dart';
 
@@ -60,11 +61,19 @@ class HomeView extends StatelessWidget {
                           child: Row(
                             children: <Widget>[
                               for (var assignment in viewModel.upcomingAssignmentList)
-                                AssignmentCard(
-                                  due: "${DateFormat('dd MMM').format(assignment.due)}, "
-                                      "${TimeOfDay.fromDateTime(assignment.due).format(context)}",
-                                  title: assignment.title,
-                                  subject: assignment.subject,
+                                GestureDetector(
+                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => AssignmentView(
+                                      assignment: assignment,
+                                      parentForceUpdate: viewModel.forceUpdateAssignmentList,
+                                    ),
+                                  )),
+                                  child: AssignmentCard(
+                                    due: "${DateFormat('dd MMM').format(assignment.due)}, "
+                                        "${TimeOfDay.fromDateTime(assignment.due).format(context)}",
+                                    title: assignment.title,
+                                    subject: assignment.subject,
+                                  ),
                                 ),
                             ],
                           ),
@@ -92,11 +101,19 @@ class HomeView extends StatelessWidget {
                           child: Row(
                             children: <Widget>[
                               for (var assignment in viewModel.endedAssignmentList)
-                                AssignmentCard(
-                                  due: "${DateFormat('dd MMM').format(assignment.due)}, "
-                                      "${TimeOfDay.fromDateTime(assignment.due).format(context)}",
-                                  title: assignment.title,
-                                  subject: assignment.subject,
+                                GestureDetector(
+                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => AssignmentView(
+                                      assignment: assignment,
+                                      parentForceUpdate: viewModel.forceUpdateAssignmentList,
+                                    ),
+                                  )),
+                                  child: AssignmentCard(
+                                    due: "${DateFormat('dd MMM').format(assignment.due)}, "
+                                        "${TimeOfDay.fromDateTime(assignment.due).format(context)}",
+                                    title: assignment.title,
+                                    subject: assignment.subject,
+                                  ),
                                 ),
                             ],
                           ),

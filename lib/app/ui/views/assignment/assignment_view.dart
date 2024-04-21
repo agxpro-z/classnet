@@ -13,11 +13,11 @@ class AssignmentView extends StatefulWidget {
   const AssignmentView({
     super.key,
     required this.assignment,
-    required this.parentViewMode,
+    required this.parentForceUpdate,
   });
 
   final Assignment assignment;
-  final AssignmentsViewModel parentViewMode;
+  final Future<void> Function() parentForceUpdate;
 
   @override
   State<AssignmentView> createState() => _AssignmentViewState();
@@ -63,7 +63,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                           ));
                           Navigator.of(context).pop(context);
                           Navigator.of(context).pop(context);
-                          widget.parentViewMode.forceUpdateAssignmentList();
+                          widget.parentForceUpdate();
                         },
                         child: Text(t.delete),
                       ),
