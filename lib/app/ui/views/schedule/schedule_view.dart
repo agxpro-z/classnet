@@ -84,11 +84,11 @@ class _ScheduleViewState extends State<ScheduleView> {
                       selectedDayPredicate: (day) {
                         return isSameDay(viewModel.selectedDay, day);
                       },
-                      onDaySelected: (selectedDay, focusedDay) {
-                        setState(() async {
+                      onDaySelected: (selectedDay, focusedDay) async {
+                        await viewModel.fetchScheduleForDay(DateFormat('EEE').format(focusedDay));
+                        setState(() {
                           viewModel.selectedDay = selectedDay;
                           viewModel.focusedDay = focusedDay; // update `_focusedDay` here as well
-                          await viewModel.fetchScheduleForDay(DateFormat('EEE').format(focusedDay));
                         });
                       },
                     ),
