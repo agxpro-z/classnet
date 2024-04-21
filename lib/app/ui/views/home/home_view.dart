@@ -57,68 +57,76 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 4.0),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                            child: Row(
-                              children: <Widget>[
-                                for (var assignment in viewModel.upcomingAssignmentList)
-                                  GestureDetector(
-                                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => AssignmentView(
-                                        assignment: assignment,
-                                        parentForceUpdate: viewModel.forceUpdateAssignmentList,
+                        if (viewModel.upcomingAssignmentList.isEmpty)
+                          SizedBox(
+                            height: 64.0,
+                            child: Center(child: Text(t.homeView.noUpcomingAssignments)),
+                          )
+                        else
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                              child: Row(
+                                children: <Widget>[
+                                  for (var assignment in viewModel.upcomingAssignmentList)
+                                    GestureDetector(
+                                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => AssignmentView(
+                                          assignment: assignment,
+                                          parentForceUpdate: viewModel.forceUpdateAssignmentList,
+                                        ),
+                                      )),
+                                      child: AssignmentCard(
+                                        due: "${DateFormat('dd MMM').format(assignment.due)}, "
+                                            "${TimeOfDay.fromDateTime(assignment.due).format(context)}",
+                                        title: assignment.title,
+                                        subject: assignment.subject,
                                       ),
-                                    )),
-                                    child: AssignmentCard(
-                                      due: "${DateFormat('dd MMM').format(assignment.due)}, "
-                                          "${TimeOfDay.fromDateTime(assignment.due).format(context)}",
-                                      title: assignment.title,
-                                      subject: assignment.subject,
                                     ),
-                                  ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Text(
-                            t.homeView.ended,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: theme.textTheme.titleLarge?.fontSize,
+                        if (viewModel.endedAssignmentList.isNotEmpty) ...[
+                          const SizedBox(height: 8.0),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Text(
+                              t.homeView.ended,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: theme.textTheme.titleLarge?.fontSize,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 4.0),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                            child: Row(
-                              children: <Widget>[
-                                for (var assignment in viewModel.endedAssignmentList)
-                                  GestureDetector(
-                                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => AssignmentView(
-                                        assignment: assignment,
-                                        parentForceUpdate: viewModel.forceUpdateAssignmentList,
+                          const SizedBox(height: 4.0),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                              child: Row(
+                                children: <Widget>[
+                                  for (var assignment in viewModel.endedAssignmentList)
+                                    GestureDetector(
+                                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => AssignmentView(
+                                          assignment: assignment,
+                                          parentForceUpdate: viewModel.forceUpdateAssignmentList,
+                                        ),
+                                      )),
+                                      child: AssignmentCard(
+                                        due: "${DateFormat('dd MMM').format(assignment.due)}, "
+                                            "${TimeOfDay.fromDateTime(assignment.due).format(context)}",
+                                        title: assignment.title,
+                                        subject: assignment.subject,
                                       ),
-                                    )),
-                                    child: AssignmentCard(
-                                      due: "${DateFormat('dd MMM').format(assignment.due)}, "
-                                          "${TimeOfDay.fromDateTime(assignment.due).format(context)}",
-                                      title: assignment.title,
-                                      subject: assignment.subject,
                                     ),
-                                  ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                         const SizedBox(height: 8.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),

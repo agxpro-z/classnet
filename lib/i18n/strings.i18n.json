@@ -32,6 +32,7 @@
   "homeView": {
     "home": "Home",
     "noAssignments": "No assignments.",
+    "noUpcomingAssignments": "No upcoming assignments.",
     "ended": "Ended",
     "subjects": "Subjects",
     "upcoming": "Upcoming"
