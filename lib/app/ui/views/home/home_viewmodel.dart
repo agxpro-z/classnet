@@ -59,4 +59,9 @@ class HomeViewModel extends BaseViewModel {
     endedAssignmentList.sort((a, b) => b.due.compareTo(a.due));
     setBusy(false);
   }
+
+  Future<void> forceUpdate() async {
+    subjectList.clear();
+    await initialize();
+  }
 }
