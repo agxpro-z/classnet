@@ -5,6 +5,7 @@ import 'package:stacked/stacked.dart';
 import '../../../../i18n/strings.g.dart';
 import '../../../app.locator.dart';
 import '../../widgets/assignments/assignment_card.dart';
+import '../../widgets/home/home_loading.dart';
 import '../../widgets/shared/custom_sliver_app_bar.dart';
 import '../../widgets/subjects/subject_list_tile.dart';
 import '../assignment/assignment_view.dart';
@@ -42,20 +43,20 @@ class HomeView extends StatelessWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate.fixed(
                     <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          t.homeView.upcoming,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: theme.textTheme.titleLarge?.fontSize,
+                      if (viewModel.isBusy)
+                        const HomeLoading()
+                      else ...[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            t.homeView.upcoming,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: theme.textTheme.titleLarge?.fontSize,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 4.0),
-                      if (viewModel.isBusy)
-                        const Center(child: CircularProgressIndicator())
-                      else
+                        const SizedBox(height: 4.0),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Padding(
@@ -81,21 +82,18 @@ class HomeView extends StatelessWidget {
                             ),
                           ),
                         ),
-                      const SizedBox(height: 8.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          t.homeView.ended,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: theme.textTheme.titleLarge?.fontSize,
+                        const SizedBox(height: 8.0),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            t.homeView.ended,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: theme.textTheme.titleLarge?.fontSize,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 4.0),
-                      if (viewModel.isBusy)
-                        const Center(child: CircularProgressIndicator())
-                      else
+                        const SizedBox(height: 4.0),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Padding(
@@ -121,21 +119,18 @@ class HomeView extends StatelessWidget {
                             ),
                           ),
                         ),
-                      const SizedBox(height: 8.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          t.homeView.subjects,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: theme.textTheme.titleLarge?.fontSize,
+                        const SizedBox(height: 8.0),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            t.homeView.subjects,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: theme.textTheme.titleLarge?.fontSize,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 4.0),
-                      if (viewModel.isBusy)
-                        const Center(child: CircularProgressIndicator())
-                      else
+                        const SizedBox(height: 4.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 4.0),
                           child: Column(
@@ -179,7 +174,8 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
                         ),
-                      const SizedBox(height: 8.0),
+                        const SizedBox(height: 8.0),
+                      ],
                     ],
                   ),
                 ),
