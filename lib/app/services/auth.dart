@@ -36,8 +36,8 @@ class Auth {
     try {
       UserCredential newUser = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
       await newUser.user?.updateDisplayName(name);
-    } on FirebaseAuthException catch (e) {
-      print(e);
+    } on FirebaseAuthException {
+      // print(e);
     }
 
     // Pop the register page after successful registration.

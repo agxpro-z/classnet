@@ -1,10 +1,10 @@
-import 'package:classnet/app/models/subject.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../models/course.dart';
 import '../models/semester.dart';
+import '../models/subject.dart';
 import '../models/task.dart';
 import '../models/tsemester.dart';
 import 'app_user.dart';

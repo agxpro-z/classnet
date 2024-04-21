@@ -6,7 +6,6 @@ import 'package:stacked/stacked.dart';
 import '../../../../i18n/strings.g.dart';
 import '../../../app.locator.dart';
 import '../../../models/assignment.dart';
-import '../assignments/assignments_viewmodel.dart';
 import 'assignment_viewmodel.dart';
 
 class AssignmentView extends StatefulWidget {
@@ -185,7 +184,7 @@ class _AssignmentViewState extends State<AssignmentView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn ?? DateTime.now()),
+                  DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn),
                   style: TextStyle(
                     fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                   ),
@@ -200,7 +199,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                       ),
                     ),
                     Text(
-                      DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn ?? DateTime.now()),
+                      DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn),
                       style: TextStyle(
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                         fontWeight: FontWeight.w500,

@@ -18,6 +18,4 @@ class Student extends AppUser {
   final String rollNo;
   final String branchName;
   final String courseName;
-
-  // TODO - Implement course model
 }

@@ -40,7 +40,7 @@ import 'ui/views/subjects/subjects_viewmodel.dart';
     LazySingleton(classType: PreferencesViewModel),
     LazySingleton(classType: ScheduleViewModel),
     LazySingleton(classType: SubjectsViewModel),
-  ]
+  ],
 )
 class AppSetup {}
 

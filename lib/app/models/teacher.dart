@@ -11,6 +11,4 @@ class Teacher extends AppUser {
     required super.isStudent,
     required super.department,
   });
-
-  // TODO - Implement Academic Year Model
 }

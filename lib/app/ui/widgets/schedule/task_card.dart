@@ -5,7 +5,7 @@ import '../../../models/task.dart';
 class TaskCard extends StatelessWidget {
   const TaskCard({
     super.key,
-    required this.task
+    required this.task,
   });
 
   final Task task;
@@ -19,7 +19,8 @@ class TaskCard extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-            child: Text(task.time.format(context),
+            child: Text(
+              task.time.format(context),
               style: TextStyle(
                 fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
                 fontWeight: FontWeight.w500,
@@ -34,7 +35,8 @@ class TaskCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
               child: Row(
                 children: <Widget>[
-                  Text(task.title,
+                  Text(
+                    task.title,
                     style: TextStyle(
                       fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
                     ),
