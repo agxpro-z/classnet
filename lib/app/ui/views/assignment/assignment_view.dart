@@ -58,7 +58,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                         onPressed: () {
                           viewModel.deleteAssignment();
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(t.assignmentView.assignmentUpdated),
+                            content: Text(t.assignmentView.assignmentDeleted),
                             backgroundColor: Colors.red[800],
                           ));
                           Navigator.of(context).pop(context);
