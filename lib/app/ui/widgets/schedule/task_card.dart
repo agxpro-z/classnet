@@ -35,10 +35,12 @@ class TaskCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
               child: Row(
                 children: <Widget>[
-                  Text(
-                    task.title,
-                    style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                  Expanded(
+                    child: Text(
+                      task.title,
+                      style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                      ),
                     ),
                   ),
                 ],
