@@ -84,6 +84,12 @@ class _ScheduleViewState extends State<ScheduleView> {
                           color: theme.colorScheme.error,
                         ),
                       ),
+                      headerStyle: HeaderStyle(
+                        formatButtonDecoration: BoxDecoration(
+                          border: Border.all(color: theme.colorScheme.onSurface),
+                          borderRadius: BorderRadius.circular(12.0),
+                        )
+                      ),
                       selectedDayPredicate: (day) {
                         return isSameDay(viewModel.selectedDay, day);
                       },
