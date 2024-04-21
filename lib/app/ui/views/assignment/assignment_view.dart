@@ -75,13 +75,18 @@ class _AssignmentViewState extends State<AssignmentView> {
                 icon: const Icon(Icons.done_outlined),
                 tooltip: t.assignmentView.updateAssignment,
                 onPressed: () {
-                  viewModel.invertEditing();
-                  viewModel.updateAssignment();
-
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(t.assignmentView.assignmentUpdated),
-                    backgroundColor: Colors.yellow[800],
-                  ));
+                  if (viewModel.updateAssignment()) {
+                    viewModel.invertEditing();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(t.assignmentView.assignmentUpdated),
+                      backgroundColor: Colors.yellow[800],
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(t.assignmentView.invalidData),
+                      backgroundColor: Colors.red[800],
+                    ));
+                  }
                 },
               ),
             if (!viewModel.isStudent && viewModel.editing)
@@ -106,56 +111,149 @@ class _AssignmentViewState extends State<AssignmentView> {
     return SizedBox(
       height: MediaQuery.of(context).size.height - 92,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const SizedBox(height: 8.0),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              '${t.assignmentView.title}: ',
+              style: TextStyle(
+                fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const SizedBox(height: 4.0),
+          TextField(
+            controller: viewModel.assignmentTitleController,
+            decoration: InputDecoration(
+              hintText: t.assignmentView.titleHint,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                gapPadding: 8.0,
+              ),
+              isDense: true,
+            ),
+          ),
+          const SizedBox(height: 16.0),
           Row(
             children: <Widget>[
               Expanded(
-                child: TextField(
-                  controller: viewModel.assignmentPointController,
-                  decoration: InputDecoration(
-                    labelText: t.assignmentView.points,
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
-                    isDense: true,
-                  ),
+                flex: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        '${t.assignmentView.points}: ',
+                        style: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 4.0),
+                    TextField(
+                      controller: viewModel.assignmentPointController,
+                      decoration: InputDecoration(
+                        hintText: t.assignmentView.points,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
+                        isDense: true,
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(width: 8.0),
               Expanded(
-                child: TextField(
-                  controller: null,
-                  decoration: InputDecoration(
-                    labelText: 'Due date',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
-                    isDense: true,
-                  ),
+                flex: 3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        '${t.assignmentView.due}: ',
+                        style: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 4.0),
+                    TextField(
+                      onTap: () async {
+                        viewModel.due = await showDatePicker(
+                          context: context,
+                          firstDate: DateTime.now(),
+                          initialDate: viewModel.due,
+                          lastDate: DateTime.utc(2099),
+                        ) ??
+                            viewModel.due;
+
+                        if (context.mounted) {
+                          final time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+                          viewModel.due = DateTime(
+                            viewModel.due.year,
+                            viewModel.due.month,
+                            viewModel.due.day,
+                            time?.hour ?? 23,
+                            time?.minute ?? 59,
+                          );
+                        }
+                        viewModel.updateDue();
+                      },
+                      controller: viewModel.dueController,
+                      decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.calendar_month_rounded),
+                        hintText: t.assignmentView.dueHint,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          gapPadding: 8.0,
+                        ),
+                        isDense: true,
+                      ),
+                      keyboardType: TextInputType.none,
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16.0),
-          TextField(
-            controller: viewModel.assignmentTitleController,
-            decoration: InputDecoration(
-              labelText: t.assignmentView.title,
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
-              isDense: true,
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              '${t.assignmentView.description}: ',
+              style: TextStyle(
+                fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 4.0),
           Expanded(
             child: TextField(
               minLines: 16,
               maxLines: null,
-              controller: viewModel.assignmentDescController,
               keyboardType: TextInputType.multiline,
+              controller: viewModel.assignmentDescController,
               decoration: InputDecoration(
-                labelText: t.assignmentView.description,
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), gapPadding: 8.0),
+                alignLabelWithHint: true,
+                hintText: t.assignmentView.descriptionHint,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  gapPadding: 8.0,
+                ),
                 isDense: true,
               ),
             ),
           ),
+          const SizedBox(height: 16.0),
+
         ],
       ),
     );

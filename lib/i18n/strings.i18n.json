@@ -10,14 +10,14 @@
     "addAssignment": "Add assignment",
     "assignmentPosted": "Assignment posted.",
     "description": "Description",
-    "points": "Points",
-    "title": "Title",
-    "invalidData": "Invalid data.",
-    "subject": "Subject",
-    "titleHint": "Assignment title.",
+    "descriptionHint": "Assignment description and content.",
     "due": "Due",
     "dueHint": "Due date",
-    "descriptionHint": "Assignment description and content."
+    "invalidData": "Invalid data.",
+    "points": "Points",
+    "subject": "Subject",
+    "title": "Title",
+    "titleHint": "Assignment title."
   },
   "assignmentView": {
     "assignmentDeleted": "Assignment deleted.",
@@ -25,10 +25,14 @@
     "deleteAssignment": "Delete assignment",
     "deleteAssignmentMsg": "Are you sure you want to delete?",
     "description": "Description",
+    "descriptionHint": "Assignment description and content.",
     "due": "Due",
+    "dueHint": "Due date",
     "editAssignment": "Edit assignment",
+    "invalidData": "Invalid data.",
     "points": "Points",
     "title": "Title",
+    "titleHint": "Assignment title.",
     "updateAssignment": "Update assignment"
   },
   "assignmentsView": {
