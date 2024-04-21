@@ -24,6 +24,7 @@ class AddAssignmentViewModel extends BaseViewModel {
     assignmentTitleController.clear();
     assignmentDescController.clear();
     assignmentPointController.clear();
+    assignmentPointController.text = "100";
     due = DateTime.now().add(const Duration(days: 7));
     updateDue();
   }

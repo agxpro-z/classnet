@@ -11,7 +11,13 @@
     "assignmentPosted": "Assignment posted.",
     "description": "Description",
     "points": "Points",
-    "title": "Title"
+    "title": "Title",
+    "invalidData": "Invalid data.",
+    "subject": "Subject",
+    "titleHint": "Assignment title.",
+    "due": "Due",
+    "dueHint": "Due date",
+    "descriptionHint": "Assignment description and content."
   },
   "assignmentView": {
     "assignmentDeleted": "Assignment deleted.",
