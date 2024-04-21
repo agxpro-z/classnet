@@ -9,9 +9,10 @@ import '../../../models/subject.dart';
 @lazySingleton
 class HomeViewModel extends BaseViewModel {
   final ManagerAPI managerAPI = ManagerAPI();
-  final List<Subject> subjectList = <Subject>[];
-  final List<Assignment> assignmentList = <Assignment>[];
   final bool isStudent = AppUserService().isStudent();
+  final List<Subject> subjectList = <Subject>[];
+  final List<Assignment> upcomingAssignmentList = <Assignment>[];
+  final List<Assignment> endedAssignmentList = <Assignment>[];
 
   Future<void> initialize() async {
     setBusy(true);
@@ -33,15 +34,19 @@ class HomeViewModel extends BaseViewModel {
         }
       });
     }
-    assignmentList.sort((a, b) => a.due.compareTo(b.due));
+    upcomingAssignmentList.sort((a, b) => a.due.compareTo(b.due));
 
     setBusy(false);
   }
 
   Future<void> fetchAssignments(Subject sub) async {
-    assignmentList.addAll((await sub.getAssignments()).where((assignment) {
+    upcomingAssignmentList.addAll((await sub.getAssignments()).where((assignment) {
       final deadline = DateTime.now().add(const Duration(days: 7));
       return assignment.due.compareTo(deadline) <= 0 && assignment.due.compareTo(DateTime.now()) >= 0;
+    }));
+    endedAssignmentList.addAll((await sub.getAssignments()).where((assignment) {
+      final deadline = DateTime.now().subtract(const Duration(days: 8));
+      return assignment.due.compareTo(deadline) >= 0 && assignment.due.compareTo(DateTime.now()) <= 0;
     }));
   }
 }
