@@ -77,6 +77,9 @@ class _ScheduleViewState extends State<ScheduleView> {
                       ),
                       daysOfWeekHeight: 28.0,
                       daysOfWeekStyle: DaysOfWeekStyle(
+                        weekdayStyle: TextStyle(
+                          color: theme.colorScheme.onSurface,
+                        ),
                         weekendStyle: TextStyle(
                           color: theme.colorScheme.error,
                         ),
