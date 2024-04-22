@@ -297,7 +297,7 @@ class _AssignmentViewState extends State<AssignmentView> {
                       ),
                     ),
                     Text(
-                      DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.createdOn),
+                      DateFormat('HH:mm, dd-MMM-yyyy').format(viewModel.assignment.due),
                       style: TextStyle(
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                         fontWeight: FontWeight.w500,
