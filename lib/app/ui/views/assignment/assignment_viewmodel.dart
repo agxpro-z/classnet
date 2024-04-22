@@ -18,7 +18,7 @@ class AssignmentViewModel extends BaseViewModel {
   final TextEditingController dueController = TextEditingController();
   DateTime due = DateTime.now().add(const Duration(days: 7));
 
-  Future<void> initialize(Assignment assignment) async {
+  Future<void> initialize(BuildContext context, Assignment assignment) async {
     this.assignment = assignment;
     editing = false;
 
@@ -26,11 +26,11 @@ class AssignmentViewModel extends BaseViewModel {
     assignmentDescController.text = assignment.description.split('\\n').join('\n');
     assignmentPointController.text = assignment.points.toString();
     due = assignment.due;
-    updateDue();
+    updateDue(context);
   }
 
-  void updateDue() {
-    dueController.text = DateFormat('HH:mm, dd-MMM-yyyy').format(due);
+  void updateDue(BuildContext context) {
+    dueController.text = "${TimeOfDay.fromDateTime(due).format(context)}, ${DateFormat('dd-MMM-yyyy').format(due)}";
   }
 
   bool updateAssignment() {

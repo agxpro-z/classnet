@@ -27,7 +27,7 @@ class _AssignmentViewState extends State<AssignmentView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AssignmentViewModel>.reactive(
       disposeViewModel: false,
-      onViewModelReady: (viewModel) => viewModel.initialize(widget.assignment),
+      onViewModelReady: (viewModel) => viewModel.initialize(context, widget.assignment),
       viewModelBuilder: () => locator<AssignmentViewModel>(),
       builder: (BuildContext context, AssignmentViewModel viewModel, Widget? child) => Scaffold(
         appBar: AppBar(
@@ -186,25 +186,34 @@ class _AssignmentViewState extends State<AssignmentView> {
                     const SizedBox(height: 4.0),
                     TextField(
                       onTap: () async {
-                        viewModel.due = await showDatePicker(
+                        final DateTime? due = await showDatePicker(
                           context: context,
                           firstDate: DateTime.now(),
                           initialDate: viewModel.due,
                           lastDate: DateTime.utc(2099),
-                        ) ??
-                            viewModel.due;
+                        );
 
-                        if (context.mounted) {
-                          final time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
-                          viewModel.due = DateTime(
-                            viewModel.due.year,
-                            viewModel.due.month,
-                            viewModel.due.day,
-                            time?.hour ?? 23,
-                            time?.minute ?? 59,
-                          );
+                        if (due == null) {
+                          return;
                         }
-                        viewModel.updateDue();
+                        if (context.mounted) {
+                          final TimeOfDay? time = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.fromDateTime(viewModel.due),
+                          );
+                          if (time == null || !context.mounted) {
+                            return;
+                          } else {
+                            viewModel.due = DateTime(
+                              due.year,
+                              due.month,
+                              due.day,
+                              time.hour,
+                              time.minute,
+                            );
+                            viewModel.updateDue(context);
+                          }
+                        }
                       },
                       controller: viewModel.dueController,
                       decoration: InputDecoration(
@@ -253,7 +262,6 @@ class _AssignmentViewState extends State<AssignmentView> {
             ),
           ),
           const SizedBox(height: 16.0),
-
         ],
       ),
     );
