@@ -26,7 +26,7 @@ class Assignment {
       'title': title,
       'description': description,
       'points': points,
-      'creator': creator,
+      'due': due,
     });
   }
 

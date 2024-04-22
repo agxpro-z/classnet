@@ -36,6 +36,7 @@ class AssignmentViewModel extends BaseViewModel {
   bool updateAssignment() {
     assignment.title = assignmentTitleController.text;
     assignment.description = assignmentDescController.text;
+    assignment.due = due;
 
     try {
       assignment.points = int.parse(assignmentPointController.text);
