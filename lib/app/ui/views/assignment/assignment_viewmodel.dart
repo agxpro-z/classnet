@@ -25,6 +25,7 @@ class AssignmentViewModel extends BaseViewModel {
     assignmentTitleController.text = assignment.title;
     assignmentDescController.text = assignment.description.split('\\n').join('\n');
     assignmentPointController.text = assignment.points.toString();
+    due = assignment.due;
     updateDue();
   }
 
