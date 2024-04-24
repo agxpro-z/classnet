@@ -412,10 +412,10 @@ packages:
     dependency: "direct main"
     description:
       name: injectable
-      sha256: fb722c86cf8233008e4db41c696a6145721f45dc8aeba91103e3128c3d63c9c6
+      sha256: "3d98967224a5fdd4094a61bf53ed9616c3fbcf3e090bf83e7cb7d436d0c20041"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
+    version: "2.4.1"
   injectable_generator:
     dependency: "direct dev"
     description:
@@ -468,10 +468,10 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker
-      sha256: "3f87a60e8c63aecc975dda1ceedbc8f24de75f09e4856ea27daf8958f2f0ce05"
+      sha256: "78eb209deea09858f5269f5a5b02be4049535f568c07b275096836f01ea323fa"
       url: "https://pub.dev"
     source: hosted
-    version: "10.0.5"
+    version: "10.0.0"
   leak_tracker_flutter_testing:
     dependency: transitive
     description:
@@ -481,13 +481,13 @@ packages:
     source: hosted
     version: "2.0.1"
   leak_tracker_testing:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: leak_tracker_testing
-      sha256: "6ba465d5d76e67ddf503e1161d1f4a6bc42306f9d66ca1e8f079a47290fb06d3"
+      sha256: a597f72a664dbd293f3bfc51f9ba69816f84dcd403cdac7066cb3f6003f3ab47
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "2.0.1"
   lints:
     dependency: transitive
     description:
@@ -548,10 +548,10 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: "25dfcaf170a0190f47ca6355bdd4552cb8924b430512ff0cafb8db9bd41fe33b"
+      sha256: d584fa6707a52763a52446f02cc621b077888fb63b93bbcb1143a7be5a0c0c04
       url: "https://pub.dev"
     source: hosted
-    version: "1.14.0"
+    version: "1.11.0"
   mime:
     dependency: transitive
     description:
