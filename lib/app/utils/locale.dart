@@ -1,3 +1,6 @@
+// Copyright 2024 agxpro.dev
+// Author: Ankit Gourav (agxpro)
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocaleUtil {

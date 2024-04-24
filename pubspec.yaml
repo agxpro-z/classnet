@@ -1,3 +1,8 @@
+# Copyright 2024 agxpro.dev
+# Author: Ankit Gourav (agxpro)
+authors:
+  - Ankit Gourav (agxpro)
+
 name: classnet
 description: "A flutter based classroom project."
 # The following line prevents the package from being accidentally published to

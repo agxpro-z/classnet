@@ -1,3 +1,6 @@
+// Copyright 2024 agxpro.dev
+// Author: Ankit Gourav (agxpro)
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

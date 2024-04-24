@@ -1,3 +1,6 @@
+// Copyright 2024 agxpro.dev
+// Author: Ankit Gourav (agxpro)
+
 import 'package:injectable/injectable.dart';
 
 import 'app_user.dart';

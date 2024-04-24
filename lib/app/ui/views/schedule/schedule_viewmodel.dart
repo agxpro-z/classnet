@@ -1,3 +1,6 @@
+// Copyright 2024 agxpro.dev
+// Author: Ankit Gourav (agxpro)
+
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';

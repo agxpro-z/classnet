@@ -1,3 +1,6 @@
+// Copyright 2024 agxpro.dev
+// Author: Ankit Gourav (agxpro)
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../i18n/strings.g.dart';
