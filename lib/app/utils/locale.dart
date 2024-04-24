@@ -9,6 +9,7 @@ class LocaleUtil {
 
   String getLocale() {
     final String? locale = _prefs.getString('locale');
+    print(locale);
     if (locale == null) {
       setLocale('en');
       return 'en';

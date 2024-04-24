@@ -1,0 +1,112 @@
+{
+  "appName": "CLASSNET",
+  "appDesc": "ఉపాధ్యాయులు, విద్యార్థులు మరియు తరగతులను కనెక్ట్ చేయడం.",
+  "cancel": "రద్దు చేయండి",
+  "delete": "తొలగించు",
+  "auth": {
+    "invalidEmail": "చెల్లని ఇమెయిల్",
+    "invalidUser": "చెల్లని వినియోగదారు"
+  },
+  "addAssignmentView": {
+    "addAssignment": "అసైన్‌మెంట్‌ని జోడించండి",
+    "assignmentPosted": "అసైన్‌మెంట్ పోస్ట్ చేయబడింది.",
+    "description": "వివరణ",
+    "descriptionHint": "అసైన్‌మెంట్ వివరణ మరియు కంటెంట్.",
+    "due": "కారణంగా",
+    "dueHint": "గడువు తేది",
+    "invalidData": "చెల్లని డేటా.",
+    "points": "పాయింట్లు",
+    "subject": "విషయం",
+    "title": "శీర్షిక",
+    "titleHint": "అసైన్‌మెంట్ టైటిల్."
+  },
+  "assignmentView": {
+    "assignmentDeleted": "అసైన్‌మెంట్ తొలగించబడింది.",
+    "assignmentUpdated": "అసైన్‌మెంట్ అప్‌డేట్ చేయబడింది.",
+    "deleteAssignment": "అసైన్‌మెంట్‌ను తొలగించండి",
+    "deleteAssignmentMsg": "మీరు తొలగించాలనుకుంటున్నారా ఖచ్చితంగా?",
+    "description": "వివరణ",
+    "descriptionHint": "అసైన్‌మెంట్ వివరణ మరియు కంటెంట్.",
+    "due": "కారణంగా",
+    "dueHint": "గడువు తేది",
+    "editAssignment": "అసైన్‌మెంట్‌ని సవరించండి",
+    "invalidData": "చెల్లని డేటా.",
+    "points": "పాయింట్లు",
+    "title": "శీర్షిక",
+    "titleHint": "అసైన్‌మెంట్ టైటిల్.",
+    "updateAssignment": "అసైన్‌మెంట్‌ని అప్‌డేట్ చేయండి"
+  },
+  "assignmentsView": {
+    "assignments": "అసైన్‌మెంట్‌లు",
+    "noAssignments": "అసైన్‌మెంట్‌లు లేవు."
+  },
+  "homeView": {
+    "home": "హోమ్",
+    "noAssignments": "అసైన్‌మెంట్‌లు లేవు.",
+    "noUpcomingAssignments": "రాబోయే అసైన్‌మెంట్‌లు లేవు.",
+    "ended": "ముగిసింది",
+    "subjects": "సబ్జెక్టులు",
+    "upcoming": "రాబోయేది"
+  },
+  "loginView": {
+    "createAccount": "ఖాతాను సృష్టించండి",
+    "email": "ఇ-మెయిల్",
+    "forgotPassword": "పాస్‌వర్డ్ మర్చిపోయాను",
+    "logIn": "ప్రవేశించండి",
+    "password": "పాస్వర్డ్",
+    "signIn": "సైన్ ఇన్ చేయండి"
+  },
+  "models": {
+    "guestUser": "అతిథి వినియోగదారు"
+  },
+  "navigationView": {
+    "home": "హోమ్",
+    "more": "మరింత",
+    "schedule": "షెడ్యూల్",
+    "subjects": "సబ్జెక్టులు"
+  },
+  "preferencesView": {
+    "branch": "శాఖ",
+    "course": "కోర్సు",
+    "department": "శాఖ",
+    "logOut": "లాగ్ అవుట్ చేయండి",
+    "logOutMsg": "మీరు ఖచ్చితంగా లాగ్ అవుట్ చేయాలనుకుంటున్నారా?",
+    "preferences": "ప్రాధాన్యతలు",
+    "semesters": "సెమిస్టర్లు"
+  },
+  "registerView": {
+    "branch": "శాఖ",
+    "confirmPassword": "పాస్వర్డ్ను నిర్ధారించండి",
+    "course": "కోర్సు",
+    "department": "శాఖ",
+    "email": "ఇ-మెయిల్",
+    "name": "పేరు",
+    "signUp": "చేరడం",
+    "password": "పాస్వర్డ్"
+  },
+  "scheduleView": {
+    "schedule": "షెడ్యూల్"
+  },
+  "subjectsView": {
+    "fetching": "పొందుతోంది...",
+    "noAssignments": "అసైన్‌మెంట్‌లు లేవు.",
+    "noSubjects": "సబ్జెక్ట్‌లు లేవు.",
+    "sem1": "సెమిస్టర్ 1",
+    "sem2": "సెమిస్టర్ 2",
+    "sem3": "సెమిస్టర్ 3",
+    "sem4": "సెమిస్టర్ 4",
+    "sem5": "సెమిస్టర్ 5",
+    "sem6": "సెమిస్టర్ 6",
+    "sem7": "సెమిస్టర్ 7",
+    "sem8": "సెమిస్టర్ 8",
+    "subjects": "సబ్జెక్టులు"
+  },
+  "widgets": {
+    "assignments": {
+      "due": "కారణంగా"
+    },
+    "subjects": {
+      "assignments": "అసైన్‌మెంట్‌లు"
+    }
+  }
+}

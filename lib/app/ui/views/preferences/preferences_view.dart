@@ -80,97 +80,161 @@ class _PreferencesViewState extends State<PreferencesView> {
             ),
             SliverFillRemaining(
               hasScrollBody: true,
-              child: viewModel.isBusy
-                  ? const Center(child: CircularProgressIndicator())
-                  : (viewModel.isStudent)
-                      ? Column(
-                          children: <Widget>[
-                            ListTile(
-                              title: Text(
-                                t.preferencesView.course,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
-                                  fontWeight: FontWeight.w500,
+              child: Column(
+                children: <Widget>[
+                  viewModel.isBusy
+                      ? const Center(child: CircularProgressIndicator())
+                      : (viewModel.isStudent)
+                          ? Column(
+                              children: <Widget>[
+                                ListTile(
+                                  title: Text(
+                                    t.preferencesView.course,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  leading: const Icon(Icons.school_rounded),
+                                  subtitle: Text(
+                                    viewModel.managerAPI.getCourse().name,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              leading: const Icon(Icons.school_rounded),
-                              subtitle: Text(
-                                viewModel.managerAPI.getCourse().name,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                ListTile(
+                                  title: Text(
+                                    t.preferencesView.branch,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  leading: const Icon(Icons.vertical_split_rounded),
+                                  subtitle: Text(
+                                    viewModel.managerAPI.getCourse().branch,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                ListTile(
+                                  title: Text(
+                                    t.preferencesView.department,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  leading: const Icon(Icons.account_balance_rounded),
+                                  subtitle: Text(
+                                    viewModel.managerAPI.getCourse().department,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  title: Text(
+                                    t.preferencesView.semesters,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  leading: const Icon(Icons.horizontal_split_rounded),
+                                  subtitle: Text(
+                                    viewModel.managerAPI.getCourse().semList.length.toString(),
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Column(
+                              children: <Widget>[
+                                ListTile(
+                                  title: Text(
+                                    t.preferencesView.department,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  leading: const Icon(Icons.account_balance_rounded),
+                                  subtitle: Text(
+                                    viewModel.user!.department,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            ListTile(
-                              title: Text(
-                                t.preferencesView.branch,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              leading: const Icon(Icons.vertical_split_rounded),
-                              subtitle: Text(
-                                viewModel.managerAPI.getCourse().branch,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
-                                ),
-                              ),
-                            ),
-                            ListTile(
-                              title: Text(
-                                t.preferencesView.department,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              leading: const Icon(Icons.account_balance_rounded),
-                              subtitle: Text(
-                                viewModel.managerAPI.getCourse().department,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
-                                ),
-                              ),
-                            ),
-                            ListTile(
-                              title: Text(
-                                t.preferencesView.semesters,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              leading: const Icon(Icons.horizontal_split_rounded),
-                              subtitle: Text(
-                                viewModel.managerAPI.getCourse().semList.length.toString(),
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : Column(
-                          children: <Widget>[
-                            ListTile(
-                              title: Text(
-                                t.preferencesView.department,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              leading: const Icon(Icons.account_balance_rounded),
-                              subtitle: Text(
-                                viewModel.user!.department,
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
-                                ),
-                              ),
-                            ),
-                          ],
+                  const Divider(
+                    indent: 8.0,
+                    endIndent: 8.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Language: ',
+                          style: TextStyle(
+                            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                          ),
                         ),
+                        const SizedBox(width: 48.0),
+                        Expanded(
+                          child: DropdownButton<String>(
+                            isExpanded: true,
+                            dropdownColor: Theme.of(context).colorScheme.surface,
+                            elevation: 4,
+                            value: viewModel.languageValue,
+                            borderRadius: BorderRadius.circular(8.0),
+                            items: viewModel.languageList.map<DropdownMenuItem<String>>((String item) {
+                              return DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(viewModel.language[item] ?? item.toString()),
+                              );
+                            }).toList(),
+                            onChanged: (value) async {
+                              if (value == null) {
+                                return;
+                              }
+                              await viewModel.localeUtil.setLocale(value);
+                              setState(() {
+                                viewModel.languageValue = value;
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) => AlertDialog(
+                                    title: Text('Language changed'),
+                                    content: Text('Language will be applied on next app restart.'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () => Navigator.of(context).pop(),
+                                        child: Text(t.cancel),
+                                      ),
+                                      FilledButton(
+                                        onPressed: () => Navigator.of(context).pop(),
+                                        child: Text('Done'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

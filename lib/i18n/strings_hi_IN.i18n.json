@@ -1,0 +1,112 @@
+{
+  "appName": "CLASSNET",
+  "appDesc": "शिक्षकों, छात्रों और कक्षाओं को जोड़ना।",
+  "cancel": "रद्द करना",
+  "delete": "मिटाना",
+  "auth": {
+    "invalidEmail": "अमान्य ईमेल",
+    "invalidUser": "अमान्य उपयोगकर्ता"
+  },
+  "addAssignmentView": {
+    "addAssignment": "असाइनमेंट जोड़ें",
+    "assignmentPosted": "असाइनमेंट पोस्ट किया गया.",
+    "description": "विवरण",
+    "descriptionHint": "असाइनमेंट विवरण और सामग्री.",
+    "due": "नियत तारीख",
+    "dueHint": "नियत तारीख",
+    "invalidData": "अमान्य डेटा।",
+    "points": "अंक",
+    "subject": "विषय",
+    "title": "शीर्षक",
+    "titleHint": "असाइनमेंट का शीर्षक."
+  },
+  "assignmentView": {
+    "assignmentDeleted": "असाइनमेंट हटा दिया गया.",
+    "assignmentUpdated": "असाइनमेंट अपडेट किया गया.",
+    "deleteAssignment": "असाइनमेंट हटाएँ",
+    "deleteAssignmentMsg": "क्या आप आश्वस्त है कि आपको डिलीट करना है?",
+    "description": "विवरण",
+    "descriptionHint": "असाइनमेंट विवरण और सामग्री.",
+    "due": "नियत तारीख",
+    "dueHint": "नियत तारीख",
+    "editAssignment": "असाइनमेंट संपादित करें",
+    "invalidData": "अमान्य डेटा।",
+    "points": "अंक",
+    "title": "शीर्षक",
+    "titleHint": "असाइनमेंट का शीर्षक.",
+    "updateAssignment": "असाइनमेंट अद्यतन करें"
+  },
+  "assignmentsView": {
+    "assignments": "कार्य",
+    "noAssignments": "कोई असाइनमेंट नहीं."
+  },
+  "homeView": {
+    "home": "होम",
+    "noAssignments": "कोई असाइनमेंट नहीं.",
+    "noUpcomingAssignments": "कोई आगामी असाइनमेंट नहीं.",
+    "ended": "समाप्त",
+    "subjects": "विषय",
+    "upcoming": "आगामी"
+  },
+  "loginView": {
+    "createAccount": "खाता बनाएं",
+    "email": "ईमेल",
+    "forgotPassword": "पासवर्ड भूल गए?",
+    "logIn": "लॉग इन करें",
+    "password": "पासवर्ड",
+    "signIn": "दाखिल करना"
+  },
+  "models": {
+    "guestUser": "अतिथि उपयेागकर्ता"
+  },
+  "navigationView": {
+    "home": "होम",
+    "more": "अधिक",
+    "schedule": "अनुसूची",
+    "subjects": "विषय"
+  },
+  "preferencesView": {
+    "branch": "शाखा",
+    "course": "अवधि",
+    "department": "विभाग",
+    "logOut": "लॉग आउट",
+    "logOutMsg": "क्या आप वाकई लॉग आउट करना चाहेंगे?",
+    "preferences": "प्रेफेरेंसेस",
+    "semesters": "सेमेस्टर"
+  },
+  "registerView": {
+    "branch": "शाखा",
+    "confirmPassword": "पासवर्ड की पुष्टि कीजिये",
+    "course": "अवधि",
+    "department": "विभाग",
+    "email": "ईमेल",
+    "name": "नाम",
+    "signUp": "साइन अप करें",
+    "password": "पासवर्ड"
+  },
+  "scheduleView": {
+    "schedule": "अनुसूची"
+  },
+  "subjectsView": {
+    "fetching": "लाया जा रहा है...",
+    "noAssignments": "कोई असाइनमेंट नहीं.",
+    "noSubjects": "कोई विषय नहीं.",
+    "sem1": "सेमेस्टर 1",
+    "sem2": "सेमेस्टर 2",
+    "sem3": "सेमेस्टर 3",
+    "sem4": "सेमेस्टर 4",
+    "sem5": "सेमेस्टर 5",
+    "sem6": "सेमेस्टर 6",
+    "sem7": "सेमेस्टर 7",
+    "sem8": "सेमेस्टर 8",
+    "subjects": "विषय"
+  },
+  "widgets": {
+    "assignments": {
+      "due": "नियत तारीख"
+    },
+    "subjects": {
+      "assignments": "कार्य"
+    }
+  }
+}
