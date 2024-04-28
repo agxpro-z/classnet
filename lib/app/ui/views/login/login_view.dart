@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../i18n/strings.g.dart';
 import '../../../services/auth.dart';
@@ -20,33 +21,42 @@ class _LoginPageState extends State<LoginPage> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.secondaryContainer,
       body: SafeArea(
-        child: Center(
-          child: Card(
-            color: theme.colorScheme.background,
-            margin: const EdgeInsets.all(8.0),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              t.appName,
+              style: GoogleFonts.lilitaOne(
+                fontSize: theme.textTheme.displayMedium?.fontSize,
+                height: 0.0,
+              ),
+            ),
+            Text(
+              t.appDesc,
+              style: TextStyle(
+                fontSize: theme.textTheme.labelSmall?.fontSize,
+              ),
+            ),
+            const SizedBox(height: 48.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  // Header
                   Padding(
                     padding: const EdgeInsets.only(left: 4.0),
                     child: Text(
                       t.loginView.signIn,
                       style: TextStyle(
                         color: theme.colorScheme.onSurface,
-                        fontSize: theme.textTheme.headlineMedium?.fontSize,
+                        fontSize: theme.textTheme.headlineSmall?.fontSize,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24.0),
-
-                  // Username text field
+                  const SizedBox(height: 8.0),
                   TextField(
                     controller: _emailController,
                     decoration: InputDecoration(
@@ -59,8 +69,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 12.0),
-
-                  // Password text field
                   TextField(
                     controller: _passwordController,
                     decoration: InputDecoration(
@@ -73,8 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     obscureText: true,
                   ),
-
-                  // Forgot password
                   SizedBox(
                     height: 32.0,
                     child: TextButton(
@@ -85,12 +91,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  // const SizedBox(height: 8.0),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      // Create account button
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
@@ -103,8 +106,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(width: 12.0),
-
-                      // Login button
                       FilledButton(
                         onPressed: () => Auth.signIn(_emailController.text.trim(), _passwordController.text),
                         child: Text(
@@ -118,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

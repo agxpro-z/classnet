@@ -1,5 +1,6 @@
 {
-  "appName": "Classnet",
+  "appName": "CLASSNET",
+  "appDesc": "Connecting teachers and students.",
   "cancel": "Cancel",
   "delete": "Delete",
   "auth": {
