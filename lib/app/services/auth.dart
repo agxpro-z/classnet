@@ -12,8 +12,9 @@ class Auth {
     return FirebaseAuth.instance.currentUser?.displayName ?? t.auth.invalidUser;
   }
 
-  static Future<void> signIn(String email, String password) async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+  static Future<bool> signIn(String email, String password) async {
+    UserCredential uc = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    return uc.user != null;
   }
 
   static Future<void> signOut() async {

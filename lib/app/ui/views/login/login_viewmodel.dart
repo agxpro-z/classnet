@@ -9,5 +9,9 @@ class LoginViewModel extends BaseViewModel {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future<void> signIn() async => await Auth.signIn(emailController.text.trim(), passwordController.text);
+  Future<void> signIn() async {
+    if (await Auth.signIn(emailController.text.trim(), passwordController.text)) {
+      passwordController.text = "";
+    }
+  }
 }
