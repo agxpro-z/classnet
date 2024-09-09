@@ -11,6 +11,8 @@ import 'ui/views/assignments/assignments_view.dart';
 import 'ui/views/assignments/assignments_viewmodel.dart';
 import 'ui/views/home/home_view.dart';
 import 'ui/views/home/home_viewmodel.dart';
+import 'ui/views/login/login_view.dart';
+import 'ui/views/login/login_viewmodel.dart';
 import 'ui/views/navigation/navigation_view.dart';
 import 'ui/views/navigation/navigation_viewmodel.dart';
 import 'ui/views/preferences/preferences_view.dart';
@@ -26,6 +28,7 @@ import 'ui/views/subjects/subjects_viewmodel.dart';
     MaterialRoute(page: AssignmentView),
     MaterialRoute(page: AssignmentsView),
     MaterialRoute(page: HomeView),
+    MaterialRoute(page: LoginView),
     MaterialRoute(page: NavigationView),
     MaterialRoute(page: PreferencesView),
     MaterialRoute(page: ScheduleView),
@@ -36,6 +39,7 @@ import 'ui/views/subjects/subjects_viewmodel.dart';
     LazySingleton(classType: AssignmentViewModel),
     LazySingleton(classType: AssignmentsViewModel),
     LazySingleton(classType: HomeViewModel),
+    LazySingleton(classType: LoginViewModel),
     LazySingleton(classType: NavigationViewModel),
     LazySingleton(classType: PreferencesViewModel),
     LazySingleton(classType: ScheduleViewModel),
@@ -56,7 +60,7 @@ class App extends StatelessWidget {
           if (snapshot.hasData) {
             return const NavigationView();
           } else {
-            return const LoginPage();
+            return const LoginView();
           }
         },
       ),
