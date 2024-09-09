@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import 'ui/views/login/login_view.dart';
 import 'ui/views/add_assignment/add_assignment_view.dart';
 import 'ui/views/add_assignment/add_assignment_viewmodel.dart';
 import 'ui/views/assignment/assignment_view.dart';
