@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:random_gradient_image/random_gradient_image.dart';
 
 import '../../../../i18n/strings.g.dart';
 
@@ -28,9 +29,13 @@ class AssignmentCard extends StatelessWidget {
             Card(
               color: theme.colorScheme.primaryContainer,
               margin: const EdgeInsets.all(0.0),
-              child: const SizedBox(
+              child: SizedBox(
                 height: 144,
                 width: 164,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: RandomGradientImage(seed: title + subject, maxSaturation: 0.0001),
+                ),
               ),
             ),
             const SizedBox(height: 8.0),
