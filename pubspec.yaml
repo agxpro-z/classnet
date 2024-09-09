@@ -44,6 +44,7 @@ dependencies:
   logging: ^1.2.0
   markdown_widget: ^2.3.2+6
   shared_preferences: ^2.2.3
+  random_gradient_image: ^0.0.1
   shimmer: ^3.0.0
   slang: ^3.30.2
   slang_flutter: ^3.3.0
